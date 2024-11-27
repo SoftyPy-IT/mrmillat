@@ -1,10 +1,25 @@
+'use client'
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
+
+
 
 const OurConcern = () => {
   return (
-    <div className='flex flex-col lg:flex-row-reverse gap-8 items-center justify-center w-full lg:max-w-6xl my-16 px-3'>
+    <div
+    
+    data-aos="fade-up"
+    // data-aos-delay="500"
+    data-aos-duration="1500"
+    
+    
+    className='flex flex-col lg:flex-row-reverse gap-8 items-center justify-center w-full lg:max-w-6xl my-16 px-3'>
          
                {/* content  */}
   <div className='space-y-5 p-5 w-full lg:w-1/3 text-center lg:text-left'>
@@ -13,7 +28,7 @@ const OurConcern = () => {
   <p>
   Parturient dis torquent nostra mattis congue ut sagittis nibh luctus viverra. Enim convallis tristique magna torquent egestas dictumst consectetur. Malesuada mus dictumst orci litora nisl iaculis duis nostra enim vestibulum.
   </p>
-  <button className='hover-border-button'>More Program</button>
+  <Link href={'/events'}><button className='hover-border-button mt-6'>More Program</button></Link>
         </div> 
 
                   {/* image */}

@@ -1,13 +1,27 @@
-import Image from 'next/image';
-import React from 'react';
-import { FaCalendar } from 'react-icons/fa';
-import { FaLocationDot } from 'react-icons/fa6';
+'use client'
+import React, { useEffect, useState } from 'react';
 import Marquee from "react-fast-marquee";
 import { Pagination, Stack } from '@mui/material';
-import Link from 'next/link';
+import axios from 'axios';
+import EventCard, { Event } from '@/components/event/eventCard';
 
 
 const Events = () => {
+  const [events,setEvents] = useState([]);
+  useEffect(()=>{
+    const getData = async () => {
+      try {
+        const response = await axios.get('/data/events.json'); 
+        setEvents(response.data);
+      } catch (error) {
+        console.error('Error fetching the data:', error);
+      }
+    };
+  
+    getData();
+  
+   },[])
+
   return (
     <div>
       {/* banner section  */}
@@ -38,185 +52,20 @@ const Events = () => {
 
 
        {/* Event Highlights section  */}
-       <h3 className='text-4xl font-bold my-10 text-center text-blue-950'>Event Highlights</h3>
-    <section className='flex  item-center justify-center'>
+    <h3 className='text-4xl font-bold my-10 text-center text-blue-950'>Event Highlights</h3>
+    <section
+     data-aos="fade-up"
+     data-aos-duration="2500"
+     className='flex  item-center justify-center'>
       
 <div className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 justify-between items-center gap-10'>
   
-                {/* card-1  */}
-                <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-2  */}
-    <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-3  */}
-    <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-4  */}
-    <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-5  */}
-    <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-6  */}
-    <div className="max-w-[520px] lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
+               
+   {
+    events?.map((event:Event)=><EventCard key={event.id} event={event}/>)
+   }             
+               
+              
 </div>
 
 
@@ -232,126 +81,16 @@ const Events = () => {
    </div>
 
             {/* Up Comming Events section  */}
-
+            
+         
 <h3 className='text-4xl font-bold my-10 text-center text-blue-950'>Up Comming Events</h3>
-      <section className=''>
+      <section className='mb-20'>
       <Marquee pauseOnHover={true}>
-                {/* card-1  */}
-  <div className="md:max-w-[520px] max-w-[300px]  mx-10  mb-10 lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-2  */}
-    <div className="md:max-w-[520px] max-w-[300px]  mx-10  mb-10 lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110     h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-3  */}
-    <div className="md:max-w-[520px] max-w-[300px]  mx-10  mb-10 lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>
-                {/* card-4  */}
-<div className="md:max-w-[520px] max-w-[300px]  mx-10  mb-10 lg:h-[380px] rounded-xl shadow-lg ">
-  <div className="p-5">
-   <div className="overflow-hidden"> <Image
-      src="/Images/mr-10.jpg"
-      alt="Event Image"
-      width={300}
-      height={150}
-      className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
-    /></div>
-    <div className="mt-4">
-      <h2 className="text-xl font-bold text-blue-950">ময়মনসিংহ-কিশোরগঞ্জ রোড মার্চ এর উদ্বোধনীতে রশিদুজ্জামান মিল্লাত এর বক্তব্য  </h2>
-      <p className="text-sm mt-2">
-      অবৈধ সরকারের পদত্যাগ ও সংসদ বিলুপ্ত করে নির্দলীয় নিরপেক্ষ সরকারের অধীনে নির্বাচন এবং দেশনেত্রী বেগম <Link href="/events/event-details/"><button className='text-blue-500'>আরও-দেখুন...</button></Link>
-      </p>
-      <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
-
-     <div className='flex gap-1 items-center'>
-     <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     <div className='flex gap-1 items-center'>
-     <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
-     </div>
-     
-     </div>
-      
-    </div>
-  </div>
-</div>    
+      {
+    events?.map((event:Event)=><div className="mx-5" key={event.id}><EventCard   event={event}/></div>)
+   }             
+           
+              
       </Marquee>
         
         </section>  

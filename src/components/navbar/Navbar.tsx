@@ -1,11 +1,15 @@
 'use client'
 import { IoMenuSharp } from 'react-icons/io5';
 import './navbar.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CiCircleRemove } from 'react-icons/ci';
 import Image from 'next/image';
+import { AiOutlineClose } from 'react-icons/ai';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
 
 type Route={
   navbar:string;
@@ -13,29 +17,81 @@ type Route={
 }
 
 const Navbar = () => {
+  const [scrolled,setScrolled] = useState<boolean>(false);
+  const [scrolling,setScrolling] = useState<boolean>(false);
   const pathName = usePathname();
-  const [showDropdown,setShowDropdown] = useState<boolean>(false);
-  const routes:Route[] = [{navbar:"Home",route:"/"},{navbar:"About",route:"/about"},{navbar:"Events",route:"/events"},{navbar:"Gallery",route:"/gallery"},{navbar:"Media",route:"/media"}]
+  const [openSidebar,setOpenSideBar] = useState<boolean>(false);
+
+
+
+  const routes:Route[] = [{navbar:"Home",route:"/"},{navbar:"About",route:"/about"},{navbar:"Events",route:"/events"},{navbar:"Gallery",route:"/gallery"},{navbar:"Article",route:"/article"},{navbar:"Voice  on  Media",route:"/media"},{navbar:"Contact",route:"/contact"}]
+
+
+
+
+  useEffect(()=>{
+    let scrollTimeout : NodeJS.Timeout
+  const handleScroll =()=>{
+    if(window.scrollY>0){
+      setScrolled(true);
+      setScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout= setTimeout(() => {
+          setScrolling(false);
+      }, 1000);
+    }else{
+      setScrolled(false);
+      setScrolling(false);
+    }
+  }
+
+ window.addEventListener('scroll',handleScroll);
+ return ()=>{
+  clearTimeout(scrollTimeout);
+  window.removeEventListener('scroll',handleScroll);
+ } 
+
+
+  },[])
 
   return (
-    <div >
+    <div className={`fixed z-20 w-full bg-white transition-all duration-1000 top-0 ${scrolling?'border-b-4 bg-cover bg-no-repeat bg-[url(/Images/bg-1.gif)] border-blue-700 py-2 ': 'border-b border-blue-700'} `}>
 
-      <nav className='container mx-auto px-10 flex justify-between py-2 lg:py-0  items-center'>
+
+
+      <nav className='container mx-auto px-10 flex justify-between py-2 lg:py-0  items-center h-[50px]'>
+
+
+
            {/* nav start  */}
-      <div>
-        {/* <div className=' font-semibold text-blue-900 font-serif italic text-center border-2 border-dashed border-orange-400 outline-dashed outline-2 outline-gray-400 outline-offset-4  p-4 py-2 transform -skew-x-12'>
-          <p className='text-blue-700 md:text-xl text-lg'>Save</p>
-          <p className='text-gray-400 md:text-2xl text-xl'>Bangladesh</p>
-        </div> */}
-        <Image src={'/Images/logo.png'} alt='logo' width={150} height={75} className='w-[100px] h-[50px] md:w-[150px] md:h-[75px]'></Image>
+      <div  data-aos="fade-down"
+            data-aos-delay="500"
+            data-aos-duration="1500" >
+      
+        <Image src={'/Images/logo.png'} alt='logo' width={150} height={75} className={`w-[100px] h-[50px] md:w-[150px] md:h-[60px] relative  z-30 border border-blue-700 pr-2 bg-white border-l-2 border-b-2 transition-all duration-1000
+          ${scrolling?'top-0':'top-5'}
+          `}></Image>
      
       </div>
-             {/* nav center  */}
-       <div className='lg:flex hidden gap-5 text-gray-600 font-semibold '>
+
+
+
+
+
+             {/* nav items  */}
+       <div 
+           data-aos="fade-down"
+           data-aos-delay="500"
+           data-aos-duration="1500"
+       className={`lg:flex hidden gap-5 transition-all duration-1000 relative text-black z-`}>
+
         {
           routes.map((item,idx)=>  <Link className='hover-button hover:text-orange-500'  key={idx} href={item.route}>
-          <button  className={`hover:text-orange-500
-            ${pathName === item.route?'text-orange-500':''}`}>{item.navbar}
+          <button
+      
+          
+          className={`hover:text-orange-500 ${scrolling?'text-black':''}
+            ${pathName === item.route  ?'text-orange-500 ':''} ${pathName === item.route && scrolling ?'text-orange-500 font-bold':''}`}>{item.navbar}
            <span className="border top-left"></span>
            <span className="border top-right"></span>
            <span className="border bottom-right"></span>
@@ -46,35 +102,43 @@ const Navbar = () => {
        
         </div> 
 
-            {/* nav end       */}
-<div className='lg:flex hidden'>
-<button className='hover-border-button'>
-Connect
-</button>
-          
+        <div>
 
-          </div>   
+     
+   </div>          
+
+
+
+
+
+
 
            {/* nav item for small device  */}
-          <div className='block lg:hidden relative'>
+<div className='block lg:hidden  right-0 relative '>
+ {/* Overlay */}
+ <div className={`  ${openSidebar?'fixed inset-0 bg-black bg-opacity-50 ':' '}`}></div>
+
 {
-  !showDropdown&&<IoMenuSharp onClick={()=>setShowDropdown(!showDropdown)} className='text-3xl text-gray-600' />
+  !openSidebar&&<IoMenuSharp onClick={()=>setOpenSideBar(!openSidebar)} className='text-3xl text-gray-600 relative z-10' />
 }
+
+  <div onClick={()=>setOpenSideBar(!openSidebar)}  className={`bg-white shadow-2xl fixed transition-all duration-1000 z-50 top-0   flex flex-col   py-2  w-[200px] right-0 pt-10 ${openSidebar?'right-0 ':' -right-[300px]'} h-screen`}>
+  <AiOutlineClose className='text-2xl text-rose-500 absolute left-4 top-2' />
+ 
 {
-  showDropdown?
-  <div onClick={()=>setShowDropdown(!showDropdown)}  className='bg-white z-50 flex flex-col absolute  py-2 shadow-xl w-[200px] right-0'>
-  <CiCircleRemove className='text-4xl text-rose-500 absolute -right-2 -top-5' />
-{
-  routes?.map((item,idx)=><Link href={item.route} key={idx}> <p  className='py-2 hover:bg-blue-900 hover:text-orange-500 px-6 border-b'>{item.navbar}</p></Link>)
+  routes?.map((item,idx)=><Link href={item.route} key={idx}> <p  className={`py-2 hover:bg-blue-900 hover:text-orange-500 px-6 border-b   ${pathName === item.route  ?'text-orange-500 ':''} `}>{item.navbar}</p></Link>)
 }
  
     
   </div>
-  :' '
-}
 
 
-</div>           
+</div>  
+
+
+
+
+
       </nav>
     </div>
   );

@@ -1,6 +1,8 @@
+'use client'
 import React from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
 
 const Media = () => {
   return (
@@ -37,7 +39,11 @@ const Media = () => {
 
 
         {/* media card container  */}
- <div className='flex justify-center item-center'>
+ <div
+  data-aos="fade-up"
+  data-aos-duration="2500"
+ 
+ className='flex justify-center item-center'>
  <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-around mb-8 mt-10 gap-8 '>
                {/* card 1 */}
       <div className='w-[305px] h-[350px] border-2 shadow-xl '>

@@ -4,7 +4,7 @@ import QuickLinksSection from '../QuickLinksSection';
 
 const ElectionCampaign = () => {
   return (
-   <div className='my-20 '>
+   <div className='mb-20 '>
      <div className="bg-[url(/Images/mr-2.jpg)]  min-h-screen bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>

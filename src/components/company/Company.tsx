@@ -7,13 +7,17 @@ const Company = () => {
   return (
     <div>
 
-               <h3 className='text-4xl text-center font-bold my-10 text-blue-950'>Company</h3>
+      <h3 className='text-4xl text-center font-bold my-10 text-blue-950'>Company</h3>
        <div className="bg-[url(/Images/mr-17.jpg)]  h-[500px] bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14 ">
       {/* Overlay */}
       
 
       {/* Content */}
-      <div className="relative z-10 w-full lg:w-1/2  space-y-3 border-4 border-white py-8  bg-[rgb(0,0,0,0.7)] ">
+      <div 
+        data-aos="flip-left"
+        data-aos-easing="ease-out-cubic"
+        data-aos-duration="2000"
+      className="relative z-10 w-full lg:w-1/2  space-y-3 border-4 border-white py-8  bg-[rgb(0,0,0,0.7)] ">
       <div className='flex gap-5 item-center'>
         <div className='md:w-[100px] md:h-[100px] w-[60px] h-[60px] relative'>
         <Image src={'/Images/mr-16.jpg'}  layout="fill"  objectFit="cover" alt='shourav group' ></Image>

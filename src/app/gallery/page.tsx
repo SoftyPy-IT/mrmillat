@@ -1,15 +1,38 @@
 'use client'
 import { Pagination, Stack } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageModal from './ImageModal';
+import axios from 'axios';
+import { MdOutlineFullscreen } from 'react-icons/md';
+
+
+
 
 const Gallery = () => {
+ const [images,setImages] = useState<Array<{ id: string; image: string; title: string }>>([]); 
  const [isHover,setIsHover] = useState<boolean>(false);
  const [openModal,setOpenModal] = useState<boolean>(false);
+
+ useEffect(()=>{
+  const getData = async () => {
+    try {
+      const response = await axios.get('/data/gallery.json'); // Corrected path
+      setImages(response.data);
+    } catch (error) {
+      console.error('Error fetching the data:', error);
+    }
+  };
+
+  getData();
+
+ },[])
+
+console.log(images);
+
   return (
-    <div>
+    <div >
       {
-        openModal? <div onClick={()=>setOpenModal(!openModal)}><ImageModal/></div>:''
+        openModal && <div ><ImageModal close={setOpenModal}/></div>
       }
     
    {/* banner section  */}
@@ -37,321 +60,51 @@ const Gallery = () => {
     </div>
    
            {/* Gallery container  */}
-   <section onClick={()=>setOpenModal(!openModal)} className='flex items-center justify-center px-5'>
-   <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center justify-around mb-8 mt-10 gap-8 max-w-5xl'>
+   <section
+    data-aos="fade-up"
+    data-aos-duration="2500"
+   
+   onClick={()=>setOpenModal(true)} className='flex items-center justify-center px-5'>
+   <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  items-center justify-around mb-8 mt-10 gap-8 max-w-6xl'>
 
-      {/* gallery card 1  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-1.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
+  {
+   images?.map(image=>
+    <div key={image.id} className='overflow-hidden'>
+      <MdOutlineFullscreen className='text-3xl text-white absolute z-10 ' />
+    <div
+    onMouseEnter={() => setIsHover(true)}
+    onMouseLeave={() => setIsHover(false)}
+    onTouchStart={() => setIsHover(true)}
+    onTouchEnd={() => setIsHover(false)}
+    style={{
+      backgroundImage: `url(${image.image})`,
+      backgroundSize: "100% 100%",
+      backgroundPosition: "center",
+    }}
+    className={` w-[300px] h-[150px] md:w-[400px] md:h-[200px] bg-[length:100%_100%] bg-center relative hover:scale-[105%] transition-transform duration-500 lg:w-[600px] lg:h-[300px]`}
+  >
+    {/* Overlay */}
+    <div
+      className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
+        isHover ? "opacity-100" : "opacity-0"
+      }`}
+    ></div>
+
+    {/* Animated Text */}
+    <h1
+      className={`absolute px-5  text-lg font-semibold text-white transition-all duration-500 ${
+        isHover ? "bottom-5 opacity-100" : "bottom-[-40px] opacity-0"
+      }`}
     >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
+      M Rashedulzamman Millat
+    </h1>
+  </div>
+      </div>   
 
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5  text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 2  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-2.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
+   )
 
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 3  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-3.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 4  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-4.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 5  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-5.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 6  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-6.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 7  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-7.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 8 */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-8.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 9  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-9.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 10  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-3.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 11  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-2.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
-               {/* gallery card 12  */}
-      <div  className='overflow-hidden'>
-      <div
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
-      onTouchStart={() => setIsHover(true)}
-      onTouchEnd={() => setIsHover(false)}
-      className="bg-[url('/Images/mr-1.jpg')] h-[300px] w-[250px] bg-cover bg-center relative hover:scale-[105%] transition-transform duration-500  "
-    >
-      {/* Overlay */}
-      <div
-        className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-          isHover ? "opacity-100" : "opacity-0"
-        }`}
-      ></div>
-
-      {/* Animated Text */}
-      <h1
-        className={`absolute px-5 text-lg font-semibold text-white transition-all duration-500 ${
-          isHover ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
-        }`}
-      >
-        M Rashedulzamman Millat
-      </h1>
-    </div>
-        </div>         
+  }
+         
              
 
    </div>

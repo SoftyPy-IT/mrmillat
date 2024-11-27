@@ -1,27 +1,46 @@
+'use client'
 import Link from 'next/link';
 import React from 'react';
 import { GrGallery } from 'react-icons/gr';
 import { MdEvent, MdPermMedia } from 'react-icons/md';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
+
+
+
 
 const QuickLinksSection = () => {
   return (
     <div className='flex flex-col lg:flex-row gap-10 '>
             {/* Events */}
-      <div className='w-[280px] p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white '>
+      <div 
+       data-aos="fade-right"
+       data-aos-duration="1500"
+      
+      className='w-[280px]  p-5 hover:bg-gray-300 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white '>
             <span><MdEvent className='text-5xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Events</h3>
             <p>Suspendisse erat dignissim ac porta metus accumsan habitasse eu turpis leo aenean</p>
            <Link href={'/events'}> <button className='hover-border-button'>View Schedule</button></Link>
       </div>
+
             {/* gallery */}
-      <div className='w-[280px] p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
+      <div
+       data-aos="fade-up"
+       data-aos-duration="1500"
+      className='w-[280px] hover:bg-gray-300 p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
             <span><GrGallery className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Gallery</h3>
             <p>Suspendisse erat dignissim ac porta metus accumsan habitasse eu turpis leo aenean</p>
            <Link href={'/gallery'}> <button className='hover-border-button'>View Gallery</button></Link>
       </div>
+
             {/* Media */}
-      <div className='w-[280px] p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
+      <div
+         data-aos="fade-left"
+       data-aos-duration="1500"
+      className='w-[280px] hover:bg-gray-300 p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
             <span><MdPermMedia className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Media</h3>
             <p>Suspendisse erat dignissim ac porta metus accumsan habitasse eu turpis leo aenean</p>

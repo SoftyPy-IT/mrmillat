@@ -1,19 +1,29 @@
+'use client'
 import Link from 'next/link';
 import React from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
+
+AOS.init();
 const VoiceOnMedia = () => {
   return (
     <div className='my-10'>
            <h2 className='lg:text-4xl text-2xl md:text-3xl text-blue-950 text-center font-bold'>Voice On Media</h2>
         {/* media card container  */}
-    <section className='flex justify-center items-center'>
+      
+    <section
+     data-aos="fade-up"
+       data-aos-duration="1500"
+    
+    className='flex justify-center items-center'>
     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center mb-8 mt-10 gap-8'>
                {/* card 1 */}
       <div className='w-[305px] h-[350px] border-2 shadow-xl '>
       <iframe 
     width="300" 
     height="220" 
-    src="https://www.youtube.com/embed/WIKrwWFZbLQ?autoplay=1&mute=1" 
+    src="https://www.youtube.com/embed/WIKrwWFZbLQ" 
     title="বিএনপির কোষাধ্যক্ষ হলেন মিল্লাত | NTV News" 
     frameBorder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -26,7 +36,7 @@ const VoiceOnMedia = () => {
       </div>
                {/* card 2 */}
       <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-      <iframe width="300" height="220" src="https://www.youtube.com/embed/EV4BffstKKY?autoplay=1&mute=1" title="‘শেখ হাসিনা পালিয়ে গেছে, তার দোসররা বসে নেই’ | M Rashiduzzaman Millat | BNP | Samakal" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+      <iframe width="300" height="220" src="https://www.youtube.com/embed/EV4BffstKKY" title="‘শেখ হাসিনা পালিয়ে গেছে, তার দোসররা বসে নেই’ | M Rashiduzzaman Millat | BNP | Samakal" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 
 
        <h2 className='text-lg font-bold my-3 text-black px-5'>শেখ হাসিনা পালিয়ে গেছে, তার দোসররা বসে নেই’ | M Rashiduzzaman Millat | BNP | Samakal</h2>
@@ -37,7 +47,7 @@ const VoiceOnMedia = () => {
       <iframe 
     width="300" 
     height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
+    src="https://www.youtube.com/embed/xHdh-wrcwCE" 
     title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
     frameBorder="0" 
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
