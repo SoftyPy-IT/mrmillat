@@ -5,8 +5,8 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination,Autoplay } from 'swiper/modules';
 import { useEffect, useState } from 'react';
-import EventCard, { Event } from './eventCard';
 import axios from 'axios';
+import EventCardItem, { Event } from './EventItemCart';
 
 
 const EventSliderHomePage = () => {
@@ -78,7 +78,8 @@ const EventSliderHomePage = () => {
         {
           events?.map((event:Event,i)=>
             <SwiperSlide key={i} className=' mb-16'>
-            <EventCard event={event}></EventCard>
+            <EventCardItem event={event}></EventCardItem>
+           
             </SwiperSlide>
           )
         }

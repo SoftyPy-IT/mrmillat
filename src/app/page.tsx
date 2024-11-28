@@ -1,3 +1,4 @@
+import ArticleSectionHomePage from '@/components/Article/ArticleSectionHomePage';
 import Banner from '@/components/banner/Banner';
 import ElectionCampaign from '@/components/electionCampaign/ElectionCampaign';
 import EventSliderHomePage from '@/components/event/EventSliderHomePage';
@@ -18,15 +19,18 @@ const page = () => {
 
    <section className='bg-[url(/Images/bg-1.gif)] bg-cover bg-center py-20'>
 
+                       {/* our concern section  */}
    <div className='flex justify-center items-center w-full'>
     <OurConcern/>
     </div>     
-
-           {/* introductionVideo */}
+   <div>
+    <ArticleSectionHomePage/>
+   </div>
+                   {/* introductionVideo */}
       <div className='flex justify-center items-center'>
       <IntroductionVideo/>
       </div>
-                     {/* our concern section  */}
+                    
                
    </section>
                    

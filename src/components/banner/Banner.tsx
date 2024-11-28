@@ -10,6 +10,11 @@ AOS.init();
 const Banner = () => {
   return (
     <div className="relative w-full h-[500px] lg:min-h-screen overflow-hidden">
+
+
+
+
+
        <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>
     {/* Video Background */}
     <video
@@ -51,19 +56,7 @@ const Banner = () => {
     
   </div>
 
-//     <div
-//   className=" relative bg-[url(/Images/mr-15.jpg)] md:h-[600px] h-[400px] lg:min-h-screen bg-cover bg-center "
-//  >
-//    <div className="absolute inset-0 bg-black bg-opacity-20"></div>
 
-//   
-//   {/* <div className="text-neutral-content items-center justify-between gap-10 lg:gap-10 flex flex-col lg:flex-row-reverse  py-10 lg:py-0">
-
-  
-
-   
-//   </div> */}
-// </div>
   
   );
 };

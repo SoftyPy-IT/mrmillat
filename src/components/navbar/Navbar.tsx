@@ -16,31 +16,36 @@ type Route={
   route:string
 }
 
+
+const routes:Route[] = [
+  {navbar:"Home",route:"/"},
+  {navbar:"About",route:"/about"},
+  {navbar:"Events",route:"/events"},
+  {navbar:"Gallery",route:"/gallery"},
+  {navbar:"Articles",route:"/articles"},
+  {navbar:"Voice  on  Media",route:"/media"},
+  {navbar:"Contact",route:"/contact"}
+                        ]
+
+
 const Navbar = () => {
-  const [scrolled,setScrolled] = useState<boolean>(false);
+  // const [scrolled,setScrolled] = useState<boolean>(false);
   const [scrolling,setScrolling] = useState<boolean>(false);
   const pathName = usePathname();
   const [openSidebar,setOpenSideBar] = useState<boolean>(false);
-
-
-
-  const routes:Route[] = [{navbar:"Home",route:"/"},{navbar:"About",route:"/about"},{navbar:"Events",route:"/events"},{navbar:"Gallery",route:"/gallery"},{navbar:"Article",route:"/article"},{navbar:"Voice  on  Media",route:"/media"},{navbar:"Contact",route:"/contact"}]
-
-
-
 
   useEffect(()=>{
     let scrollTimeout : NodeJS.Timeout
   const handleScroll =()=>{
     if(window.scrollY>0){
-      setScrolled(true);
+      // setScrolled(true);
       setScrolling(true);
       clearTimeout(scrollTimeout);
       scrollTimeout= setTimeout(() => {
           setScrolling(false);
       }, 1000);
     }else{
-      setScrolled(false);
+      // setScrolled(false);
       setScrolling(false);
     }
   }
@@ -54,14 +59,13 @@ const Navbar = () => {
 
   },[])
 
+
+
+
   return (
     <div className={`fixed z-20 w-full bg-white transition-all duration-1000 top-0 ${scrolling?'border-b-4 bg-cover bg-no-repeat bg-[url(/Images/bg-1.gif)] border-blue-700 py-2 ': 'border-b border-blue-700'} `}>
 
-
-
       <nav className='container mx-auto px-10 flex justify-between py-2 lg:py-0  items-center h-[50px]'>
-
-
 
            {/* nav start  */}
       <div  data-aos="fade-down"
@@ -74,16 +78,12 @@ const Navbar = () => {
      
       </div>
 
-
-
-
-
              {/* nav items  */}
        <div 
            data-aos="fade-down"
            data-aos-delay="500"
            data-aos-duration="1500"
-       className={`lg:flex hidden gap-5 transition-all duration-1000 relative text-black z-`}>
+       className={`lg:flex hidden gap-5 transition-all duration-1000 relative text-black `}>
 
         {
           routes.map((item,idx)=>  <Link className='hover-button hover:text-orange-500'  key={idx} href={item.route}>
@@ -114,15 +114,15 @@ const Navbar = () => {
 
 
            {/* nav item for small device  */}
-<div className='block lg:hidden  right-0 relative '>
+<div className='block lg:hidden  '>
  {/* Overlay */}
  <div className={`  ${openSidebar?'fixed inset-0 bg-black bg-opacity-50 ':' '}`}></div>
 
 {
-  !openSidebar&&<IoMenuSharp onClick={()=>setOpenSideBar(!openSidebar)} className='text-3xl text-gray-600 relative z-10' />
+  !openSidebar&& <IoMenuSharp onClick={()=>setOpenSideBar(!openSidebar)} className='text-3xl text-gray-600 relative z-10' />
 }
 
-  <div onClick={()=>setOpenSideBar(!openSidebar)}  className={`bg-white shadow-2xl fixed transition-all duration-1000 z-50 top-0   flex flex-col   py-2  w-[200px] right-0 pt-10 ${openSidebar?'right-0 ':' -right-[300px]'} h-screen`}>
+  <div onClick={()=>setOpenSideBar(!openSidebar)}  className={`bg-white shadow-2xl fixed transition-all duration-1000 z-50 top-0   flex flex-col   py-2  w-[200px]  pt-10 ${openSidebar?'right-0 ':'-right-[300px]'} h-screen`}>
   <AiOutlineClose className='text-2xl text-rose-500 absolute left-4 top-2' />
  
 {

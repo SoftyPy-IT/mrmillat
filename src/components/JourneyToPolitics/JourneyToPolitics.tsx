@@ -85,7 +85,7 @@ const JourneyToPolitics = () => {
           
           className="text-2xl font-bold text-gray-800">Current Role</h3>
           <p className="text-gray-600 mt-2">
-            Serving as the Treasurer of the <span className="font-semibold">BNP Central Committee</span> and Advisor to the "BNP Family Cell".
+            Serving as the Treasurer of the <span className="font-semibold">BNP Central Committee</span> and Advisor to the &quot; BNP Family Cell&quot;.
           </p>
         </div>
       </div>

@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";
 import React from "react";
-import AnimatedCursor from "react-animated-cursor"
 
 
 
@@ -41,35 +40,7 @@ export default function RootLayout({
      
       <Navbar/>
         <main className="min-h-screen  pt-12">
-        <AnimatedCursor
-        outerStyle={{
-          border:"1px solid white"
-        }}
-    showSystemCursor={true}
-    innerSize={14}
-    outerSize={70}
-    innerStyle={{
-      backgroundColor:'white',
-      border:'1px solid blue'
-    }}
-    color="30, 64, 175" 
-    outerAlpha={0.1}
-    innerScale={0.7}
-    outerScale={2}
-    clickables={[
-      'a',
-      'input[type="text"]',
-      'input[type="email"]',
-      'input[type="number"]',
-      'input[type="submit"]',
-      'input[type="image"]',
-      'label[for]',
-      'select',
-      'textarea',
-      'button',
-      '.link',
-    ]}
-  />            
+                   
         {children}
         </main>
         {/* footer  */}

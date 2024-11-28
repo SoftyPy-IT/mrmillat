@@ -6,7 +6,11 @@ import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
 
 
-const ImageModal = ({close}) => {
+interface ImageModalProps {
+  close: (value: boolean) => void;
+}
+
+const ImageModal:React.FC<ImageModalProps> = ({close}) => {
   const images = [
     {
       original: "/Images/mr-2.jpg",

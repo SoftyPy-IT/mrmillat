@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Marquee from "react-fast-marquee";
 import { Pagination, Stack } from '@mui/material';
 import axios from 'axios';
-import EventCard, { Event } from '@/components/event/eventCard';
+import EventCardItem, { Event } from '@/components/event/EventItemCart';
+
 
 
 const Events = () => {
@@ -62,7 +63,7 @@ const Events = () => {
   
                
    {
-    events?.map((event:Event)=><EventCard key={event.id} event={event}/>)
+    events?.map((event:Event)=><EventCardItem key={event.id} event={event}/>)
    }             
                
               
@@ -87,7 +88,7 @@ const Events = () => {
       <section className='mb-20'>
       <Marquee pauseOnHover={true}>
       {
-    events?.map((event:Event)=><div className="mx-5" key={event.id}><EventCard   event={event}/></div>)
+    events?.map((event:Event)=><div className="mx-5" key={event.id}><EventCardItem   event={event}/></div>)
    }             
            
               

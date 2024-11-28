@@ -1,5 +1,5 @@
 'use client'
-import EventCard, { Event } from '@/components/event/eventCard';
+import EventCardItem, { Event } from '@/components/event/EventItemCart';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 
 const EventDetails = ({ params }: { params: { id: string } }) => {
-  const { id } = params; // Dynamic Route Param
+  const { id } = params; 
   const [event, setEvent] = useState<Event|null>(null);
   const [events, setEvents] = useState<Event[]>([]);
    console.log(id);
@@ -69,7 +69,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
       <section className='mb-20'>
       <Marquee pauseOnHover={true}>
       {
-    events?.map((event:Event)=><div className="mx-5" key={event.id}><EventCard   event={event}/></div>)
+    events?.map((event:Event)=><div className="mx-5" key={event.id}><EventCardItem   event={event}/></div>)
    }             
            
               

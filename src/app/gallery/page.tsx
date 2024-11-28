@@ -9,14 +9,14 @@ import { MdOutlineFullscreen } from 'react-icons/md';
 
 
 const Gallery = () => {
- const [images,setImages] = useState<Array<{ id: string; image: string; title: string }>>([]); 
+ const [images,setImages] = useState<Array<{ id: number; image: string; title: string }>>([]); 
  const [isHover,setIsHover] = useState<boolean>(false);
  const [openModal,setOpenModal] = useState<boolean>(false);
 
  useEffect(()=>{
   const getData = async () => {
     try {
-      const response = await axios.get('/data/gallery.json'); // Corrected path
+      const response = await axios.get('/data/gallery.json'); 
       setImages(response.data);
     } catch (error) {
       console.error('Error fetching the data:', error);

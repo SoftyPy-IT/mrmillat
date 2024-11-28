@@ -17,10 +17,10 @@ export type Event = {
 
 
 
-const EventCard = ({event}:{event:Event}) => {
+const EventCardItem = ({event}:{event:Event}) => {
   
   return (
-    <div key={event.id} className="max-w-[520px] lg:h-[430px] rounded-xl shadow-lg hover:bg-gray-300">
+    <div key={event.id} className="max-w-[520px] lg:h-[460px] rounded-xl shadow-lg hover:bg-gray-300">
       <div className="p-5">
        <div className="overflow-hidden"> <Image
           src={event.image}
@@ -34,13 +34,13 @@ const EventCard = ({event}:{event:Event}) => {
           <p className="text-sm mt-2">
         {event.description.slice(0,100)} <Link href={`/events/${event.id}`}><button  className='text-blue-500'>আরও-দেখুন...</button></Link>
           </p>
-          <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center text-black ">
+          <div className=" text-sm opacity-80 lg:flex flex-row justify-between item-center text-black h-[60px]">
     
          <div className='flex gap-1 items-center'>
-         <span ><FaCalendar /></span><p><strong>Date:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
+         <span ><FaCalendar /></span><p><strong>Date:</strong>{event.date}</p>
          </div>
          <div className='flex gap-1 items-center'>
-         <span ><FaLocationDot /></span><p><strong>Location:</strong> ১ অক্টোবর ২০২৩, রবিবার</p>
+         <span ><FaLocationDot /></span><p><strong>Location:</strong>{event.location}</p>
          </div>
          
          </div>
@@ -51,4 +51,4 @@ const EventCard = ({event}:{event:Event}) => {
   );
 };
 
-export default EventCard;
+export default EventCardItem
