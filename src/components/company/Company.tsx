@@ -35,8 +35,8 @@ Shourav Group is engaged in various types of trading and manufacturing businesse
         </p>
        <h4 className='text-lg font-semibold'> Our Address
        </h4>
-<p className='text-sm'>BTI Landmark, Level-6, CWS(A),<br />
-16 Gulshan Avenue, <br />
+<p className='text-sm w-[250px]'>BTI Landmark, Level-6, CWS(A),
+16 Gulshan Avenue, 
 Dhaka-1212, Bangladesh</p>
 
 <Link target='_blank' href={'https://www.shouravgroup-bd.com/?fbclid=IwZXh0bgNhZW0CMTAAAR3AD0YpYutjDuVDV4j678eMNl3yLq_s3SEzrNOJCNRABvg-y8HltXumeVA_aem_KRLLtkbLY5_2SPlfCAB-OQ'}> <button className='text-white border-2 border-white px-4 py-1 mt-6 hover:scale-95 flex item-center justify-center gap-2'><RiShareForwardFill />Visit</button></Link>

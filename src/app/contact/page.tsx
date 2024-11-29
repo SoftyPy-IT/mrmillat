@@ -38,15 +38,15 @@ const Contact = () => {
 		<form  className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
 			<label className="block">
 				<span className="mb-2">Full name</span>
-				<input type="text" placeholder="Your Name" className="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600  py-1 pl-3 bg-white" />
+				<input type="text" placeholder="Your Name" className="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600  py-1 pl-3 bg-white text-gray-600" />
 			</label>
 			<label className="block">
 				<span className="mb-2">Email address</span>
-				<input type="email" placeholder="Your Email" className="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600  pl-3 py-1 bg-white" />
+				<input type="email" placeholder="Your Email" className="block w-full rounded-md shadow-sm focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600  pl-3 py-1 bg-white text-gray-600" />
 			</label>
 			<label className="block">
 				<span className="mb-2">Message</span>
-				<textarea rows={3} className="block w-full rounded-md focus:ring focus:ring-opacity-75 focus:dark:ring-violet-600  py-1 pl-3 bg-white"></textarea>
+				<textarea rows={3} className="block w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-600 focus:dark:ring-violet-600  py-1 pl-3 bg-white"></textarea> 
 			</label>
 			<button type="button" className=" hover-border-button ">Submit</button>
 		</form>

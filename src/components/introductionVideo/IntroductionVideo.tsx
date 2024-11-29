@@ -29,7 +29,7 @@ const IntroductionVideo = () => {
   <p>
   Parturient dis torquent nostra mattis congue ut sagittis nibh luctus viverra. Enim convallis tristique magna torquent egestas dictumst consectetur. Malesuada mus dictumst orci litora nisl iaculis duis nostra enim vestibulum.
   </p>
- <Link href={'/media'}><button className='hover-border-button mt-6'>Discover More</button></Link>
+ <Link href={'/about'}><button className='hover-border-button mt-6'>Discover More</button></Link>
         </div>
    </div>
   );
