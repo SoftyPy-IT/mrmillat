@@ -1,11 +1,8 @@
-'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { IoCheckmarkDoneSharp } from 'react-icons/io5';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-AOS.init();
+
 
 
 
@@ -15,10 +12,8 @@ const OurConcern = () => {
     <div
     
     data-aos="fade-up"
-    // data-aos-delay="500"
+    data-aos-delay="500"
     data-aos-duration="1500"
-    
-    
     className='flex flex-col lg:flex-row-reverse gap-8 items-center justify-center w-full lg:max-w-6xl my-16 px-3'>
          
                {/* content  */}

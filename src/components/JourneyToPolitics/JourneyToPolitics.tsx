@@ -1,5 +1,5 @@
 import React from 'react';
-import 'aos/dist/aos.css';
+
 
 
 
@@ -7,7 +7,6 @@ const JourneyToPolitics = () => {
   return (
     <section
     data-aos="fade-up"
-    // data-aos-delay="500"
     data-aos-duration="1500"  
     
     className="bg-gray-100 py-16">

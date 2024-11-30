@@ -1,10 +1,8 @@
-'use client'
 import React from 'react';
 import "../navbar/navbar.css"
 import Link from 'next/link';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-AOS.init();
+
+
 
 
 const Banner = () => {

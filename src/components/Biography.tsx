@@ -1,5 +1,3 @@
-
-import 'aos/dist/aos.css';
 import Image from 'next/image';
 import React, { useState } from 'react';
 

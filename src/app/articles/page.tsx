@@ -1,4 +1,3 @@
-
 'use client'
 import ArticleCard from '@/components/Article/ArticleCard';
 import { Pagination, Stack } from '@mui/material';
@@ -74,7 +73,7 @@ const Articles = () => {
  </section>
 
   {/* pagination buttons */}
-  <div className='flex item-center justify-center mt-5 mb-20'>
+  <div className='flex item-center justify-center mt-20 mb-20'>
    <Stack spacing={2}>
      
      <Pagination count={10} color="primary" />

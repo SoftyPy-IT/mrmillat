@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { AiOutlineClose } from 'react-icons/ai';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-AOS.init();
+
 
 
 type Route={
@@ -29,23 +29,31 @@ const routes:Route[] = [
 
 
 const Navbar = () => {
-  // const [scrolled,setScrolled] = useState<boolean>(false);
+  
   const [scrolling,setScrolling] = useState<boolean>(false);
   const pathName = usePathname();
   const [openSidebar,setOpenSideBar] = useState<boolean>(false);
 
+
+
+useEffect(() => {
+  if (typeof window !== 'undefined') {
+    AOS.init();
+  }
+}, []);
+
+
   useEffect(()=>{
+    if (typeof window === 'undefined') return;
     let scrollTimeout : NodeJS.Timeout
   const handleScroll =()=>{
     if(window.scrollY>0){
-      // setScrolled(true);
       setScrolling(true);
       clearTimeout(scrollTimeout);
       scrollTimeout= setTimeout(() => {
           setScrolling(false);
       }, 1000);
     }else{
-      // setScrolled(false);
       setScrolling(false);
     }
   }

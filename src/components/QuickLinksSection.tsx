@@ -1,11 +1,8 @@
-'use client'
 import Link from 'next/link';
 import React from 'react';
 import { GrGallery } from 'react-icons/gr';
 import { MdEvent, MdPermMedia } from 'react-icons/md';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-AOS.init();
+
 
 
 
