@@ -50,7 +50,7 @@ const About = () => {
 
                    {/* mission  */}
   <div
-    data-aos="fade-left"
+    data-aos="fade-down"
     data-aos-duration="1500"
   
   className='flex flex-col md:flex-row justify-between items-center  md:gap-0 max-w-6xl  py-14 md:py-0'>
@@ -76,7 +76,7 @@ const About = () => {
                        {/* vission  */}
 
   <div
-  data-aos="fade-right"
+  data-aos="fade-up"
   data-aos-duration="1500"
   
   className='flex flex-col md:flex-row-reverse md:justify-start justify-between items-center py-14 md:py-0  gap-5  md:gap-0  max-w-6xl '>

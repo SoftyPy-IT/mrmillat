@@ -52,22 +52,22 @@ const EventSliderHomePage = () => {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper mb-20"
         breakpoints={{
-          // When window width is >= 1024px (desktop)
+        
           1024: {
             slidesPerView: 2,
             centeredSlides: true,
           },
-          // When window width is >= 768px (tablet)
+         
           768: {
             slidesPerView: 2,
             centeredSlides: true,
           },
-          // When window width is >= 640px (small tablets, large phones)
+       
           640: {
             slidesPerView: 1,
             centeredSlides: true,
           },
-          // When window width is >= 320px (small phones)
+          
           320: {
             slidesPerView: 1,
             centeredSlides: true,

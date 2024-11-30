@@ -29,7 +29,7 @@ const JourneyToPolitics = () => {
         className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
-           data-aos="fade-left"
+           data-aos="fade-up"
            data-aos-delay="100"
            data-aos-duration="1500" 
           
@@ -42,7 +42,7 @@ const JourneyToPolitics = () => {
         <div className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
-            data-aos="fade-left"
+            data-aos="fade-up"
             data-aos-delay="300"
             data-aos-duration="1500" 
           className="text-2xl font-bold text-gray-800">Rise in Politics</h3>
@@ -54,7 +54,7 @@ const JourneyToPolitics = () => {
         <div className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-delay="500"
           data-aos-duration="1500" 
           className="text-2xl font-bold text-gray-800">Elected MP</h3>
@@ -66,7 +66,7 @@ const JourneyToPolitics = () => {
         <div className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-delay="700"
           data-aos-duration="1500" 
           className="text-2xl font-bold text-gray-800">Key Achievements</h3>
@@ -78,7 +78,7 @@ const JourneyToPolitics = () => {
         <div className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-delay="900"
           data-aos-duration="1500" 
           

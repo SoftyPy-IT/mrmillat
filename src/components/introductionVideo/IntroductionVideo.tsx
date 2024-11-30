@@ -9,8 +9,8 @@ const IntroductionVideo = () => {
    <div className='flex  flex-col lg:flex-row justify-between items-center lg:gap-24 gap-10 my-20 max-w-6xl  '>
         {/* video  */}
     <div
-      data-aos="fade-right"
-      data-aos-delay="200"
+      data-aos="fade-up"
+      data-aos-delay="400"
       data-aos-duration="1000"
     
     className='bg-blue-700  w-[300px] h-[250px]  md:w-[600px] md:h-[400px] '>
@@ -18,8 +18,8 @@ const IntroductionVideo = () => {
     </div>
         {/* content  */}
   <div
-   data-aos="fade-left"
-   data-aos-delay="200"
+   data-aos="fade-down"
+   data-aos-delay="400"
    data-aos-duration="1000"
   className='space-y-5 p-5 text-center lg:text-left'>
   <h4 className='text-orange-500 font-semibold'>Who we are</h4>
