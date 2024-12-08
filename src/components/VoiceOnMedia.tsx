@@ -5,7 +5,7 @@ import React from 'react';
 
 const VoiceOnMedia = () => {
   return (
-    <div className='my-10'>
+    <div className='my-20'>
            <h2 className='lg:text-4xl text-2xl md:text-3xl text-blue-950 text-center font-bold'>Voice On Media</h2>
         {/* media card container  */}
       

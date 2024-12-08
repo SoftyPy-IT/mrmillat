@@ -39,7 +39,7 @@ export default function RootLayout({
       <div className="text-gray-500">
      
       <Navbar/>
-        <main className="min-h-screen  pt-12">
+        <main className="  pt-12">
                    
         {children}
         </main>

@@ -29,7 +29,7 @@ const EventSliderHomePage = () => {
     <div className='mt-20'>
       <>
     <section>
-        <h3 className='text-4xl font-bold text-center text-blue-950 my-10'>Recent News</h3>
+        <h3 className='text-4xl font-bold text-center text-blue-950 my-10'>Recent Activities</h3>
     <Swiper
         key={events.length}
         effect={'coverflow'}

@@ -23,9 +23,7 @@ const page = () => {
    <div className='flex justify-center items-center w-full'>
     <OurConcern/>
     </div>     
-   <div>
-    <ArticleSectionHomePage/>
-   </div>
+   
                    {/* introductionVideo */}
       <div className='flex justify-center items-center'>
       <IntroductionVideo/>
@@ -40,13 +38,22 @@ const page = () => {
    <ElectionCampaign/>
    </div>
 
-                      {/* Voice of Media section  */}
-   <div>
-    <VoiceOnMedia/>
-    </div>     
+                    
 
                      {/* event slider */}
    <EventSliderHomePage/>
+
+                      {/* articles  */}
+   <div>
+    <ArticleSectionHomePage/>
+   </div>
+
+
+
+     {/* Voice of Media section  */}
+     <div>
+    <VoiceOnMedia/>
+    </div>     
                        
     </div>
   );

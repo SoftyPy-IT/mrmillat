@@ -12,19 +12,19 @@ import 'aos/dist/aos.css';
 
 
 type Route={
-  navbar:string;
+  navItem:string;
   route:string
 }
 
 
 const routes:Route[] = [
-  {navbar:"Home",route:"/"},
-  {navbar:"About",route:"/about"},
-  {navbar:"Events",route:"/events"},
-  {navbar:"Gallery",route:"/gallery"},
-  {navbar:"Articles",route:"/articles"},
-  {navbar:"Voice  on  Media",route:"/media"},
-  {navbar:"Contact",route:"/contact"}
+  {navItem:"Home",route:"/"},
+  {navItem:"About",route:"/about"},
+  {navItem:"Events",route:"/events"},
+  {navItem:"Gallery",route:"/gallery"},
+  {navItem:"Articles",route:"/articles"},
+  {navItem:"Voice  on  Media",route:"/media"},
+  {navItem:"Contact",route:"/contact"}
                         ]
 
 
@@ -99,7 +99,7 @@ useEffect(() => {
       
           
           className={`hover:text-orange-500 ${scrolling?'text-black':''}
-            ${pathName === item.route  ?'text-orange-500 ':''} ${pathName === item.route && scrolling ?'text-orange-500 font-bold':''}`}>{item.navbar}
+            ${pathName === item.route  ?'text-orange-500 ':''} ${pathName === item.route && scrolling ?'text-orange-500 font-bold':''}`}>{item.navItem}
            <span className="border top-left"></span>
            <span className="border top-right"></span>
            <span className="border bottom-right"></span>
@@ -134,7 +134,7 @@ useEffect(() => {
   <AiOutlineClose className='text-2xl text-rose-500 absolute left-4 top-2' />
  
 {
-  routes?.map((item,idx)=><Link href={item.route} key={idx}> <p  className={`py-2 hover:bg-blue-900 hover:text-orange-500 px-6 border-b   ${pathName === item.route  ?'text-orange-500 ':''} `}>{item.navbar}</p></Link>)
+  routes?.map((item,idx)=><Link href={item.route} key={idx}> <p  className={`py-2 hover:bg-blue-900 hover:text-orange-500 px-6 border-b   ${pathName === item.route  ?'text-orange-500 ':''} `}>{item.navItem}</p></Link>)
 }
  
     

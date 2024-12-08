@@ -35,21 +35,21 @@ const ElectionCampaign = () => {
         </p>
 
         {/* Countdown */}
-        <div className="grid grid-cols-4 md:gap-10 gap-5  px-6">
+        <div className="grid grid-cols-4 md:gap-10 gap-5  px-1 md:px-5">
           <div className="text-center p-3 bg-blue-700 bg-opacity-40">
-            <h3 className="text-2xl md:text-4xl lg:text-7xl text-white">00</h3>
-            <p className="text-gray-100">Days</p>
+            <h3 className="text-xl md:text-4xl lg:text-7xl text-white">00</h3>
+            <p className="text-gray-100 ">Days</p>
           </div>
           <div className="text-center p-3 bg-blue-700 bg-opacity-40">
-            <h3 className="text-2xl md:text-4xl lg:text-7xl text-white">00</h3>
+            <h3 className="text-xl md:text-4xl lg:text-7xl text-white">00</h3>
             <p className="text-gray-100">Hours</p>
           </div>
           <div className="text-center p-3 bg-blue-700 bg-opacity-40">
-            <h3 className="text-2xl md:text-4xl lg:text-7xl text-white">00</h3>
+            <h3 className="text-xl md:text-4xl lg:text-7xl text-white">00</h3>
             <p className="text-gray-100">Minutes</p>
           </div>
-          <div className="text-center p-3 bg-blue-700 bg-opacity-40">
-            <h3 className="text-2xl md:text-4xl lg:text-7xl text-white">00</h3>
+          <div className="text-center py-3 px-2 bg-blue-700 bg-opacity-40">
+            <h3 className="text-xl md:text-4xl lg:text-7xl text-white">00</h3>
             <p className="text-gray-100">Seconds</p>
           </div>
         </div>

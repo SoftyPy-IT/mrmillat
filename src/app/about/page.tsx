@@ -11,7 +11,7 @@ const About = () => {
     <div>
      {/* banner section  */}
      
-   <div className="bg-[url(/Images/mr-10.jpg)]   h-[500px] bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14 ">
+   <div className="bg-[url(/Images/mr-10.jpg)] h-[500px]  bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14 ">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 

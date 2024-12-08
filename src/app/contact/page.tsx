@@ -6,10 +6,10 @@ const Contact = () => {
       <section
 	    data-aos="zoom-in"
 		  data-aos-duration="2500"	
-			className="py-6 relative bg-[url(/Images/mr-18.jpg)]  text-white  bg-center bg-cover my-24">
+			className="py-6  relative bg-[url(/Images/mr-18.jpg)]  text-white  bg-center bg-cover my-24 md:h-[400px]">
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 	<div
-	className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x relative z-10">
+	className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x relative z-10 ">
 		<div className="py-6 md:py-0 md:px-6">
 			<h1 className="text-4xl font-bold">Contact Us</h1>
 			<p className="pt-2 pb-4">Fill in the form to start a conversation</p>
