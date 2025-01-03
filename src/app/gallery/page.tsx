@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ImageModal from './ImageModal';
 import axios from 'axios';
 import { MdOutlineFullscreen } from 'react-icons/md';
+import HeroSection from '@/components/HeroSection';
 
 
 
@@ -30,34 +31,14 @@ const Gallery = () => {
 console.log(images);
 
   return (
-    <div >
+    <div className='bg-white'>
       {
         openModal && <div ><ImageModal close={setOpenModal}/></div>
       }
     
-   {/* banner section  */}
-     
-   <div className="bg-[url(/Images/mr-15.jpg)]  h-[400px] bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14 ">
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-
-      {/* Content */}
-      <div className="relative z-10 w-full lg:w-1/3 text-center space-y-3 border-4 border-white py-8">
-      
-
-        {/* Title */}
-        <h3 className="text-5xl font-bold text-white ">
-           Gallery
-        </h3>
-
-        {/* Description */}
-        <p className="text-gray-100 text-xl">
-        Leadership, Experience, and values mean something
-        </p>
-
-    
-      </div>
-    </div>
+           {/* banner section  */}
+   <HeroSection imageUrl={'/Images/mr-15.jpg'} title={'Gallery'} subTitle={' Leadership, Experience, and values mean something'}/>
+  
    
            {/* Gallery container  */}
    <section

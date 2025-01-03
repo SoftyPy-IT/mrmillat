@@ -2,11 +2,11 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div className='flex justify-center item-center bg-[url(/Images/bg-1.gif)] min-h-screen bg-center bg-no-repeat bg-cover'>
+    <div className='flex justify-center items-center bg-[url(/Images/bg-1.gif)] min-h-screen bg-center bg-no-repeat bg-cover my-auto'>
       <section
 	    data-aos="zoom-in"
 		  data-aos-duration="2500"	
-			className="py-6  relative bg-[url(/Images/mr-18.jpg)]  text-white  bg-center bg-cover my-24 md:h-[400px]">
+			className="py-6   bg-[url(/Images/mr-18.jpg)]  text-white  bg-center bg-cover  md:h-[400px]">
       <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 	<div
 	className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x relative z-10 ">

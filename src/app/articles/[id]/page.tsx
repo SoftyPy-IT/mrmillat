@@ -31,13 +31,14 @@ const ArticleDetails = ({ params }: { params: { id: string } }) => {
   
  
   return (
-    <div className="w-full   ">
+ <div className='flex justify-center '>
+    <div className="w-full bg-white  container ">
   <div className="px-5 pb-10">
     <div className='md:h-[500px] h-[300px] relative'>
     <Image src={article?.image as string}  layout="fill"  objectFit="cover" alt='shourav group' />
     
     </div>
-    <div className="mt-4">
+    <div className="mt-10 space-y-4">
       <h2 className="text-xl font-bold text-blue-950">{article?.title}</h2>
       
 <div className='flex gap-1 items-center '>
@@ -60,6 +61,7 @@ const ArticleDetails = ({ params }: { params: { id: string } }) => {
          
 
 </div>
+ </div>
   );
 };
 

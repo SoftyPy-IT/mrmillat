@@ -8,6 +8,7 @@ import Image from 'next/image';
 import { AiOutlineClose } from 'react-icons/ai';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useFeatures from '@/hooks/useFeatures';
 
 
 
@@ -29,12 +30,12 @@ const routes:Route[] = [
 
 
 const Navbar = () => {
-  
+  const {logo,isLoading} = useFeatures();
   const [scrolling,setScrolling] = useState<boolean>(false);
   const pathName = usePathname();
   const [openSidebar,setOpenSideBar] = useState<boolean>(false);
 
-
+// console.log(features);
 
 useEffect(() => {
   if (typeof window !== 'undefined') {
@@ -64,7 +65,6 @@ useEffect(() => {
   window.removeEventListener('scroll',handleScroll);
  } 
 
-
   },[])
 
 
@@ -80,7 +80,7 @@ useEffect(() => {
             data-aos-delay="500"
             data-aos-duration="1500" >
       
-        <Image src={'/Images/logo.png'} alt='logo' width={150} height={75} className={`w-[100px] h-[50px] md:w-[150px] md:h-[60px] relative  z-30 border border-blue-700 pr-2 bg-white border-l-2 border-b-2 transition-all duration-1000
+        <Image src={!isLoading && logo} alt='logo' width={150} height={75} className={`w-[100px] h-[50px] md:w-[150px] md:h-[60px] relative  z-30 border border-blue-700 pr-2 bg-white border-l-2 border-b-2 transition-all duration-1000
           ${scrolling?'top-0':'top-5'}
           `}></Image>
      

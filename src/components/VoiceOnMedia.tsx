@@ -5,7 +5,7 @@ import React from 'react';
 
 const VoiceOnMedia = () => {
   return (
-    <div className='my-20'>
+    <div className='my-32'>
            <h2 className='lg:text-4xl text-2xl md:text-3xl text-blue-950 text-center font-bold'>Voice On Media</h2>
         {/* media card container  */}
       
@@ -59,7 +59,7 @@ const VoiceOnMedia = () => {
 
     </section>
 
-     <div className='flex justify-center items-center'>
+     <div className='flex justify-center items-center mt-6'>
    <Link href={'/media'}>  <button className='hover-border-button mx-auto'>View More</button> </Link> 
       </div>  
     </div>

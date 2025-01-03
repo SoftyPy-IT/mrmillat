@@ -20,7 +20,7 @@ export type Event = {
 const EventCardItem = ({event}:{event:Event}) => {
   
   return (
-    <div key={event.id} className="max-w-[520px] lg:h-[460px] rounded-xl shadow-lg hover:bg-gray-300">
+    <div key={event.id} className="max-w-[520px] lg:h-[480px] rounded-xl shadow-lg hover:bg-gray-100 bg-white">
       <div className="p-5">
        <div className="overflow-hidden"> <Image
           src={event.image}
@@ -30,7 +30,7 @@ const EventCardItem = ({event}:{event:Event}) => {
           className="w-full duration-500  hover:scale-110   h-44 rounded-lg object-cover shadow-md"
         /></div>
         <div className="mt-4">
-          <h2 className="text-xl font-bold text-blue-950">{event.title}</h2>
+          <h2 className="text-lg font-bold text-blue-950">{event.title}</h2>
           <p className="text-sm mt-2">
         {event.description.slice(0,100)} <Link href={`/events/${event.id}`}><button  className='text-blue-500'>আরও-দেখুন...</button></Link>
           </p>

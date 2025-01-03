@@ -33,10 +33,12 @@ const EventSliderHomePage = () => {
     <Swiper
         key={events.length}
         effect={'coverflow'}
+        speed={3000}
         autoplay={{
           delay: 2000,
           disableOnInteraction: true,
         }}
+        spaceBetween={10}
         loop={true}
         grabCursor={true}
         centeredSlides={true}
@@ -53,8 +55,12 @@ const EventSliderHomePage = () => {
         className="mySwiper mb-20"
         breakpoints={{
         
+          1440: {
+            slidesPerView: 3,
+            centeredSlides: true,
+          },
           1024: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             centeredSlides: true,
           },
          
@@ -71,14 +77,17 @@ const EventSliderHomePage = () => {
           320: {
             slidesPerView: 1,
             centeredSlides: true,
+      
           },
         }}
       >
 
         {
           events?.map((event:Event,i)=>
-            <SwiperSlide key={i} className=' mb-16'>
-            <EventCardItem event={event}></EventCardItem>
+            <SwiperSlide key={i} className=' my-16 sm:mx-10 sm:px-5 lg:mx-0 lg:px-0'>
+        
+          <EventCardItem event={event} ></EventCardItem>
+       
            
             </SwiperSlide>
           )

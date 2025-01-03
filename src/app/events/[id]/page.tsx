@@ -35,7 +35,7 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
   }
    console.log(event);
   return (
-    <div className="w-full   ">
+    <div className="w-full   bg-white">
   <div className="px-5 pb-10">
     <div className='md:h-[500px] h-[300px] relative'>
     <Image src={event?.image}  layout="fill"  objectFit="cover" alt='shourav group' ></Image>
