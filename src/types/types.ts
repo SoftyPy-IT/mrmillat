@@ -17,9 +17,6 @@ export type TBiography ={
 }
 
 
-
-
-
 export type THeroSection ={
   _id:string;
   category:string;
@@ -173,3 +170,4 @@ export type TBanner={
      contact:TContact;
      createdAt:string
   }
+

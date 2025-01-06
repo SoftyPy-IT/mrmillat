@@ -5,25 +5,30 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination,Autoplay } from 'swiper/modules';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import EventCardItem, { Event } from './EventItemCart';
+import EventCardItem from './EventItemCart';
+import useAxiosPublic from '@/hooks/useAxiosPublic';
+import { TEvent } from '@/types/types';
 
 
 const EventSliderHomePage = () => {
-  const [events,setEvents] = useState<Event[]>([]);
-  useEffect(()=>{
-    const getData = async () => {
-      try {
-        const response = await axios.get('/data/events.json'); 
-        setEvents(response.data);
-      } catch (error) {
-        console.error('Error fetching the data:', error);
-      }
-    };
-  
-    getData();
-  
-   },[])
+  const axiosPublic = useAxiosPublic();
+  const [events, setEvents] = useState([]);
+  const limit = 6; 
+   useEffect(()=>{
+      const getData =async()=>{
+        try {
+        const response = await axiosPublic.get(`events?type=previous&limit=${limit}`);
+        const {totalCount,data}= response?.data?.data
+        console.log(totalCount,data);
+     setEvents(data);
+        } catch (error) {
+        console.log(error);  
+        }
+      
+          }      
+    getData();   
+    },[axiosPublic])
+  console.log(events);  
 
   return (
     <div className='mt-20'>
@@ -33,7 +38,7 @@ const EventSliderHomePage = () => {
     <Swiper
         key={events.length}
         effect={'coverflow'}
-        speed={3000}
+        speed={4000}
         autoplay={{
           delay: 2000,
           disableOnInteraction: true,
@@ -83,7 +88,7 @@ const EventSliderHomePage = () => {
       >
 
         {
-          events?.map((event:Event,i)=>
+          events?.map((event:TEvent,i)=>
             <SwiperSlide key={i} className=' my-16 sm:mx-10 sm:px-5 lg:mx-0 lg:px-0'>
         
           <EventCardItem event={event} ></EventCardItem>

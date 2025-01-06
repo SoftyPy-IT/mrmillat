@@ -1,15 +1,47 @@
 'use client'
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import HeroSection from '@/components/HeroSection';
-
+import HeroMediaBanner from './HeroMediaBanner';
+import useAxiosPublic from '@/hooks/useAxiosPublic';
+import ReactPlayer from 'react-player/youtube'
+import { TVoiceOnMedia } from '@/types/types';
 
 const Media = () => {
+  const axiosPublic = useAxiosPublic();
+  const [medias,setMedias] = useState([]);
+  const [totalCount,setTotalCount] = useState(0);
+  const [currentPage,setCurrentPage] = useState(1);
+  const [isClient,setIsClient] = useState(false);
+  const limit = 6; 
+
+
+     useEffect(()=>{
+        const getData =async()=>{
+          try {
+          const response = await axiosPublic.get(`voice-on-media?limit=${limit}&page=${currentPage}`);
+          const {totalCount,data}= response?.data?.data
+          console.log(totalCount,data);
+          setMedias(data);
+          setTotalCount(totalCount);
+          } catch (error) {
+          console.log(error);  
+          }
+        
+            }      
+      getData();   
+      },[currentPage,axiosPublic])
+    console.log(medias);  
+
+    useEffect(()=>{
+      setIsClient(true);
+    },[])
+  
+
   return (
     <div className='bg-white'>
            {/* banner section  */}
-           <HeroSection imageUrl={'/Images/mr-6.jpg'} title={' Voice On Media'} subTitle={' We are building for the future.'}/>         
+      <HeroMediaBanner/>      
       
     <div className='my-10'>
            <h2 className='text-4xl text-blue-950 text-center font-bold'>Interviews</h2>
@@ -24,159 +56,41 @@ const Media = () => {
  className='flex justify-center item-center'>
  <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-around mb-8 mt-10 gap-8 '>
                {/* card 1 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/WIKrwWFZbLQ?autoplay=1&mute=1" 
-    title="বিএনপির কোষাধ্যক্ষ হলেন মিল্লাত | NTV News" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
+     
+      {
+        isClient  && 
+        medias?.map((media:TVoiceOnMedia)=>
+          <div key={media?._id} className='w-[303px] h-[340px] border-2 shadow-xl '>
+            <ReactPlayer
+     
+              controls
+              width={300} height={200} url={media?.videoUrl}  />
 
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিএনপির কোষাধ্যক্ষ হলেন মিল্লাত | NTV News</h2>
-      </div>
-               {/* card 2 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-      <iframe width="300" height="220" src="https://www.youtube.com/embed/EV4BffstKKY?autoplay=1&mute=1" title="‘শেখ হাসিনা পালিয়ে গেছে, তার দোসররা বসে নেই’ | M Rashiduzzaman Millat | BNP | Samakal" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>শেখ হাসিনা পালিয়ে গেছে, তার দোসররা বসে নেই’ | M Rashiduzzaman Millat | BNP | Samakal</h2>
-      </div>
-               {/* card 3 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 4 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 5 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 6 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 7 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 8 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
-               {/* card 9 */}
-      <div className='w-[305px] h-[350px] border-2 shadow-xl '>
-  
-      <iframe 
-    width="300" 
-    height="220" 
-    src="https://www.youtube.com/embed/xHdh-wrcwCE?autoplay=1&mute=1" 
-    title="বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour" 
-    frameBorder="0" 
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-    referrerPolicy="strict-origin-when-cross-origin" 
-    allowFullScreen>
-</iframe>
-
-
-       <h2 className='text-lg font-bold my-3 text-black px-5'>বিতর্কের শেষ কোথায়? | এম রশিদুজ্জামান মিল্লাত | মাসুদ কামাল | News Hour</h2>
-      </div>
+                <h2 className='text-lg font-bold my-3 text-black px-5'>{media?.title}</h2>
+         
+          </div>
+        )
+      }      
+     
       </section>
 
  </div>
    
                {/* pagination buttons */}
-   <div className='flex item-center justify-center mt-5 mb-20'>
-   <Stack spacing={2}>
-     
-     <Pagination count={10} color="primary" />
-    
-   </Stack>
-   </div>
+         {
+           totalCount<limit && currentPage===1 ?"":
+           <div className='flex item-center justify-center mb-20 mt-8'>
+        <Stack spacing={2}>
+          
+          <Pagination
+           count={Math.ceil(totalCount/limit)}
+           page={currentPage}
+           onChange={(event,value)=>setCurrentPage(value)}
+           color="primary" />
+         
+        </Stack>
+        </div>
+         }    
 
 
     </div> 

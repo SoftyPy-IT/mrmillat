@@ -36,19 +36,19 @@ export default function RootLayout({
       <div className="text-gray-500">
      
       <Navbar/>
-        <main className="  pt-12">
+        <main className="  pt-12 min-h-screen">
           
               {children}
                   
         
         </main>
         {/* footer  */}
-   <div>
-    <Footer/>
-   </div>
-      </div>
-   </ReactQueryProvider> 
-      </body>
+        <div>
+        <Footer/>
+        </div>
+        </div>
+        </ReactQueryProvider> 
+        </body>
     </html>
   );
 }

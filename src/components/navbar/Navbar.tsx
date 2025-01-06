@@ -117,10 +117,6 @@ useEffect(() => {
 
 
 
-
-
-
-
            {/* nav item for small device  */}
 <div className='block lg:hidden  '>
  {/* Overlay */}

@@ -1,6 +1,9 @@
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { TGallery } from "@/types/types";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import ImageGallery from "react-image-gallery";
+import ImageGallery, { ReactImageGalleryItem } from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
@@ -8,67 +11,47 @@ import "react-medium-image-zoom/dist/styles.css";
 
 interface ImageModalProps {
   close: (value: boolean) => void;
+  selectedIndex: number;
 }
 
-const ImageModal:React.FC<ImageModalProps> = ({close}) => {
-  const images = [
-    {
-      original: "/Images/mr-2.jpg",
-      thumbnail: "/Images/mr-2.jpg",
-    },
- 
-  
-    {
-      original: "/Images/mr-5.jpg",
-      thumbnail: "/Images/mr-5.jpg",
-    },
-    {
-      original: "/Images/mr-6.jpg",
-      thumbnail: "/Images/mr-6.jpg",
-    },
-    {
-      original: "/Images/mr-7.jpg",
-      thumbnail: "/Images/mr-7.jpg",
-    },
-    {
-      original: "/Images/mr-8.jpg",
-      thumbnail: "/Images/mr-8.jpg",
-    },
-    {
-      original: "/Images/mr-9.jpg",
-      thumbnail: "/Images/mr-9.jpg",
-    },
-    {
-      original: "/Images/mr-10.jpg",
-      thumbnail: "/Images/mr-10.jpg",
-    },
-  
-    {
-      original: "/Images/mr-11.jpg",
-      thumbnail: "/Images/mr-11.jpg",
-    },
-  ];
+const ImageModal:React.FC<ImageModalProps> = ({ close, selectedIndex }) => {
+const [images,setImages] = useState([]);
+const axiosPublic = useAxiosPublic();
 
-  const zoomImages = images.map((image) => ({
-    ...image,
+  useEffect(()=>{
+          const getData =async()=>{
+            try {
+            const response = await axiosPublic.get(`gallery`);
+            const {totalCount,data}= response?.data?.data
+            console.log(totalCount,data);
+            setImages(data);
+            } catch (error) {
+            console.log(error);  
+            }
+          
+              }      
+        getData();   
+        },[axiosPublic])
+  const galleryItems: ReactImageGalleryItem[] = images?.map((image:TGallery) => ({
+    original: image.imageUrl,
+    thumbnail: image.imageUrl,
     renderItem: () => (
-   
       <Zoom>
-        <div  className="w-[100%] h-[250px] md:h-[400px] lg:h-[400px]">
+        <div className="w-full h-[250px] md:h-[400px] lg:h-[400px]">
           <Image
-            src={image.original}
-            alt="Zoomable"
+            src={image.imageUrl}
+            alt={image.title}
             layout="responsive"
-            width={800} 
-            height={600} 
+            width={800}
+            height={600}
             objectFit="contain"
             priority
-            
           />
         </div>
       </Zoom>
     ),
   }));
+
   return (
     <div className="w-full h-full flex flex-row justify-center items-center">
       {/* Overlay */}
@@ -81,11 +64,11 @@ const ImageModal:React.FC<ImageModalProps> = ({close}) => {
       <span className="text-4xl  text-white absolute z-30 right-3 top-4 hover:text-blue-600 hover:scale-90" onClick={()=>close(false)} > <RxCross2  /></span>
         <div className="w-full h-[200px] lg:h-[500px]">
           <ImageGallery
-           showFullscreenButton={false}
-            items={zoomImages}
+            items={galleryItems}
+            startIndex={selectedIndex}
+            showFullscreenButton={false}
             showPlayButton={false}
             showThumbnails={true}
-           
           />
         </div>
      

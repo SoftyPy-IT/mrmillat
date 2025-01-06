@@ -2,55 +2,70 @@
 import { Pagination, Stack } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import ImageModal from './ImageModal';
-import axios from 'axios';
 import { MdOutlineFullscreen } from 'react-icons/md';
-import HeroSection from '@/components/HeroSection';
-
-
-
+import HeroGalleryBanner from './HeroGalleryBanner';
+import useAxiosPublic from '@/hooks/useAxiosPublic';
+import { TGallery } from '@/types/types';
 
 const Gallery = () => {
- const [images,setImages] = useState<Array<{ id: number; image: string; title: string }>>([]); 
- const [isHover,setIsHover] = useState<boolean>(false);
- const [openModal,setOpenModal] = useState<boolean>(false);
+  const axiosPublic = useAxiosPublic();
+  const [images,setImages] = useState([]); 
+  const [imageId,setImageId] = useState<string|undefined>(); 
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [totalCount,setTotalCount] = useState(0);
+  const [currentPage,setCurrentPage] = useState(1);
+  const [isHover,setIsHover] = useState<boolean>(false);
+  const [openModal,setOpenModal] = useState<boolean>(false);
+  const limit = 6; 
 
- useEffect(()=>{
-  const getData = async () => {
-    try {
-      const response = await axios.get('/data/gallery.json'); 
-      setImages(response.data);
-    } catch (error) {
-      console.error('Error fetching the data:', error);
-    }
-  };
 
-  getData();
+     useEffect(()=>{
+        const getData =async()=>{
+          try {
+          const response = await axiosPublic.get(`gallery?limit=${limit}&page=${currentPage}`);
+          const {totalCount,data}= response?.data?.data
+          console.log(totalCount,data);
+          setImages(data);
+          setTotalCount(totalCount);
+          } catch (error) {
+          console.log(error);  
+          }
+        
+            }      
+      getData();   
+      },[currentPage,axiosPublic])
 
- },[])
+
+      const handleImageClick = (index: number) => {
+        setSelectedImageIndex(index);
+        setOpenModal(true);
+      };
 
 console.log(images);
 
   return (
-    <div className='bg-white'>
+    <div className='bg-white '>
       {
-        openModal && <div ><ImageModal close={setOpenModal}/></div>
+        openModal && <div ><ImageModal   
+        close={setOpenModal} 
+        selectedIndex={selectedImageIndex || 0} /></div>
       }
     
            {/* banner section  */}
-   <HeroSection imageUrl={'/Images/mr-15.jpg'} title={'Gallery'} subTitle={' Leadership, Experience, and values mean something'}/>
-  
-   
+  <HeroGalleryBanner/>
            {/* Gallery container  */}
    <section
     data-aos="fade-up"
     data-aos-duration="2500"
    
-   onClick={()=>setOpenModal(true)} className='flex items-center justify-center px-5'>
-   <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  items-center justify-around mb-8 mt-10 gap-8 max-w-6xl'>
+   className='flex items-center justify-center px-5'>
+   <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  items-center justify-around mb-8 mt-20 gap-8 max-w-6xl'>
 
   {
-   images?.map(image=>
-    <div key={image.id} className='overflow-hidden'>
+   images?.map((image:TGallery,index:number)=>
+    <div 
+    onClick={() => handleImageClick(index)}
+    onMouseEnter={()=>setImageId(image?._id as string)} key={image?._id} className='overflow-hidden'>
       <MdOutlineFullscreen className='text-3xl text-white absolute z-10 ' />
     <div
     onMouseEnter={() => setIsHover(true)}
@@ -58,7 +73,7 @@ console.log(images);
     onTouchStart={() => setIsHover(true)}
     onTouchEnd={() => setIsHover(false)}
     style={{
-      backgroundImage: `url(${image.image})`,
+      backgroundImage: `url(${image?.imageUrl})`,
       backgroundSize: "100% 100%",
       backgroundPosition: "center",
     }}
@@ -67,18 +82,25 @@ console.log(images);
     {/* Overlay */}
     <div
       className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-        isHover ? "opacity-100" : "opacity-0"
+        isHover  && imageId === image?._id ? "opacity-100" : "opacity-0"
       }`}
     ></div>
 
     {/* Animated Text */}
     <h1
-      className={`absolute px-5  text-lg font-semibold text-white transition-all duration-500 ${
-        isHover ? "bottom-5 opacity-100" : "bottom-[-40px] opacity-0"
+      className={`absolute px-5 md:px-10 text-lg font-semibold text-white transition-all duration-500 ${
+        isHover && imageId === image?._id ? "bottom-10 opacity-100" : "bottom-[-40px] opacity-0"
       }`}
     >
-      M Rashedulzamman Millat
+   {image?.title}
     </h1>
+    <p
+      className={`absolute px-5 md:px-10 text-sm font-semibold text-white transition-all duration-500 ${
+        isHover && imageId === image?._id ? "bottom-5 opacity-100" : "bottom-[-40px] opacity-0"
+      }`}
+    >
+   {new Date(image?.date).toDateString()}
+    </p>
   </div>
       </div>   
 
@@ -92,13 +114,20 @@ console.log(images);
    </section>
 
     {/* pagination buttons */}
-    <div className='flex item-center justify-center mt-5 mb-20'>
-   <Stack spacing={2}>
-     
-     <Pagination count={10} color="primary" />
-    
-   </Stack>
-   </div>
+           {
+              totalCount< limit && currentPage===1 ?"":
+              <div className='flex item-center justify-center mb-20 mt-8'>
+           <Stack spacing={2}>
+             
+             <Pagination
+              count={Math.ceil(totalCount/limit)}
+              page={currentPage}
+              onChange={(event,value)=>setCurrentPage(value)}
+              color="primary" />
+            
+           </Stack>
+           </div>
+            }    
 
     </div>
   );

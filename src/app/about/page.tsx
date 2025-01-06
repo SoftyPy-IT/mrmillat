@@ -1,22 +1,29 @@
-'use client'
+// 'use client'
 import Biography from '@/components/Biography';
 import Company from '@/components/company/Company';
-import HeroSection from '@/components/HeroSection';
 import JourneyToPolitics from '@/components/JourneyToPolitics/JourneyToPolitics';
 import Mission from '@/components/Mission';
 import Vision from '@/components/Vision';
+import HeroAboutBanner from './HeroAboutBanner';
+
+
+
+
+// import useFeatures from '@/hooks/useFeatures';
+
 
 
 
 const About = () => {
- 
+
   return (
     <div className='bg-white'>
+
      {/* banner section  */}
-     <HeroSection imageUrl={'/Images/mr-10.jpg'} title={'About Me'} subTitle={'     Use your right for right'}/>   
-   
+   <HeroAboutBanner/>
+
         {/* biography section  */}
- <Biography/>
+     <Biography/>
 
 
                 {/* Journey to politics  */}

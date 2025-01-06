@@ -1,9 +1,28 @@
-import React from 'react';
-
-
-
+"use client"
+import useAxiosPublic from '@/hooks/useAxiosPublic';
+import { TJourneyToPolitics } from '@/types/types';
+import React, { useEffect, useState } from 'react';
 
 const JourneyToPolitics = () => {
+  const axiosPublic = useAxiosPublic();
+  const [journeys, setJourneys] = useState([]);
+
+    useEffect(()=>{
+      const getData =async()=>{
+        try {
+        const response = await axiosPublic.get('/journey-to-politics');
+        const result= response.data.data.data;
+      
+     setJourneys(result);
+        } catch (error) {
+        console.log(error);  
+        }
+      
+          }    
+  
+    getData();   
+    },[])
+
   return (
     <section
     data-aos="fade-up"
@@ -23,70 +42,23 @@ const JourneyToPolitics = () => {
       <div className="relative border-l-4 border-blue-700">
         
         {/* Timeline Items */}
-        <div
-           
-        
-        className="mb-10 ml-8">
+{
+  journeys?.map((journey:TJourneyToPolitics)=>
+    <div key={journey?._id} className="mb-10 ml-8">
           <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
           <h3
            data-aos="fade-up"
            data-aos-delay="100"
            data-aos-duration="1500" 
           
-          className="text-2xl font-bold text-gray-800">Early Life</h3>
+          className="text-2xl font-bold text-gray-800">{journey?.title}</h3>
           <p className="text-gray-600 mt-2">
-            Born in <span className="font-semibold">Dewanganj Upazila</span>, Jamalpur District, where he spent his early years.
+          {journey?.shortDescription}
           </p>
         </div>
-
-        <div className="mb-10 ml-8">
-          <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
-          <h3
-            data-aos="fade-up"
-            data-aos-delay="300"
-            data-aos-duration="1500" 
-          className="text-2xl font-bold text-gray-800">Rise in Politics</h3>
-          <p className="text-gray-600 mt-2">
-            Joined the <span className="font-semibold">Bangladesh Nationalist Party (BNP)</span>, becoming the President of Dewanganj Upazila BNP.
-          </p>
-        </div>
-
-        <div className="mb-10 ml-8">
-          <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
-          <h3
-          data-aos="fade-up"
-          data-aos-delay="500"
-          data-aos-duration="1500" 
-          className="text-2xl font-bold text-gray-800">Elected MP</h3>
-          <p className="text-gray-600 mt-2">
-            Elected as an MP in <span className="font-semibold">2001</span> from <span className="font-semibold">Jamalpur-1</span> (Dewanganj-Bakshiganj).
-          </p>
-        </div>
-
-        <div className="mb-10 ml-8">
-          <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
-          <h3
-          data-aos="fade-up"
-          data-aos-delay="700"
-          data-aos-duration="1500" 
-          className="text-2xl font-bold text-gray-800">Key Achievements</h3>
-          <p className="text-gray-600 mt-2">
-            Facilitated the construction of a bridge over the Brahmaputra River in Bahadurabad, connecting Dewanganj to northern regions and establishing better road and rail connections to Dhaka.
-          </p>
-        </div>
-
-        <div className="mb-10 ml-8">
-          <div className="absolute w-6 h-6 bg-blue-700 rounded-full -left-3"></div>
-          <h3
-          data-aos="fade-up"
-          data-aos-delay="900"
-          data-aos-duration="1500" 
-          
-          className="text-2xl font-bold text-gray-800">Current Role</h3>
-          <p className="text-gray-600 mt-2">
-            Serving as the Treasurer of the <span className="font-semibold">BNP Central Committee</span> and Advisor to the &quot; BNP Family Cell&quot;.
-          </p>
-        </div>
+  )
+}
+    
       </div>
     </div>
   </section>
