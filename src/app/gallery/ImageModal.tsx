@@ -54,10 +54,10 @@ const axiosPublic = useAxiosPublic();
 
   return (
     <div className="w-full h-full flex flex-row justify-center items-center">
-      {/* Overlay */}
+           {/* Overlay */}
       <div className="fixed inset-0 bg-black bg-opacity-50 z-20"></div>
 
-      {/* Modal */}
+           {/* Modal */}
      
      
       <div className=" fixed shadow-2xl  z-20 h-[100px] w-[400px] md:w-[600px] md:h-[400px] lg:w-[800px] lg:h-[580px] mx-10 top-36 lg:top-20 ">

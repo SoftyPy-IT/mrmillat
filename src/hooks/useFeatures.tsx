@@ -4,7 +4,6 @@ import useAxiosPublic from './useAxiosPublic';
 
 const useFeatures = () => {
   const axiosPublic = useAxiosPublic();
-
   const { data:features, isPending: isLoading } = useQuery({
     queryKey: ['features'],
     queryFn: async () => {

@@ -153,6 +153,9 @@ export type TBanner={
       phone:string;
       email:string;   
       bgImageUrl:string; 
+      facebookUrl:string;
+      youTubeUrl:string;
+      LinkedInUrl:string;
       updatedAt:string;
       }
   
