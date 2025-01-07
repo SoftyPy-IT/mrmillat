@@ -35,7 +35,8 @@ const EventSliderHomePage = () => {
       <>
     <section>
         <h3 className='text-4xl font-bold text-center text-blue-950 my-10'>Recent Activities</h3>
-    <Swiper
+   <div className='flex justify-center items-center w-full'>
+   <Swiper
         key={events.length}
         effect={'coverflow'}
         speed={4000}
@@ -59,6 +60,7 @@ const EventSliderHomePage = () => {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper mb-20"
         breakpoints={{
+        
         
           1440: {
             slidesPerView: 3,
@@ -100,6 +102,7 @@ const EventSliderHomePage = () => {
         
        
       </Swiper>
+   </div>
     </section>
     </>
     </div>

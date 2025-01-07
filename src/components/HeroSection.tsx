@@ -13,7 +13,7 @@ const HeroSection = ({imageUrlMd,imageUrlSm,title,subTitle,category}:{imageUrlMd
      <div className="absolute inset-0 bg-black bg-opacity-30"></div>
 
      {/* Content */}
-     <div className="relative z-10 w-full lg:w-1/3 text-center space-y-3 border-4 border-white py-8">
+     <div className="relative z-10 w-full lg:w-[500px] text-center space-y-3 border-4 border-white py-8">
      
 
        {/* Title */}

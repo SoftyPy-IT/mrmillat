@@ -41,7 +41,9 @@ const page = () => {
                     
 
                      {/* event slider */}
+   <div>
    <EventSliderHomePage/>
+   </div>
 
                       {/* articles  */}
    <div>
