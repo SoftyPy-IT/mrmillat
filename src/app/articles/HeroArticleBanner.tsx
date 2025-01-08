@@ -13,7 +13,7 @@ const HeroArticleBanner = () => {
       try {
       const response = await axiosPublic.get('/hero-sections');
       const result= response.data.data;
-      const articleHero:THeroSection = result.find((item:THeroSection)=>item.category==="Voice on Media");
+      const articleHero:THeroSection = result.find((item:THeroSection)=>item.category==="Article");
       setBannerInfo(articleHero);
       console.log(result);
       } catch (error) {
