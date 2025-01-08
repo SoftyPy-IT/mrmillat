@@ -6,6 +6,7 @@ import "../navbar/navbar.css"
 import Link from 'next/link';
 import { TBanner } from '@/types/types';
 import useFeatures from '@/hooks/useFeatures';
+import Image from 'next/image';
 
 type TBannerData ={
   banner:TBanner;
@@ -18,7 +19,11 @@ const Banner = () => {
   return (
  <div>
   {
-      !isLoading&&
+       isLoading?
+       <div className='w-full flex justify-center mt-28'>
+            <Image alt='photo' src="/Images/loading.gif" height={600} width={800} className='w-[80px] h-[80px] '/>
+           </div>
+       :
       
       <div className="relative w-full h-[500px] lg:min-h-screen overflow-hidden">
       <div className="absolute inset-0 bg-black bg-opacity-30 z-10"></div>

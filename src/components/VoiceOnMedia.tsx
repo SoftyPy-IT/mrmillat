@@ -52,7 +52,7 @@ const VoiceOnMedia = () => {
       {
         isClient  && 
         medias?.slice(0,2).map((media:TVoiceOnMedia)=>
-          <div key={media?._id} className='w-[303px] h-[340px] border-2 shadow-xl '>
+          <div key={media?._id} className='w-[303px] h-[360px] border-2 shadow-xl '>
             <ReactPlayer
      
               controls

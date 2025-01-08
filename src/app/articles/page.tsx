@@ -31,7 +31,7 @@ const Articles = () => {
    },[axiosPublic,currentPage])
   
   return (
-    <div className='bg-white'>
+    <div className='bg-white mb-20'>
  {/* banner section  */}
 <HeroArticleBanner/>
 
