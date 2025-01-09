@@ -8,7 +8,6 @@ import { TEvent } from '@/types/types';
 const UpcomingEvents = () => {
   const axiosPublic = useAxiosPublic();
   const [events, setEvents] = useState([]);
-  // const [totalCount,setTotalCount] = useState(0);
 
    useEffect(()=>{
       const getData =async()=>{
@@ -17,7 +16,6 @@ const UpcomingEvents = () => {
         const {totalCount,data}= response?.data?.data
         console.log(totalCount,data);
      setEvents(data);
-    //  setTotalCount(totalCount);
         } catch (error) {
         console.log(error);  
         }
@@ -29,9 +27,9 @@ const UpcomingEvents = () => {
   return (
     <div>
     <section className='mb-20'>
-      <Marquee pauseOnHover={true}>
+      <Marquee pauseOnHover={true} className='h-auto'>
       {
-    events?.map((event:TEvent)=><div className="mx-5" key={event?._id}><EventCardItem   event={event}/></div>)
+    events?.map((event:TEvent)=><div className="mx-5 my-5" key={event?._id}><EventCardItem   event={event}/></div>)
    }             
            
               

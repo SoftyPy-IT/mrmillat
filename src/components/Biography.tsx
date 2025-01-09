@@ -6,10 +6,13 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
-import { TBiography, TItem } from '@/types/types';
+import { TBanner, TBiography, TItem } from '@/types/types';
+import useFeatures from '@/hooks/useFeatures';
 
 
 const Biography = () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const {banner,isLoading}:{banner:TBanner,isLoading:any}=useFeatures();
   const axiosPublic = useAxiosPublic();
   const [biographyInfo, setBiographyInfo] = useState<TBiography|undefined>();
   const [expanded, setExpanded] = React.useState<string | false>(biographyInfo?.items?.[0]?._id || false);
@@ -47,8 +50,8 @@ const Biography = () => {
     
     className='flex justify-center item-center bg-white'>
       <div className='w-[90%] mb-10 bg-white lg:px-10 p-5 relative -top-32 shadow-xl pb-14'>
-     <h3 className='text-xl md:text-3xl lg:text-4xl text-blue-950 font-semibold text-center mb-2'>Biography of <span className='text-orange-500 text-bold'>M.R. Millat</span></h3>
-     <p className='text-sm font-semibold text-center mb-8'>{biographyInfo?.title}</p>
+     <h3 className=' md:text-3xl lg:text-4xl text-blue-950 font-semibold text-center mb-2'>Biography of <span className='text-orange-500 text-bold'>{!isLoading&&banner?.name}</span></h3>
+     <p className='text-xs font-semibold text-center mb-8'>{biographyInfo?.title}</p>
      <div className="overflow-hidden mb-8 w-full md:h-[400px] lg:h-[500px] h-[300px] relative"> <Image
       src={biographyInfo?.imageUrl as string}
       alt="Event Image"
@@ -59,7 +62,7 @@ const Biography = () => {
 
 
 <div>
-  <p className='px-5 mb-10'>
+  <p className='px-5 mb-10 text-xs md:text-base'>
   {
     biographyInfo?.shortDescription
   }
@@ -74,10 +77,10 @@ const Biography = () => {
         aria-controls="panel1-content"
         id="panel1-header"
       >
-       <h4 className='text-gray-700 text-lg font-semibold'>{item?.itemTitle}</h4>
+       <h4 className='text-gray-700 md:text-lg font-semibold'>{item?.itemTitle}</h4>
       </AccordionSummary>
       <AccordionDetails>
-       <p >
+       <p className='text-xs md:text-base text-gray-500'>
       {
         item?.itemDescription
       }

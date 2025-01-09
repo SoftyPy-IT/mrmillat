@@ -20,7 +20,7 @@ const Banner = () => {
  <div>
   {
        isLoading?
-       <div className='w-full flex justify-center mt-28'>
+       <div className='w-full flex justify-center h-screen items-center bg-white'>
             <Image alt='photo' src="/Images/loading.gif" height={600} width={800} className='w-[80px] h-[80px] '/>
            </div>
        :
@@ -45,23 +45,23 @@ const Banner = () => {
 
  
    {/* Banner Content */}
-   <div className=' flex justify-center items-center lg:justify-start'>
-   <div className="max-w-xl lg:text-left px-10 md:top-[30%] xl:top-[30%] 2xl:top-[40%] top-40 text-center text-white absolute z-10 lg:ml-20">
+   <div className=' flex justify-center items-center '>
+   <div className="max-w-5xl 2xl:max-w-7xl  px-10 md:top-[30%] xl:top-[30%] 2xl:top-[40%] top-40 text-center text-white absolute z-10 lg:ml-20">
     <h1 
     data-aos="fade-left"
     data-aos-delay="200"
     data-aos-duration="1000"
-    className="mb-5 text-3xl lg:text-6xl font-bold ">{banner?.name}</h1>
+    className="md:mb-5 mb-2 text-2xl 2xl:text-8xl lg:text-6xl font-semibold ">{banner?.name}</h1>
      <p 
        data-aos="fade-left"
        data-aos-delay="400"
        data-aos-duration="1000"
      
-     className="mb-5  md:text-xl">
-       politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.
-   {/* {
+     className="mb-5  md:text-xl 2xl:text-3xl text-sm">
+     
+   {
      banner?.designation
-   } */}
+   }
      </p>
    <Link 
      data-aos="fade-up"

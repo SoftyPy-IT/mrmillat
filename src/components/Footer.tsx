@@ -24,9 +24,9 @@ const Footer = () => {
 		<div className="lg:w-1/3  ">
 			<a rel="noopener noreferrer" href="#" className="flex flex-col justify-center space-x-3 lg:justify-start">
 				
-				<div className='max-w-[280px]' >
-				<p className=" text-4xl font-semibold">{banner?.name}</p>
-				<p>{banner?.designation}</p>
+				<div className='max-w-[300px]' >
+				<p className=" text-2xl font-semibold">{banner?.name}</p>
+				<p className='text-sm'>{banner?.designation}</p>
 				</div>
 			</a>
 		</div>

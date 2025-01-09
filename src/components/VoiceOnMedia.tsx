@@ -3,6 +3,7 @@ import React, { useEffect,useState } from 'react';
 import useAxiosPublic from '@/hooks/useAxiosPublic';
 import ReactPlayer from 'react-player/youtube';
 import { TVoiceOnMedia } from '@/types/types';
+import Link from 'next/link';
 
 const VoiceOnMedia = () => {
   const axiosPublic = useAxiosPublic();
@@ -35,8 +36,8 @@ const VoiceOnMedia = () => {
   return (
     <div className='bg-white'>
           
-    <div className='my-10'>
-           <h2 className='text-4xl text-blue-950 text-center font-bold'>Interviews</h2>
+    <div className='my-20'>
+           <h2 className='text-4xl text-blue-950 text-center font-bold'>Voice On Media</h2>
 
 
 
@@ -51,7 +52,7 @@ const VoiceOnMedia = () => {
      
       {
         isClient  && 
-        medias?.slice(0,2).map((media:TVoiceOnMedia)=>
+        medias?.slice(0,3).map((media:TVoiceOnMedia)=>
           <div key={media?._id} className='w-[303px] h-[360px] border-2 shadow-xl '>
             <ReactPlayer
      
@@ -66,10 +67,19 @@ const VoiceOnMedia = () => {
      
       </section>
 
+
+      
+
  </div>
    
             
-
+<div className='w-full flex justify-center'>
+<Link 
+     data-aos="fade-up"
+     data-aos-delay="1000"
+     data-aos-duration="1000"
+   href='/about'><button className='hover-border-button'>View More</button></Link>
+</div>
 
     </div> 
       

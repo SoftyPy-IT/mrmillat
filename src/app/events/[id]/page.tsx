@@ -74,8 +74,10 @@ const EventDetails = ({ params }: { params: { id: string } }) => {
 </div>
 
 </div>
+<div dangerouslySetInnerHTML={{__html:event?.description.slice(0,200)}} />
       <p className="text-sm mt-10">
-    {event?.description}
+    {/* {event?.description} */}
+
       </p>
     
       <button className='hover-border-button mt-6'>Share</button>    
