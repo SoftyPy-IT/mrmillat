@@ -69,7 +69,7 @@ return(
  </div>   
     
  <div className="mt-24">
- <ShareButtons description={description} title={title} shareUrl={shareUrl}/> 
+ <ShareButtons  title={title} shareUrl={shareUrl}/> 
  </div>
 
  </div>
