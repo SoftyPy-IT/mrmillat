@@ -2,7 +2,7 @@ import RelatedEvents from "@/components/event/RelatedEvents";
 import ShareButtons from "@/components/event/ShareButtons";
 import { TEvent } from "@/types/types";
 import axios from "axios";
-import Head from "next/head";
+// import Head from "next/head";
 import Image from "next/image";
 import { FaCalendar } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
@@ -32,10 +32,10 @@ const title = event?.title;
 
 return(
   <>
-  <Head>
+  {/* <Head>
   <title>{event?.title}</title>
   <meta property="og:url" content={shareUrl} />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content={event?.imageUrl} />
   <meta property="og:title" content={event?.title} />
   <meta property="og:description" content={event?.shortDescription} />
@@ -43,7 +43,7 @@ return(
   <meta name="twitter:title" content={event?.title} />
   <meta name="twitter:description" content={event?.shortDescription} />
   <meta name="twitter:image" content={event?.imageUrl} />
- </Head>
+ </Head> */}
 
 <div className='w-full   bg-white flex justify-center items-center'>
 <div className=" container">
@@ -69,7 +69,12 @@ return(
  </div>   
     
  <div className="mt-24">
- <ShareButtons  title={title} shareUrl={shareUrl}/> 
+  
+ <ShareButtons  url={shareUrl}
+  quote={title}
+  hashtag={`#${title}`}  
+  /> 
+
  </div>
 
  </div>

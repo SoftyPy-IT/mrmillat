@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-<ReactQueryProvider> 
+     <ReactQueryProvider> 
       <div className="text-gray-500">
      
       <Navbar/>
