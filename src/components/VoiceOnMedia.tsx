@@ -78,7 +78,7 @@ const VoiceOnMedia = () => {
      data-aos="fade-up"
      data-aos-delay="1000"
      data-aos-duration="1000"
-   href='/about'><button className='hover-border-button'>View More</button></Link>
+   href='/media'><button className='hover-border-button'>View More</button></Link>
 </div>
 
     </div> 

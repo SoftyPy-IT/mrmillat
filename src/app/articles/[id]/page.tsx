@@ -44,9 +44,12 @@ const ArticleDetails = ({ params }: { params: { id: string } }) => {
 
 
       <p className="text-sm mt-2">
-    {article?.description}
+    {article?.shortDescription}
       </p>
-    
+      
+<div dangerouslySetInnerHTML={{__html:article?.description as string}} >
+</div>   
+     
    
     </div>
   </div>

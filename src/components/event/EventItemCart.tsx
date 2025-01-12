@@ -5,10 +5,10 @@ import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import "./event.css";
-
+import {FacebookShareButton} from "react-share";
 
 const EventCardItem = ({event}:{event:TEvent}) => {
-  // lg:h-[480px]
+
   return (
     <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-200 bg-white">
       <div className="p-5">
@@ -23,7 +23,7 @@ const EventCardItem = ({event}:{event:TEvent}) => {
           <h2 className="text-lg font-bold text-blue-950">
             {event?.title.length>100?`${event?.title?.slice(0,100)}...`: event?.title}</h2>
           <p className="text-sm mt-2">
-        {event.description.slice(0,100)} <Link href={`/events/${event?._id}`}><button  className='text-blue-500'>...আরও-দেখুন</button></Link>
+        {event?.shortDescription?.slice(0,100)} <Link href={`/events/${event?._id}`}><button  className='text-blue-500'>...আরও-দেখুন</button></Link>
           </p>
           <div className=" text-sm opacity-80 flex flex-row justify-between item-center text-black my-3">
     
@@ -36,7 +36,12 @@ const EventCardItem = ({event}:{event:TEvent}) => {
          </div>
          
          </div>
-      <button className='hover-border-button-event'>Share</button>
+
+         <FacebookShareButton url={`https://mrmillat.com/events/${event?._id}`} >
+         <button className='hover-border-button-event'>
+           Share</button>
+        </FacebookShareButton>
+      
         </div>
       </div>
     </div>

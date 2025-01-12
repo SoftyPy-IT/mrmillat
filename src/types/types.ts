@@ -53,6 +53,7 @@ export type TEvent = {
   imageUrl: string;
   title: string;
   location: string;
+  shortDescription:string;
   description: string;
   date: string;
   createdAt:string;
@@ -62,6 +63,7 @@ export type TArticle = {
   _id:string
   imageUrl: string;
   title: string;
+  shortDescription:string;
   description: string;
   publishedDate:string;
   createdAt:string;

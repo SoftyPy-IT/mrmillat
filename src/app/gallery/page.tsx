@@ -22,7 +22,7 @@ const Gallery = () => {
      useEffect(()=>{
         const getData =async()=>{
           try {
-          const response = await axiosPublic.get(`gallery?limit=${limit}&page=${currentPage}`);
+          const response = await axiosPublic.get(`gallery?limit=${limit}&page=${currentPage}&sort=-date`);
           const {totalCount,data}= response?.data?.data
           console.log(totalCount,data);
           setImages(data);

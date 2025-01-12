@@ -15,7 +15,7 @@ const ArticleCard = ({article}:{article:TArticle}) => {
          <span className='font-semibold'><FaCalendar /></span><p>Publish Date: {new Date(article?.publishedDate).toDateString()}</p>
          </div>
 			<h2 className="text-lg font-semibold tracking-wide h-[80px]">{article.title.length>60? article?.title.slice(0,60)+'...' :article?.title.slice(0,60)    }</h2>
-			<p className="text-gray-500">{article?.description.slice(0,60)}...</p>
+			<p className="text-gray-500">{article?.shortDescription?.slice(0,60)}...</p>
 		</div>
 	</div>
 	<div className=''>
