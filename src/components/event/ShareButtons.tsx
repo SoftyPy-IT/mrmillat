@@ -2,18 +2,19 @@
 import { FacebookShare } from 'react-share-kit'
 // import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
 
-const ShareButtons = ({url,quote,
-  hashtag}: {url:string,quote:string,
-    hashtag:string }) => {
+const ShareButtons = ({shareUrl,quote,hashtag,
+  title}: {shareUrl:string,quote:string,
+    title:string,hashtag:string }) => {
+
+      console.log("Share URL:", shareUrl, "Quote:", quote, "Hashtag:", hashtag,"title:",title);
   return (
     <div>
      
-
 <FacebookShare
-  url={url}
-  quote={quote}
-  title={quote}
-  hashtag={hashtag}
+  url={shareUrl}
+  quote={quote} // Quote for Facebook
+  title={title} // Title for Facebook
+  hashtag={hashtag} // Hashtag
 />
       {/* <FacebookShareButton url={shareUrl} hashtag={`#${title}`} quote>
         <span className="hover-border-button mt-6">facebook</span>

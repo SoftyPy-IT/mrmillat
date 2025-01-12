@@ -1,4 +1,4 @@
-// import type { Metadata } from "next";
+import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
@@ -17,11 +17,13 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-// export const metadata: Metadata = {
-//   title: "M. R. Millat",
-//   description: "Ex. MP Jamalpur-1",
-// };
-
+export const metadata: Metadata = {
+  title: {
+    default: "M. R. Millat",
+    template: "%s - M. R. Millat",
+  },
+  description: "Ex. MP Jamalpur-1",
+};
 export default function RootLayout({
   children,
 }: Readonly<{
