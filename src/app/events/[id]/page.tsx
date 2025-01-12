@@ -28,7 +28,7 @@ console.log(event);
 
 const shareUrl=`https://mrmillat.com/events/${eventId}`
 const title = event?.title;
-const description=event?.shortDescription;
+// const description=event?.shortDescription;
 
 return(
   <>
