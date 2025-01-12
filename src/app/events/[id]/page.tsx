@@ -26,7 +26,7 @@ if(!event){
 
 console.log(event);
 
-const shareUrl=`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${eventId}`
+const shareUrl=`https://mrmillat.com/events/${eventId}`
 const title = event?.title;
 const description=event?.shortDescription;
 
