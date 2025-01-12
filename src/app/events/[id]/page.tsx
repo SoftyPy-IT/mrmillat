@@ -1,3 +1,4 @@
+import RelatedEvents from "@/components/event/RelatedEvents";
 import ShareButtons from "@/components/event/ShareButtons";
 import { TEvent } from "@/types/types";
 import axios from "axios";
@@ -25,9 +26,9 @@ if(!event){
 
 console.log(event);
 
-const shareUrl=`https://mrmillat.com/events/${eventId}`
+const shareUrl=`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${eventId}`
 const title = event?.title;
-// const description=event?.shortDescription;
+const description=event?.shortDescription;
 
 return(
   <>
@@ -35,11 +36,16 @@ return(
   <title>{event?.title}</title>
   <meta property="og:url" content={shareUrl} />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content={event?.imageUrl} />
   <meta property="og:title" content={event?.title} />
   <meta property="og:description" content={event?.shortDescription} />
-  <meta property="og:image" content={event?.imageUrl} />
-</Head>
-  <div className='w-full   bg-white flex justify-center items-center'>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={event?.title} />
+  <meta name="twitter:description" content={event?.shortDescription} />
+  <meta name="twitter:image" content={event?.imageUrl} />
+ </Head>
+
+<div className='w-full   bg-white flex justify-center items-center'>
 <div className=" container">
   <div className="px-5 pb-10">
     <div className='md:h-[500px] h-[300px] relative'>
@@ -62,13 +68,21 @@ return(
 <div dangerouslySetInnerHTML={{__html:event?.description}} >
  </div>   
     
-  <ShareButtons title={title} shareUrl={shareUrl}/> 
+ <div className="mt-24">
+ <ShareButtons description={description} title={title} shareUrl={shareUrl}/> 
+ </div>
 
  </div>
    </div>
 
 </div>
+
+
+
+
 </div>
+
+<RelatedEvents/>
   </>
 )
 
