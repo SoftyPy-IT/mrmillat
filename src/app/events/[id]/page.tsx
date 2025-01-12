@@ -35,7 +35,7 @@ return(
   <Head>
   <title>{event?.title}</title>
   <meta property="og:url" content={shareUrl} />
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content="article" />
   <meta property="og:image" content={event?.imageUrl} />
   <meta property="og:title" content={event?.title} />
   <meta property="og:description" content={event?.shortDescription} />
