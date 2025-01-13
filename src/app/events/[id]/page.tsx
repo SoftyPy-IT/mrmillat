@@ -6,6 +6,7 @@ import RelatedEvents from "@/components/event/RelatedEvents";
 import ShareButtons from "@/components/event/ShareButtons";
 import { TEvent } from "@/types/types";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type EventDetailsProps = {
   params: {
@@ -28,42 +29,42 @@ async function fetchEvent(id: string): Promise<TEvent | null> {
 export async function generateMetadata({ params }: EventDetailsProps): Promise<Metadata> {
   const event = await fetchEvent(params.id);
    
-  if (!event) {
-    return {
-      title: "Event Not Found",
-      description: "The event you are looking for does not exist.",
-      openGraph: {
-        title: "Event Not Found",
-        description: "The event you are looking for does not exist.",
-        url: `https://mrmillat.com/events/${params.id}`,
-        images: [], // Empty array if event is not found
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: "Event Not Found",
-        description: "The event you are looking for does not exist.",
-        images: [],
-      },
-    };
-  }
-
   return {
-    title: event?.title,
-    description: event?.shortDescription,
+    title: event?.title || "Default Event Title",
+    description: event?.shortDescription || "Default Event Description",
     openGraph: {
-      type:"website",
-      title: event?.title,
-      description: event?.shortDescription,
+      type: "website",
+      title: event?.title || "Default Event Title",
+      description: event?.shortDescription || "Default Event Description",
       url: `https://mrmillat.com/events/${params?.id}`,
-      images: event?.imageUrl ? [event.imageUrl] : [], // Ensure image URL is passed
+      images: event?.imageUrl ? [{ url: event.imageUrl }] : [],
     },
     twitter: {
       card: "summary_large_image",
-      title: event?.title,
-      description: event?.shortDescription,
+      title: event?.title || "Default Event Title",
+      description: event?.shortDescription || "Default Event Description",
       images: event?.imageUrl ? [event.imageUrl] : [],
     },
   };
+  
+
+  // return {
+  //   title: event?.title,
+  //   description: event?.shortDescription,
+  //   openGraph: {
+  //     type:"website",
+  //     title: event?.title,
+  //     description: event?.shortDescription,
+  //     url: `https://mrmillat.com/events/${params?.id}`,
+  //     images: event?.imageUrl ? [event.imageUrl] : [], // Ensure image URL is passed
+  //   },
+  //   twitter: {
+  //     card: "summary_large_image",
+  //     title: event?.title,
+  //     description: event?.shortDescription,
+  //     images: event?.imageUrl ? [event.imageUrl] : [],
+  //   },
+  // };
 }
 
 // Event Details Page
@@ -72,7 +73,7 @@ export default async function EventDetails({ params }: EventDetailsProps) {
   console.log(event);
   // Ensure proper fallback if no event is found
   if (!event) {
-    return <div className="text-center my-56">Event not found</div>;
+    notFound();
   }
 
   const shareUrl = `https://mrmillat.com/events/${params.id}`;
