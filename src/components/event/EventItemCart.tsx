@@ -5,7 +5,6 @@ import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import "./event.css";
-import {FacebookShareButton} from "react-share";
 
 const EventCardItem = ({event}:{event:TEvent}) => {
 
@@ -37,10 +36,10 @@ const EventCardItem = ({event}:{event:TEvent}) => {
          
          </div>
 
-         <FacebookShareButton url={`https://mrmillat.com/events/${event?._id}`} >
+      
          <button className='hover-border-button-event'>
            Share</button>
-        </FacebookShareButton>
+       
       
         </div>
       </div>
