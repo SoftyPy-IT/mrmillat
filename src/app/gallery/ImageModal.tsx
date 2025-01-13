@@ -21,7 +21,7 @@ const axiosPublic = useAxiosPublic();
   useEffect(()=>{
           const getData =async()=>{
             try {
-            const response = await axiosPublic.get(`gallery`);
+            const response = await axiosPublic.get(`gallery?sort=-date`);
             const {totalCount,data}= response?.data?.data
             console.log(totalCount,data);
             setImages(data);

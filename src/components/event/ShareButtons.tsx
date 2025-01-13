@@ -1,6 +1,6 @@
-'use client';
-import { FacebookShare } from 'react-share-kit'
-// import { FacebookShareButton, LinkedinShareButton, TwitterShareButton, WhatsappShareButton } from 'react-share';
+"use client"
+
+import { FacebookIcon, FacebookShareButton} from 'react-share';
 
 const ShareButtons = ({shareUrl,quote,hashtag,
   title}: {shareUrl:string,quote:string,
@@ -10,15 +10,15 @@ const ShareButtons = ({shareUrl,quote,hashtag,
   return (
     <div>
      
-<FacebookShare
+{/* <FacebookShare
   url={shareUrl}
   quote={quote} // Quote for Facebook
   title={title} // Title for Facebook
   hashtag={hashtag} // Hashtag
-/>
-      {/* <FacebookShareButton url={shareUrl} hashtag={`#${title}`} quote>
-        <span className="hover-border-button mt-6">facebook</span>
-      </FacebookShareButton> */}
+/> */}
+      <FacebookShareButton url={shareUrl}>
+      <FacebookIcon size={32} round={true} />
+      </FacebookShareButton>
 
     {/* LinkedIn
  <LinkedinShareButton url={shareUrl} title={title} summary='millat' source='https://mrmillat.com/' >
