@@ -4,12 +4,7 @@ import HeroEventBanner from './HeroEventBanner';
 import EventHighLights from '@/components/event/EventHighLights';
 import UpcomingEvents from '@/components/event/UpcomingEvents';
 
-
 const Events = () => {
-
-
-
-
   return (
     <div className='bg-white'>
                {/* banner section  */}

@@ -4,8 +4,8 @@ import Image from "next/image";
 import { FaCalendar, FaLocationDot } from "react-icons/fa6";
 import RelatedEvents from "@/components/event/RelatedEvents";
 import ShareButtons from "@/components/event/ShareButtons";
-import type { Metadata } from "next";
 import { TEvent } from "@/types/types";
+import { Metadata } from "next";
 
 type EventDetailsProps = {
   params: {
@@ -13,7 +13,7 @@ type EventDetailsProps = {
   };
 };
 
-// Helper function to fetch event data
+
 async function fetchEvent(id: string): Promise<TEvent | null> {
   try {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_BASE_API_URL}/events/${id}`);
@@ -24,39 +24,52 @@ async function fetchEvent(id: string): Promise<TEvent | null> {
   }
 }
 
-// Dynamic metadata generation
+
 export async function generateMetadata({ params }: EventDetailsProps): Promise<Metadata> {
   const event = await fetchEvent(params.id);
-
+   
   if (!event) {
     return {
       title: "Event Not Found",
       description: "The event you are looking for does not exist.",
+      openGraph: {
+        title: "Event Not Found",
+        description: "The event you are looking for does not exist.",
+        url: `https://mrmillat.com/events/${params.id}`,
+        images: [], // Empty array if event is not found
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Event Not Found",
+        description: "The event you are looking for does not exist.",
+        images: [],
+      },
     };
   }
 
   return {
-    title: event.title,
-    description: event.shortDescription,
+    title: event?.title,
+    description: event?.shortDescription,
     openGraph: {
-      title: event.title,
-      description: event.shortDescription,
-      url: `https://mrmillat.com/events/${params.id}`,
-      images: event.imageUrl,
+      type:"website",
+      title: event?.title,
+      description: event?.shortDescription,
+      url: `https://mrmillat.com/events/${params?.id}`,
+      images: event?.imageUrl ? [event.imageUrl] : [], // Ensure image URL is passed
     },
     twitter: {
       card: "summary_large_image",
-      title: event.title,
-      description: event.shortDescription,
-      images: event.imageUrl,
+      title: event?.title,
+      description: event?.shortDescription,
+      images: event?.imageUrl ? [event.imageUrl] : [],
     },
   };
 }
 
 // Event Details Page
 export default async function EventDetails({ params }: EventDetailsProps) {
-  const event = await fetchEvent(params.id);
-
+  const event = await fetchEvent(params?.id);
+  console.log(event);
   // Ensure proper fallback if no event is found
   if (!event) {
     return <div className="text-center my-56">Event not found</div>;
@@ -108,9 +121,6 @@ export default async function EventDetails({ params }: EventDetailsProps) {
             </div>
           </div>
         </div>
-
-
-
           {/* Related Events */}
       <RelatedEvents />
       </div>
