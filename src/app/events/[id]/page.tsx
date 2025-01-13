@@ -5,7 +5,7 @@ import { FaCalendar, FaLocationDot } from "react-icons/fa6";
 import RelatedEvents from "@/components/event/RelatedEvents";
 import ShareButtons from "@/components/event/ShareButtons";
 import { TEvent } from "@/types/types";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 type EventDetailsProps = {
@@ -21,9 +21,10 @@ async function fetchEvent(id: string): Promise<TEvent | null> {
     return response.data.data;
   } catch (error) {
     console.error("Error fetching event data:", error);
-    return null;
+    return null; 
   }
 }
+
 
 
 export async function generateMetadata({ params }: EventDetailsProps): Promise<Metadata> {
@@ -75,8 +76,8 @@ export default async function EventDetails({ params }: EventDetailsProps) {
   if (!event) {
     notFound();
   }
-
-  const shareUrl = `https://mrmillat.com/events/${params.id}`;
+  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
+ 
 
   return (
     <div className="w-full bg-white flex justify-center items-center">
