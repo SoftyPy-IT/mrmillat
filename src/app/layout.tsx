@@ -19,28 +19,28 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Softypy - Trusted e-solution",
+  title: "M. Rashiduzzaman Millat",
   description:
-    "Softypy is a trusted e-solutions provider. We provide services like web development, mobile app development, digital marketing, and more. Contact us now! ",
+    "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
   openGraph: {
     type: "website",
     locale: "en_IE",
-    url: "https://softypy.com",
-    siteName: "Softypy - Trusted e-solutions",
-    title: "Softypy - Trusted e-solutions",
+    url: "https://mrmillat.com",
+    siteName: "M. Rashiduzzaman Millat",
+    title: "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
     description:
-      "Softypy is a trusted e-solutions provider. We provide services like web development, mobile app development, digital marketing, and more. Contact us now! ",
+      "এম রশিদুজ্জামান মিল্লাত জামালপুর-১ (দেওয়ানগঞ্জ-বকশীগঞ্জ) আসনের একজন সুপরিচিত রাজনৈতিক নেতা। তার নেতৃত্বে দেওয়ানগঞ্জ এবং বকশীগঞ্জ এলাকায় ব্যাপক অবকাঠামোগত উন্নয়ন সাধিত হয়েছে। এর মধ্যে সবচেয়ে উল্লেখযোগ্য হলো বাহাদুরাবাদে পুরাতন ব্রহ্মপুত্র নদীর উপর সেতু নির্মাণ।",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Softypy",
+        alt: "M. Rashiduzzaman Millat",
       },
     ],
     countryName: "Bangladesh",
-    emails: ["softypy@gmail.com"],
-    phoneNumbers: ["+880 1762-380594"],
+    emails: ["info@shouravgroup-bd.com"],
+    phoneNumbers: ["+88 02 222260615"],
   },
 };
 

@@ -76,7 +76,7 @@ const ShareButtons = ({shareUrl,quote,hashtag,
           </React.Fragment>
         }
       >
-        <button className='hover-border-button-event w-full text-white flex items-center justify-center'   onClick={handleTooltipOpen}> <FaShareNodes/>Share</button>
+        <button className='hover-border-button-event w-full text-white flex items-center justify-center gap-2'  onClick={handleTooltipOpen}> <FaShareNodes/>Share</button>
       </HtmlTooltip>
      
 
