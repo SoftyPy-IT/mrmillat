@@ -1,21 +1,85 @@
 "use client"
-
-import { FacebookIcon, FacebookShareButton} from 'react-share';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import "./event.css"
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
+import { FacebookIcon, FacebookShareButton, WhatsappShareButton,WhatsappIcon,  TwitterShareButton,TwitterIcon, TelegramShareButton,TelegramIcon,LinkedinShareButton,LinkedinIcon,EmailShareButton,EmailIcon} from 'react-share';
+import { FaShareNodes } from 'react-icons/fa6';
+import { ClickAwayListener } from '@mui/material';
 
 const ShareButtons = ({shareUrl,quote,hashtag,
   title}: {shareUrl:string,quote:string,
     title:string,hashtag:string }) => {
+      const [open, setOpen] = React.useState(false);
 
+      const handleTooltipClose = () => {
+        setOpen(false);
+      };
+    
+      const handleTooltipOpen = () => {
+        setOpen(true);
+      };
+    
       console.log("Share URL:", shareUrl, "Quote:", quote, "Hashtag:", hashtag,"title:",title);
+      const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
+        <Tooltip {...props} classes={{ popper: className }} />
+      ))(({ theme }) => ({
+        [`& .${tooltipClasses.tooltip}`]: {
+          backgroundColor: '#f5f5f9',
+          color: 'rgba(0, 0, 0, 0.87)',
+          maxWidth: 300,
+          fontSize: theme.typography.pxToRem(12),
+          border: '1px solid #dadde9',
+        },
+      }));
+
+
+
   return (
     <div>
      
+      <HtmlTooltip
+       
+        open={open}
+        slotProps={{
+          popper: {
+            disablePortal: true,
+          },
+        }}
 
-      <FacebookShareButton url={shareUrl}>
-      <FacebookIcon size={32} round={true} />
+        title={
+          <React.Fragment>
+    <ClickAwayListener onClickAway={handleTooltipClose}>
+          
+     <div className='flex gap-2'>
+     <FacebookShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <FacebookIcon size={40} round={true} />
       </FacebookShareButton>
+      <TwitterShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <TwitterIcon size={40} round={true} />
+      </TwitterShareButton>
+      <LinkedinShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <LinkedinIcon size={40} round={true} />
+      </LinkedinShareButton>
+      <WhatsappShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <WhatsappIcon size={40} round={true} />
+      </WhatsappShareButton>
+      <TelegramShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <TelegramIcon size={40} round={true} />
+      </TelegramShareButton>
+      <EmailShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <EmailIcon size={40} round={true} />
+      </EmailShareButton>
+     </div>
 
-   
+       </ClickAwayListener>
+          </React.Fragment>
+        }
+      >
+        <button className='hover-border-button-event w-full text-white flex items-center justify-center'   onClick={handleTooltipOpen}> <FaShareNodes/>Share</button>
+      </HtmlTooltip>
+     
+
 
     </div>
   );

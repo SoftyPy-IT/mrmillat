@@ -1,7 +1,6 @@
 "use client"
-import { FacebookIcon, FacebookShareButton} from 'react-share';
 import React, { useEffect, useState } from 'react';
-// import ShareButtons from './ShareButtons';
+import ShareButtons from './ShareButtons';
 import RelatedEvents from './RelatedEvents';
 import { FaLocationDot } from 'react-icons/fa6';
 import { FaCalendar } from 'react-icons/fa';
@@ -81,12 +80,10 @@ const EventDetails = () => {
           <div dangerouslySetInnerHTML={{ __html: event.description }} />
             
           {/* Share Buttons */}
-          {/* <div className="mt-24">
+          <div className="mt-24  max-w-[200px]">
             <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`} />   
-          </div> */}
-            <FacebookShareButton url={shareUrl}>
-                    <FacebookIcon size={32} round={true} />
-          </FacebookShareButton>    
+          </div>
+           
         </div>
 
       </div>

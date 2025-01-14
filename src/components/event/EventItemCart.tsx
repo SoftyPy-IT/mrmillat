@@ -5,9 +5,10 @@ import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import "./event.css";
+import ShareButtons from './ShareButtons';
 
 const EventCardItem = ({event}:{event:TEvent}) => {
-
+const shareUrl =`${process.env.NEXT_PUBLIC_BASE_API_URL}/events/${event?._id}`
   return (
     <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-200 bg-white">
       <div className="p-5">
@@ -37,10 +38,10 @@ const EventCardItem = ({event}:{event:TEvent}) => {
          </div>
 
       
-         <button className='hover-border-button-event'>
-           Share</button>
+         {/* <button className='hover-border-button-event'>
+           Share</button> */}
        
-      
+       <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`}/>
         </div>
       </div>
     </div>

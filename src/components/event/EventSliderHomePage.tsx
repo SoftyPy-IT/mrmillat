@@ -43,6 +43,7 @@ const EventSliderHomePage = () => {
         autoplay={{
           delay: 2000,
           disableOnInteraction: true,
+          pauseOnMouseEnter: true,
         }}
         spaceBetween={10}
         loop={true}

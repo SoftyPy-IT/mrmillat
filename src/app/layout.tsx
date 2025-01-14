@@ -19,7 +19,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Softypy - Trusted e-solutions",
+  title: "Softypy - Trusted e-solution",
   description:
     "Softypy is a trusted e-solutions provider. We provide services like web development, mobile app development, digital marketing, and more. Contact us now! ",
   openGraph: {
