@@ -45,10 +45,16 @@ const EventDetails = () => {
     <div className="w-full bg-white flex justify-center items-center">
     <div className="container">
       <div className="px-5 pb-10">
-        {/* Event Image */}
-        <div className="md:h-[500px] h-[300px] relative">
-          <Image src={event.imageUrl} layout="fill" objectFit="cover" alt={event.title} />
-        </div>
+                       {/* Event Image */}
+       
+                       <div className="relative max-w-[50em] w-full h-[200px] md:h-[400px] lg:h-[400px] mx-auto">
+  <Image 
+    src={event.imageUrl} 
+    fill 
+    className="rounded-lg w-full h-full object-cover"
+    alt={event.title} 
+  />
+</div>
 
         <div className="mt-10 lg:mx-10 mx-5">
           <h2 className="text-xl font-bold text-blue-950">{event.title}</h2>

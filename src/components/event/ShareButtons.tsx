@@ -67,7 +67,7 @@ const ShareButtons = ({shareUrl,quote,hashtag,
       <TelegramShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
       <TelegramIcon size={40} round={true} />
       </TelegramShareButton>
-      <EmailShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+      <EmailShareButton subject={title} body={quote} onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
       <EmailIcon size={40} round={true} />
       </EmailShareButton>
      </div>
