@@ -10,30 +10,12 @@ const ShareButtons = ({shareUrl,quote,hashtag,
   return (
     <div>
      
-{/* <FacebookShare
-  url={shareUrl}
-  quote={quote} // Quote for Facebook
-  title={title} // Title for Facebook
-  hashtag={hashtag} // Hashtag
-/> */}
+
       <FacebookShareButton url={shareUrl}>
       <FacebookIcon size={32} round={true} />
       </FacebookShareButton>
 
-    {/* LinkedIn
- <LinkedinShareButton url={shareUrl} title={title} summary='millat' source='https://mrmillat.com/' >
- <span className="hover-border-button mt-6">linkedIn</span>
- </LinkedinShareButton>
-
- {/* Twitter */}
- {/* <TwitterShareButton url={shareUrl} title={title} >
- <span className="hover-border-button mt-6">Twitter</span>
- </TwitterShareButton> */}
-
- {/* WhatsApp */}
- {/* <WhatsappShareButton url={shareUrl} title={title}>
- <span className="hover-border-button mt-6">Whatsapp</span>
- </WhatsappShareButton> */} 
+   
 
     </div>
   );
