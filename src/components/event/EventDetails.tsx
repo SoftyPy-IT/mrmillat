@@ -9,11 +9,16 @@ import useAxiosPublic from '@/hooks/useAxiosPublic';
 import { TEvent } from '@/types/types';
 import { useParams } from 'next/navigation';
 
+
+
+
+
 const EventDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { id } = useParams(); 
   const [event, setEvent] = useState<TEvent|null>(null);
-   console.log(id);
+ 
+
  const shareUrl = typeof window !== "undefined" ? window.location.href : "";
   useEffect(() => {
     const getData = async () => {
@@ -32,9 +37,7 @@ const EventDetails = () => {
     getData();
   }, [id]);
 
-  
- 
-  
+
 
   if (!event) {
  
@@ -43,24 +46,26 @@ const EventDetails = () => {
 
   return (
     <div className="w-full bg-white flex justify-center items-center">
-    <div className="container">
+    <div className="container ">
+      <div className='lg:w-3/5 mx-auto'>
       <div className="px-5 pb-10">
                        {/* Event Image */}
        
-                       <div className="relative max-w-[50em] w-full h-[200px] md:h-[400px] lg:h-[400px] mx-auto">
+  <div className="relative aspect-[3/2] ">                   
   <Image 
     src={event.imageUrl} 
     fill 
-    className="rounded-lg w-full h-full object-cover"
+    objectFit='cover'
+    className="rounded-lg w-full h-full"
     alt={event.title} 
   />
 </div>
 
-        <div className="mt-10 lg:mx-10 mx-5">
+        <div className="mt-10  ">
           <h2 className="text-xl font-bold text-blue-950">{event.title}</h2>
 
           {/* Event Date and Location */}
-          <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center px-8">
+          <div className="mt-3 text-sm opacity-80 lg:flex flex-row justify-between item-center ">
             <div className="flex gap-1 items-center">
               <span>
                 <FaCalendar />
@@ -92,6 +97,7 @@ const EventDetails = () => {
            
         </div>
 
+      </div>
       </div>
         {/* Related Events */}
     <RelatedEvents />

@@ -6,14 +6,17 @@ import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import { FacebookIcon, FacebookShareButton, WhatsappShareButton,WhatsappIcon,  TwitterShareButton,TwitterIcon, TelegramShareButton,TelegramIcon,LinkedinShareButton,LinkedinIcon,EmailShareButton,EmailIcon} from 'react-share';
 import { FaShareNodes } from 'react-icons/fa6';
 import { ClickAwayListener } from '@mui/material';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 const ShareButtons = ({shareUrl,quote,hashtag,
   title}: {shareUrl:string,quote:string,
     title:string,hashtag:string }) => {
       const [open, setOpen] = React.useState(false);
+      const [copySuccess,setCopySuccess] = React.useState('Copy Link');
 
       const handleTooltipClose = () => {
-        setOpen(false);
+       
+        setTimeout(() =>  setOpen(false), 3000); 
       };
     
       const handleTooltipOpen = () => {
@@ -71,8 +74,19 @@ const ShareButtons = ({shareUrl,quote,hashtag,
       <EmailIcon size={40} round={true} />
       </EmailShareButton>
      </div>
+     </ClickAwayListener>
 
-       </ClickAwayListener>
+
+      
+
+         {/* Copy to Clipboard */}
+      <CopyToClipboard  text={shareUrl} onCopy={() => setCopySuccess('Link copied!')}>
+      <div className='flex justify-center'>
+      <button onClick={handleTooltipClose} className={`bg-gray-300 font-bold border-2 my-2 text-gray-600 px-5 py-2 rounded-3xl border-gray-900 ${copySuccess==='Link copied!'&&'text-green-600 border-green-600'}`}>{copySuccess}</button>
+      </div>
+      </CopyToClipboard>
+     
+          
           </React.Fragment>
         }
       >

@@ -5,12 +5,14 @@ import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import "./event.css";
-import ShareButtons from './ShareButtons';
+// import ShareButtons from './ShareButtons';
 
 const EventCardItem = ({event}:{event:TEvent}) => {
-const shareUrl =`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${event?._id}`
+// const shareUrl =`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${event?._id}`
   return (
-    <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-200 bg-white">
+  
+    <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-50 bg-white">
+        <Link href={`/events/${event?._id}`}>
       <div className="p-5">
        <div className="overflow-hidden"> <Image
           src={event?.imageUrl}
@@ -23,7 +25,7 @@ const shareUrl =`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${event?._id}`
           <h2 className="text-lg font-bold text-blue-950">
             {event?.title.length>100?`${event?.title?.slice(0,100)}...`: event?.title}</h2>
           <p className="text-sm mt-2">
-        {event?.shortDescription?.slice(0,100)} <Link href={`/events/${event?._id}`}><button  className='text-blue-500'>...আরও-দেখুন</button></Link>
+        {event?.shortDescription?.slice(0,100)}<button  className='text-blue-500'>...আরও-দেখুন</button> 
           </p>
           <div className=" text-sm opacity-80 flex flex-row justify-between item-center text-black my-3">
     
@@ -38,10 +40,14 @@ const shareUrl =`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${event?._id}`
          </div>
 
        <div>
-       <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`}/>
+       {/* <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`}/> */}
+       <button className='hover-border-button-event'>
+        Details
+       </button>
        </div>
         </div>
       </div>
+      </Link>
     </div>
   );
 };

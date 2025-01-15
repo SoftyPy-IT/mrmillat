@@ -1,67 +1,45 @@
-'use client'
-import useAxiosPublic from '@/hooks/useAxiosPublic';
-import { TArticle } from '@/types/types';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
-import { FaCalendar } from 'react-icons/fa';;
+import React from "react";
+import type { Metadata } from "next";
+import { TArticle } from "@/types/types";
+import ArticleDetails from "@/components/Article/ArticleDetails";
 
-
-const ArticleDetails = ({ params }: { params: { id: string } }) => {
-  const axiosPublic = useAxiosPublic();
-  const { id } = params; 
-  const [article, setArticle] = useState<TArticle>( );
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await axiosPublic.get(`/articles/${id}`); 
-        const result = response.data.data;
-         setArticle(result);
-        } catch (error) {
-        console.error('Error fetching the data:', error);
-        }
-    };
-
-    getData();
-  }, [id,axiosPublic]);
-  
- 
+const page = () => {
   return (
- <div className='flex justify-center '>
-    <div className="w-full bg-white  container ">
-  <div className="px-5 pb-10">
-    <div className='md:h-[500px] h-[300px] relative'>
-    <Image src={article?.imageUrl as string}  layout="fill"  objectFit="cover" alt='photo' />
-    
-    </div>
-    <div className="mt-10 space-y-4">
-      <h2 className="text-xl font-bold text-blue-950">{article?.title}</h2>
-      
-<div className='flex gap-1 items-center '>
-<span ><FaCalendar /></span><p className='text-black'><strong>Publish On :</strong>{article?.publishedDate}</p>
-</div>
-
-
-
-      <p className="text-sm mt-2">
-    {article?.shortDescription}
-      </p>
-      
-<div dangerouslySetInnerHTML={{__html:article?.description as string}} >
-</div>   
-     
-   
-    </div>
-  </div>
-
-
-  {/* Related Events section  */}
-            
-         
-
-</div>
- </div>
+    <>
+      <ArticleDetails/>
+    </>
   );
 };
 
-export default ArticleDetails;
+export default page;
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const baseApi = process.env.NEXT_PUBLIC_BASE_API_URL;
+  const id = (await params).id;
+  console.log(id);
+  const res = await fetch(`${baseApi}/articles/${id}`);
+  const data = await res.json();
+  const finalData:TArticle = data.data;
+  return {
+    title: `${finalData.title}`,
+    description: finalData.shortDescription,
+    openGraph: {
+      images: [
+        {
+          url: finalData.imageUrl,
+          width: 800,
+          height: 600,
+          alt: finalData.title,
+        },
+      ],
+    },
+  };
+}
+
+
+
+
