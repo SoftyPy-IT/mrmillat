@@ -20,9 +20,8 @@ const Banner = () => {
  <div>
   {
        isLoading?
-       <div className='w-full flex justify-center h-screen items-center bg-white'>
-            <Image alt='photo' src="/Images/loading.gif" height={600} width={800} className='w-[80px] h-[80px] '/>
-           </div>
+       <Image alt='photo' src="/Images/bg-2.gif" layout='fill' className=''/>
+   
        :
       
       <div className="relative w-full h-[500px] lg:min-h-screen overflow-hidden">

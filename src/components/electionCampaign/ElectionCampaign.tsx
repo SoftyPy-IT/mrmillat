@@ -7,6 +7,7 @@ import QuickLinksSection from '../QuickLinksSection';
 import useFeatures from '@/hooks/useFeatures';
 import { TElectionCampaign } from '@/types/types';
 import ElectionCountdown from './ElectionCountDownt';
+import PhotoFrame from '../PhotoFrameHomePage/PhotoFrame';
 
 
 type TElectionCampaignData ={
@@ -20,7 +21,7 @@ const ElectionCampaign = () => {
 <div>
 {
     !isLoading &&
-    <div className='mb-20 '>
+    <div>
     <div
      style={{backgroundImage:`url(${electionCampaign?.bgImageUrl})`}}
     className="  min-h-screen bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-3 lg:pb-14">
@@ -61,8 +62,15 @@ const ElectionCampaign = () => {
       
      </div>
    </div>
-   <div className='relative flex justify-center -top-20'>
-     <QuickLinksSection/>
+   <div className=' bg-[url(/Images/bg-1.gif)] bg-cover bg-center'>
+    <div className='relative flex justify-center -top-20'>
+    <QuickLinksSection/>
+    </div>
+
+      {/* photo frame gallery section  */}
+    <div className='flex justify-center items-center  py-20'>
+      <PhotoFrame/>
+    </div>            
    </div>
   </div>
 

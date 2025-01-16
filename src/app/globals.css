@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+
+
 /* Common button for all components styling */
 .hover-border-button {
   padding: 10px 40px;

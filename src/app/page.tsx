@@ -23,25 +23,26 @@ const page = () => {
    <div className='flex justify-center items-center w-full'>
     <OurConcern/>
     </div>     
+
    
                    {/* introductionVideo */}
       <div className='flex justify-center items-center'>
       <IntroductionVideo/>
       </div>
-                    
+             
                
    </section>
                    
 
                     {/* election Campaign */}
-   <div >
+    <div >
    <ElectionCampaign/>
-   </div>
+   </div>   
 
                     
 
                      {/* event slider */}
-   <div>
+   <div className='flex justify-center items-center'>
    <EventSliderHomePage/>
    </div>
 
