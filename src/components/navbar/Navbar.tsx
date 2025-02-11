@@ -11,7 +11,6 @@ import 'aos/dist/aos.css';
 import useFeatures from '@/hooks/useFeatures';
 
 
-
 type Route={
   navItem:string;
   route:string
@@ -35,8 +34,6 @@ const Navbar = () => {
   const pathName = usePathname();
   const [openSidebar,setOpenSideBar] = useState<boolean>(false);
 
-// console.log(features);
-
 useEffect(() => {
   if (typeof window !== 'undefined') {
     AOS.init();
@@ -47,7 +44,7 @@ useEffect(() => {
   useEffect(()=>{
     if (typeof window === 'undefined') return;
     let scrollTimeout : NodeJS.Timeout
-  const handleScroll =()=>{
+    const handleScroll =()=>{
     if(window.scrollY>0){
       setScrolling(true);
       clearTimeout(scrollTimeout);
@@ -118,7 +115,7 @@ useEffect(() => {
 
 
            {/* nav item for small device  */}
-<div className='block lg:hidden  '>
+<div className='block lg:hidden '>
  {/* Overlay */}
  <div className={`  ${openSidebar?'fixed inset-0 bg-black bg-opacity-50 ':' '}`}></div>
 

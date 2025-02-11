@@ -11,8 +11,6 @@ import { useParams } from 'next/navigation';
 
 
 
-
-
 const EventDetails = () => {
   const axiosPublic = useAxiosPublic();
   const { id } = useParams(); 

@@ -57,7 +57,6 @@ console.log(images);
    <section
     data-aos="fade-up"
     data-aos-duration="2500"
-   
    className='flex items-center justify-center px-5'>
    <div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2  items-center justify-around mb-8 mt-20 gap-8 max-w-6xl'>
 
@@ -113,7 +112,7 @@ console.log(images);
    </div>
    </section>
 
-    {/* pagination buttons */}
+               {/* pagination buttons */}
            {
               totalCount< limit && currentPage===1 ?"":
               <div className='flex item-center justify-center mb-20 mt-8'>

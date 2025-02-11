@@ -1,5 +1,4 @@
 "use client";
-
 import HeroSection from "@/components/HeroSection";
 import useAxiosPublic from "@/hooks/useAxiosPublic";
 import { THeroSection } from "@/types/types";

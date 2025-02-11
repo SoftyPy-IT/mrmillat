@@ -37,11 +37,11 @@ const EventHighLights = () => {
     )}     
                
  </div>
-        {/* pagination buttons */}
+            {/* pagination buttons */}
         {
            totalCount< limit && currentPage===1 ?"":
            <div className='flex item-center justify-center mb-20 mt-8'>
-        <Stack spacing={2}>
+         <Stack spacing={2}>
           
           <Pagination
            count={Math.ceil(totalCount/limit)}
@@ -52,9 +52,7 @@ const EventHighLights = () => {
         </Stack>
         </div>
          }    
-    </div>
-  
-         
+    </div>    
   );
 };
 

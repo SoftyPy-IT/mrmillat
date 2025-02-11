@@ -10,6 +10,7 @@ type TContactData ={
 	contact:TContact;
 	isLoading:any;
 }
+
 const Contact = () => {
 	const {contact,isLoading}:TContactData = useFeatures();
   return (
