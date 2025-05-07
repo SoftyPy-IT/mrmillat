@@ -10,7 +10,7 @@ const EventHighLights = () => {
   const [events, setEvents] = useState([]);
   const [currentPage,setCurrentPage] = useState(1);
   const [totalCount,setTotalCount] = useState(0);
-  const limit = 6; 
+  const limit = 8; 
    useEffect(()=>{
       const getData =async()=>{
         try {

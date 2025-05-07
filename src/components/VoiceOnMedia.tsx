@@ -10,8 +10,6 @@ const VoiceOnMedia = () => {
   const [medias,setMedias] = useState([]);
   const [isClient,setIsClient] = useState(false);
   const limit = 3; 
-
-
      useEffect(()=>{
         const getData =async()=>{
           try {
@@ -48,18 +46,18 @@ const VoiceOnMedia = () => {
  
  className='flex justify-center item-center'>
  <section className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-around mb-8 mt-10 gap-8 '>
-               {/* card 1 */}
+            
      
       {
         isClient  && 
         medias?.slice(0,3).map((media:TVoiceOnMedia)=>
-          <div key={media?._id} className='w-[303px] h-[360px] border-2 shadow-xl '>
+          <div key={media?._id} className='w-[303px] h-[320px] border-2 shadow-xl '>
             <ReactPlayer
      
               controls
               width={300} height={200} url={media?.videoUrl}  />
 
-                <h2 className='text-lg font-bold my-3 text-black px-5'>{media?.title}</h2>
+                <h2 className='text-md font-bold my-3 text-blue-950 px-5'>{media?.title}</h2>
          
           </div>
         )

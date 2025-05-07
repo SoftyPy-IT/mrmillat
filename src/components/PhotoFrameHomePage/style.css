@@ -18,7 +18,7 @@
   
   .gallery > img:hover {
     z-index: 1;
-    --_t: 1.2;
+    --_t: 1.05;
   }
   
   .gallery > img:nth-child(1) {

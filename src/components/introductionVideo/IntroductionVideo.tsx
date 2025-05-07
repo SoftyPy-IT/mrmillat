@@ -21,7 +21,6 @@ const IntroductionVideo = () => {
     {/* video  */}
 <div
   data-aos="fade-up"
-  data-aos-delay="400"
   data-aos-duration="1000"
 
 className='bg-blue-700  w-[300px] h-[250px]  md:w-[600px] md:h-[400px] '>
@@ -32,7 +31,7 @@ className='bg-blue-700  w-[300px] h-[250px]  md:w-[600px] md:h-[400px] '>
       
      >
 
-       <source src={whoWeAre?.videoUrl} type="video/mp4" />
+       <source src={'/Images/mrmillat-3.mp4'} type="video/mp4" />
    
      </video>
  </div>
@@ -40,7 +39,6 @@ className='bg-blue-700  w-[300px] h-[250px]  md:w-[600px] md:h-[400px] '>
     {/* content  */}
 <div
 data-aos="fade-down"
-data-aos-delay="400"
 data-aos-duration="1000"
 className='space-y-5 p-5 text-center lg:text-left'>
 <h4 className='text-orange-500 font-semibold'>Who we are</h4>

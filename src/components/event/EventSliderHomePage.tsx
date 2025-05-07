@@ -34,7 +34,7 @@ const EventSliderHomePage = () => {
     <div className='mt-20 container'>
       <>
     <section>
-        <h3 className='text-4xl font-bold text-center text-blue-950 my-10'>Recent Activities</h3>
+        <h3 className='text-4xl font-bold text-center text-blue-950 '>Recent Activities</h3>
    <div className='flex justify-center items-center w-full'>
    <Swiper
         key={events.length}

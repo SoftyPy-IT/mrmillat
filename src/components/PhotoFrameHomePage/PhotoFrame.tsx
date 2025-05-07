@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-"use client"
 import React from "react";
 import "./style.css";
 
@@ -24,7 +23,6 @@ const PhotoFrame = () => {
   </h1>
   <p  
    data-aos="fade-up"
-   data-aos-delay="800"
    data-aos-duration="1000"
   >
   Md Rashiduzzaman Millat, former Member of Parliament for Jamalpur-1, has played a pivotal role in the development and progress of his constituency. A dedicated member of the Bangladesh Nationalist Party (BNP), Millat’s leadership has been marked by his commitment to improving the infrastructure, education, and social welfare of the people in his region. From building vital bridges to enhancing local communication systems, his contributions have significantly impacted the lives of thousands. Millat continues to advocate for sustainable development and the upliftment of his community.
@@ -33,13 +31,11 @@ const PhotoFrame = () => {
 
 <div>
 <div 
-data-aos="zoom-in-up"
+data-aos="fade-down"
 data-aos-duration="1500"
 className="gallery ">
 
 <img
-
-
   src="/Images/mr-21.jpg"
   alt="a house on a mountain"
 

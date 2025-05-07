@@ -1,26 +1,14 @@
-"use client"
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { IoCalendar, IoLocation } from 'react-icons/io5';
 import QuickLinksSection from '../QuickLinksSection';
-import useFeatures from '@/hooks/useFeatures';
 import { TElectionCampaign } from '@/types/types';
 import ElectionCountdown from './ElectionCountDownt';
 import PhotoFrame from '../PhotoFrameHomePage/PhotoFrame';
 
 
-type TElectionCampaignData ={
-  electionCampaign: TElectionCampaign;
-  isLoading:any
-}
+const ElectionCampaign = ({electionCampaign}:{electionCampaign:TElectionCampaign}) => {
 
-const ElectionCampaign = () => {
-  const {electionCampaign,isLoading}:TElectionCampaignData = useFeatures();
   return (
-<div>
-{
-    !isLoading &&
     <div>
     <div
      style={{backgroundImage:`url(${electionCampaign?.bgImageUrl})`}}
@@ -35,34 +23,34 @@ const ElectionCampaign = () => {
          <div className="text-white font-bold w-[250px] px-3 py-2 text-xl flex items-center gap-2 bg-black bg-opacity-40">
            <IoCalendar className='text-2xl' />
            <p> {
-       new Date( electionCampaign?.electionDate).toDateString()
+       new Date( electionCampaign.electionDate).toDateString()
       }</p>
          </div>
          <div className="text-white font-bold w-[250px] px-3 py-2 text-xl flex items-center gap-2 bg-black bg-opacity-40">
            <IoLocation className='text-2xl' />
-           <p>{electionCampaign?.constituency}</p>
+           <p>{electionCampaign.constituency}</p>
          </div>
        </div>
 
        {/* Title */}
        <h3 className="text-5xl font-bold text-white">
-       {electionCampaign?.title}
+       {electionCampaign.title}
        </h3>
 
        {/* Description */}
        <p className="text-gray-100">
-       {electionCampaign?.description}
+       {electionCampaign.description}
        </p>
 
        {/* Countdown */}
   
    {
-    electionCampaign?.electionDate&& <ElectionCountdown electionDate={electionCampaign.electionDate }/>
+    electionCampaign.electionDate&& <ElectionCountdown electionDate={electionCampaign.electionDate }/>
    }
       
      </div>
    </div>
-   <div className=' bg-[url(/Images/bg-1.gif)] bg-cover bg-center'>
+   <div className=''>
     <div className='relative flex justify-center -top-20'>
     <QuickLinksSection/>
     </div>
@@ -73,9 +61,6 @@ const ElectionCampaign = () => {
     </div>            
    </div>
   </div>
-
-  }
-</div>
   );
 };
 

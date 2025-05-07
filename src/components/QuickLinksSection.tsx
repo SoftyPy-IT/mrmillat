@@ -13,8 +13,7 @@ const QuickLinksSection = () => {
             {/* Events */}
       <div 
        data-aos="fade-up"
-       data-aos-delay="400"
-       data-aos-duration="1500"
+       data-aos-duration="500"
       
       className='w-[280px]  p-5 hover:bg-gray-300 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white '>
             <span><MdEvent className='text-5xl text-orange-500'/></span>
@@ -26,8 +25,7 @@ const QuickLinksSection = () => {
             {/* gallery */}
       <div
      data-aos="fade-up"
-     data-aos-delay="800"
-     data-aos-duration="1500"
+     data-aos-duration="500"
       className='w-[280px] hover:bg-gray-300 p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
             <span><GrGallery className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Gallery</h3>
@@ -38,8 +36,7 @@ const QuickLinksSection = () => {
             {/* Media */}
       <div
       data-aos="fade-up"
-      data-aos-delay="1200"
-      data-aos-duration="1500"
+      data-aos-duration="500"
       className='w-[280px] hover:bg-gray-300 p-5 space-y-6 text-center shadow-2xl flex flex-col justify-center items-center border bg-white'>
             <span><MdPermMedia className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Media</h3>

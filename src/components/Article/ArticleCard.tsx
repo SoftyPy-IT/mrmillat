@@ -4,25 +4,32 @@ import Link from 'next/link';
 import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 
+
 const ArticleCard = ({article}:{article:TArticle}) => {
   return (
-    <div className="max-w-xs rounded-md shadow-md bg-white  text-gray-900 hover:bg-gray-300 h-[520px] flex flex-col justify-between items-center ">
-	<div className='flex-1'>
-	<Image src={article?.imageUrl as string} alt="article image" width={400} height={400} className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500" />
-	<div className="flex flex-col justify-between p-6 space-y-8">
-		<div className="space-y-2">
-    <div className='flex gap-1 items-center'>
-         <span className='font-semibold'><FaCalendar /></span><p>Publish Date: {new Date(article?.publishedDate).toDateString()}</p>
-         </div>
-			<h2 className="text-lg font-semibold tracking-wide h-[80px]">{article.title.length>60? article?.title.slice(0,60)+'...' :article?.title.slice(0,60)    }</h2>
-			<p className="text-gray-500">{article?.shortDescription?.slice(0,60)}...</p>
-		</div>
-	</div>
-	<div className=''>
-	<Link href={`/articles/${article?._id}`}><button className="hover-border-button w-full
-	">Read more</button></Link>
-	</div>
-	</div>
+
+<div
+key={article._id}
+className="bg-white backdrop-blur-md rounded-lg overflow-hidden shadow-md hover:shadow-xl transition md:w-96"
+>
+<div className="relative h-48 w-full overflow-hidden">
+	<Image
+		src={article.imageUrl}
+		alt={article.title}
+		fill
+		className="object-cover hover:scale-105 transition"
+	/>
+</div>
+<div className="p-5">
+<div className='flex items-center gap-2'>
+	<span><FaCalendar/></span>
+<p className="text-sm text-gray-600 mb-1">{new Date(article.publishedDate).toLocaleDateString()}</p>
+</div>
+	<h3 className="text-md font-semibold mb-2 text-blue-950">{article.title.substring(0, 70)}...</h3>
+	<Link href={`/articles/${article._id}`} className="text-orange-600 hover:underline">
+		Read More →
+	</Link>
+</div>
 </div>
   );
 };

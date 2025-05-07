@@ -5,13 +5,12 @@ import React from 'react';
 import { FaCalendar } from 'react-icons/fa';
 import { FaLocationDot } from 'react-icons/fa6';
 import "./event.css";
-// import ShareButtons from './ShareButtons';
+
 
 const EventCardItem = ({event}:{event:TEvent}) => {
-// const shareUrl =`${process.env.NEXT_PUBLIC_BASE_SITE_URL}/events/${event?._id}`
   return (
   
-    <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-50 bg-white">
+    <div key={event?._id} className="max-w-[520px] h-auto  rounded-xl shadow-lg hover:bg-gray-50 bg-white border">
         <Link href={`/events/${event?._id}`}>
       <div className="p-5">
        <div className="overflow-hidden"> <Image
@@ -19,9 +18,10 @@ const EventCardItem = ({event}:{event:TEvent}) => {
           alt="Event Image"
           width={300}
           height={150}
-          className="w-full duration-500  hover:scale-110    h-[260px] rounded-lg object-cover shadow-md"
+          className="w-full duration-500  hover:scale-110    h-[200px] rounded-lg object-cover shadow-md"
         /></div>
-        <div className="mt-4 h-[200px]">
+
+        <div className="mt-4 h-[150px]">
           <h2 className="text-lg font-bold text-blue-950">
             {event?.title.length>100?`${event?.title?.slice(0,100)}...`: event?.title}</h2>
           <p className="text-sm mt-2">
@@ -40,10 +40,7 @@ const EventCardItem = ({event}:{event:TEvent}) => {
          </div>
 
        <div>
-       {/* <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`}/> */}
-       <button className='hover-border-button-event'>
-        Details
-       </button>
+     
        </div>
         </div>
       </div>

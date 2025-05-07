@@ -40,7 +40,7 @@ const ArticleSectionHomePage = () => {
     {/* Content */}
     <h3 className='text-4xl font-bold text-white text-center relative z-10'>Articles</h3>
  <div className='flex justify-center items-center'>
-  <div className='flex flex-col lg:flex-row gap-14 justify-around items-baseline relative z-10 py-20'>
+  <div className='flex flex-col lg:flex-row gap-10 justify-around items-baseline relative z-10 py-10'>
   {
     articles?.map((article:TArticle)=><ArticleCard article={article} key={article._id}  />)
   }
