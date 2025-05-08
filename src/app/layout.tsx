@@ -16,6 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  applicationName:"MR. MILLAT",
   title: "M. Rashiduzzaman Millat",
   description:
     "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: finalData.shortDescription,
     openGraph: {
       title:finalData.title,
-      description:finalData.description,
+      description:finalData.shortDescription,
       images: [
         {
           url: finalData.imageUrl,
