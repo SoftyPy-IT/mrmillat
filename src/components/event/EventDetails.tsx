@@ -90,7 +90,7 @@ const EventDetails = () => {
             
           {/* Share Buttons */}
           <div className="mt-24  max-w-[200px]">
-            <ShareButtons shareUrl={shareUrl} title={event.title} quote={event.shortDescription} hashtag={`#${event.title}`} />   
+            <ShareButtons shareUrl={shareUrl} title={event.title}  quote={event.shortDescription} hashtag={`#${event.title}`} />   
           </div>
            
         </div>

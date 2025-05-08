@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const baseApi = process.env.NEXT_PUBLIC_BASE_API_URL;
   const id = (await params).id;
   console.log(id);
-  const res = await fetch(`${baseApi}/articles/${id}`);
+  const res = await fetch(`${baseApi}/articles/${id}`,{cache:"no-cache"});
   const data = await res.json();
   const finalData:TArticle = data.data;
   return {

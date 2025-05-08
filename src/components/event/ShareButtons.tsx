@@ -55,7 +55,7 @@ const ShareButtons = ({shareUrl,quote,hashtag,
     <ClickAwayListener onClickAway={handleTooltipClose}>
           
      <div className='flex gap-2'>
-     <FacebookShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
+     <FacebookShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl} >
       <FacebookIcon size={40} round={true} />
       </FacebookShareButton>
       <TwitterShareButton onClick={handleTooltipClose} className='hover:scale-125' url={shareUrl}>
