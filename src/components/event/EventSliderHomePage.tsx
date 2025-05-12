@@ -31,7 +31,7 @@ const EventSliderHomePage = () => {
   console.log(events);  
 
   return (
-    <div className='mt-20 container'>
+    <div className=' container'>
       <>
     <section>
         <h3 className='text-4xl font-bold text-center text-blue-950 '>Recent Activities</h3>
