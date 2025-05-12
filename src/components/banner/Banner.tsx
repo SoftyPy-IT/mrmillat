@@ -29,7 +29,7 @@ console.log(bannerData)
     data-aos="fade-left"
     data-aos-delay="200"
     data-aos-duration="1000"
-    className="md:mb-5 mb-2 text-2xl 2xl:text-8xl lg:text-6xl  ">{bannerData?.name}</h1>
+    className="md:mb-5 mb-2 text-3xl 2xl:text-8xl lg:text-6xl  font-semibold">{bannerData?.name}</h1>
      <h3 
        data-aos="fade-left"
        data-aos-delay="400"
