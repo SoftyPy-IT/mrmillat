@@ -1,6 +1,6 @@
 // 'use client'
 import Biography from '@/components/Biography';
-import Company from '@/components/company/Company';
+import Company from '@/components/Company/Company';
 import JourneyToPolitics from '@/components/JourneyToPolitics/JourneyToPolitics';
 import Mission from '@/components/Mission';
 import Vision from '@/components/Vision';

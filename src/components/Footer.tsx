@@ -97,7 +97,7 @@ const Footer = () => {
 		</div>
 	</div>
 	}
-	<div className="py-6 text-sm text-center dark:text-gray-600">© {new Date().getFullYear()} M. Rashiduzzaman Millat. All rights reserved.</div>
+	<div className="py-6 text-sm text-center dark:text-gray-600">© {new Date().getFullYear()} Mojumder Arifur Rahman. All rights reserved.</div>
 </footer>
   );
 };

@@ -16,24 +16,24 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  applicationName:"MR. MILLAT",
-  title: "M. Rashiduzzaman Millat",
+  applicationName: "Arifur Rahman",
+  title: "Mojumder Arifur Rahman",
   description:
     "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
   openGraph: {
     type: "website",
     locale: "en_IE",
     url: "https://mrmillat.com",
-    siteName: "M. Rashiduzzaman Millat",
-    title: "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
+    siteName: "Mojumder Arifur Rahman",
+    title: "Politician of Bangladesh Nationalist Party.",
     description:
-      "এম রশিদুজ্জামান মিল্লাত জামালপুর-১ (দেওয়ানগঞ্জ-বকশীগঞ্জ) আসনের একজন সুপরিচিত রাজনৈতিক নেতা। তার নেতৃত্বে দেওয়ানগঞ্জ এবং বকশীগঞ্জ এলাকায় ব্যাপক অবকাঠামোগত উন্নয়ন সাধিত হয়েছে। এর মধ্যে সবচেয়ে উল্লেখযোগ্য হলো বাহাদুরাবাদে পুরাতন ব্রহ্মপুত্র নদীর উপর সেতু নির্মাণ।",
+      "মজুমদার আরিফুর রহমান ফেনী ফুলগাজীর একজন সুপরিচিত রাজনৈতিক নেতা এবং বিশিষ্ট শিল্পপতী। ",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "M. Rashiduzzaman Millat",
+        alt: "Mojumder Arifur Rahman",
       },
     ],
     countryName: "Bangladesh",
@@ -50,12 +50,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-   {children}
-        </body>
+        {children}
+      </body>
     </html>
   );
 }
