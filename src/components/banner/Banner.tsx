@@ -28,7 +28,7 @@ const Banner = async ({ bannerData }: { bannerData: TBanner }) => {
               data-aos="fade-left"
               data-aos-delay="200"
               data-aos-duration="1000"
-              className="md:mb-5 mb-2 text-3xl 2xl:text-8xl lg:text-6xl  font-semibold">Arifur Rahman</h1>
+              className="md:mb-5 mb-2 text-3xl 2xl:text-8xl lg:text-6xl  font-semibold">M. Rashiduzzaman Millat</h1>
             <h3
               data-aos="fade-left"
               data-aos-delay="400"

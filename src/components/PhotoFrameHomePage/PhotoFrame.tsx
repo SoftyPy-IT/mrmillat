@@ -25,7 +25,7 @@ const PhotoFrame = () => {
             data-aos="fade-up"
             data-aos-duration="1000"
           >
-            Mojumder Arifur Rahman, has played a pivotal role in the development and progress of his constituency. A dedicated member of the Bangladesh Nationalist Party (BNP), Arifur Rahman&apos;s leadership has been marked by his commitment to improving the infrastructure, education, and social welfare of the people in his region. From building vital bridges to enhancing local communication systems, his contributions have significantly impacted the lives of thousands. Arifur Rahman continues to advocate for sustainable development and the upliftment of his community.
+            M. Rashiduzzaman Millat, has played a pivotal role in the development and progress of his constituency. A dedicated member of the Bangladesh Nationalist Party (BNP), M. Rashiduzzaman Millat&apos;s leadership has been marked by his commitment to improving the infrastructure, education, and social welfare of the people in his region. From building vital bridges to enhancing local communication systems, his contributions have significantly impacted the lives of thousands. M. Rashiduzzaman Millat continues to advocate for sustainable development and the upliftment of his community.
           </p>          
         </div>
 

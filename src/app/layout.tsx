@@ -16,15 +16,15 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  applicationName: "Arifur Rahman",
-  title: "Mojumder Arifur Rahman",
+  applicationName: "M. Rashiduzzaman Millat",
+  title: "M. Rashiduzzaman Millat",
   description:
     "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
   openGraph: {
     type: "website",
     locale: "en_IE",
     url: "https://mrmillat.com",
-    siteName: "Mojumder Arifur Rahman",
+    siteName: "M. Rashiduzzaman Millat",
     title: "Politician of Bangladesh Nationalist Party.",
     description:
       "মজুমদার আরিফুর রহমান ফেনী ফুলগাজীর একজন সুপরিচিত রাজনৈতিক নেতা এবং বিশিষ্ট শিল্পপতী। ",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "Mojumder Arifur Rahman",
+        alt: "M. Rashiduzzaman Millat",
       },
     ],
     countryName: "Bangladesh",
