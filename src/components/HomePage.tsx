@@ -1,6 +1,5 @@
 "use client"
 import ArticleSectionHomePage from '@/components/Article/ArticleSectionHomePage';
-import Banner from '@/components/Banner/Banner';
 import ElectionCampaign from '@/components/electionCampaign/ElectionCampaign';
 import EventSliderHomePage from '@/components/event/EventSliderHomePage';
 import IntroductionVideo from '@/components/introductionVideo/IntroductionVideo';
@@ -8,6 +7,7 @@ import OurConcern from '@/components/OurConcern';
 import VoiceOnMedia from '@/components/VoiceOnMedia';
 import { TFeatures } from '@/types/types';
 import React, { useEffect, useState } from 'react';
+import Banner from './banner/Banner';
 
 
 const HomePage = () => {
