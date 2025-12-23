@@ -134,7 +134,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ close, selectedIndex, images })
       {/* Modal */}
       <div className="relative z-50 w-[90%] md:w-[600px] lg:w-[800px] max-h-[90%] bg-black/40  backdrop-blur-sm rounded-lg shadow-lg overflow-hidden">
         <button
-          className="absolute top-3 right-3 text-3xl text-white hover:text-blue-600 z-50"
+          className="absolute top-3 right-3 text-3xl text-white hover:text-blue-600 z-50 rounded"
           onClick={() => close(false)}
           role="button"
           tabIndex={0}

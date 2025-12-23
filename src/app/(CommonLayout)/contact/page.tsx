@@ -81,7 +81,7 @@ const Contact = () => {
 				<span className="mb-2">Message</span>
 				<textarea rows={3} className="block w-full rounded-md focus:ring focus:ring-opacity-75 text-gray-600 focus:dark:ring-violet-600  py-1 pl-3 bg-white"></textarea> 
 			</label>
-			<button type="button" className=" hover-border-button ">Submit</button>
+			<button type="button" className=" hover-border-button rounded">Submit</button>
 		</form>
 	</div>
 </section>

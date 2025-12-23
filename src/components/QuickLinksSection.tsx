@@ -19,7 +19,7 @@ const QuickLinksSection = () => {
             <span><MdEvent className='text-5xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Events</h3>
            
-           <Link href={'/events'}> <button className='hover-border-button'>View Schedule</button></Link>
+           <Link href={'/events'}> <button className='hover-border-button rounded'>View Schedule</button></Link>
       </div>
 
             {/* gallery */}
@@ -30,7 +30,7 @@ const QuickLinksSection = () => {
             <span><GrGallery className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Gallery</h3>
           
-           <Link href={'/gallery'}> <button className='hover-border-button'>View Gallery</button></Link>
+           <Link href={'/gallery'}> <button className='hover-border-button rounded'>View Gallery</button></Link>
       </div>
 
             {/* Media */}
@@ -41,7 +41,7 @@ const QuickLinksSection = () => {
             <span><MdPermMedia className='text-4xl text-orange-500'/></span>
             <h3 className='text-3xl font-bold'>Media</h3>
           
-           <Link href={'/media'}><button className='hover-border-button'>View Media</button></Link>
+           <Link href={'/media'}><button className='hover-border-button rounded'>View Media</button></Link>
       </div>
      
     </div>

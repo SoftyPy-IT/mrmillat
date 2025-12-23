@@ -49,7 +49,7 @@ className='space-y-5 p-5 text-center lg:text-left'>
   whoWeAre?.description.slice(0,500)
 }
 </p>
-<Link href={'/about'}><button className='hover-border-button mt-6'>Discover More</button></Link>
+<Link href={'/about'}><button className='hover-border-button mt-6 rounded'>Discover More</button></Link>
     </div>
 </div>
   }
