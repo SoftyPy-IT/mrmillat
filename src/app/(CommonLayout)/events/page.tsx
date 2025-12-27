@@ -16,7 +16,7 @@ const Events = () => {
       <section
         data-aos="fade-up"
         data-aos-duration="2500"
-        className="flex  item-center justify-center"
+        className="flex justify-center items-center mt-20 mb-10"
       >
         <EventHighLights />
       </section>

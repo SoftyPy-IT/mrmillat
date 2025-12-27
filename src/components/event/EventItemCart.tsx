@@ -10,7 +10,7 @@ const EventCardItem = ({ event }: { event: TEvent }) => {
   return (
     <div
       key={event?._id}
-      className="max-w-[520px] h-auto rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
+      className="md:w-96 h-auto rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
     >
       <Link href={`/events/${event?._id}`}>
         <div className="">
