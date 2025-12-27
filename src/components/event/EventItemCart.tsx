@@ -10,7 +10,7 @@ const EventCardItem = ({ event }: { event: TEvent }) => {
   return (
     <div
       key={event?._id}
-      className="md:w-96 h-auto rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
+      className="md:w-96 h-full rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
     >
       <Link href={`/events/${event?._id}`}>
         <div className="">
@@ -26,15 +26,15 @@ const EventCardItem = ({ event }: { event: TEvent }) => {
 
           <div className="mb-5 p-3 md:p-5  h-full md:h-[150px]">
             <h2 className="text-lg font-bold text-blue-950">
-              {event?.title.length > 100
-                ? `${event?.title?.slice(0, 100)}...`
+              {event?.title.length > 80
+                ? `${event?.title?.slice(0, 80)}...`
                 : event?.title}
             </h2>
             <p className="text-sm ">
-              {event?.shortDescription?.slice(0, 100)}
+              {event?.shortDescription?.slice(0, 80)}
               <button className="text-blue-500 rounded">...আরও-দেখুন</button>
             </p>
-            <div className=" text-sm opacity-80 flex flex-row justify-between item-center text-black my-3">
+             <div className=" text-sm opacity-80 flex flex-row justify-between item-center text-black my-3">
               <div className="flex  gap-1 items-center">
                 <span>
                   <FaCalendar />
@@ -53,7 +53,7 @@ const EventCardItem = ({ event }: { event: TEvent }) => {
                   {event?.location}
                 </p>
               </div>
-            </div>
+            </div> 
 
             <div>
               

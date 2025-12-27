@@ -1,58 +1,63 @@
-import React from 'react';
+import React from "react";
+import Image from "next/image";
 
-const HeroSection = ({imageUrlMd,imageUrlSm,title,subTitle,category}:{imageUrlMd:string,
-  imageUrlSm:string,title:string,subTitle:string,category:string}) => {
- 
+const HeroSection = ({
+  imageUrlMd,
+  imageUrlSm,
+  title,
+  subTitle,
+  category,
+}: {
+  imageUrlMd: string;
+  imageUrlSm: string;
+  title: string;
+  subTitle: string;
+  category: string;
+}) => {
+  const height = category === "About" || title === "About Me" ? "500px" : "400px";
+
   return (
-   <div>
-                       {/* md screen  */}
-     <div
-    style={{backgroundImage:`url(${imageUrlMd})`}}
-    className={`${category === 'About'?'h-[500px]':'h-[400px]'} hidden  bg-cover bg-center bg-fixed md:flex justify-center items-center relative py-8 px-24 lg:pb-14  `}>
-     {/* Overlay */}
-     <div className="absolute inset-0 bg-black bg-opacity-30"></div>
+    <div className="relative w-full" style={{ height }}>
+      {/* Background Image for Desktop */}
+      <div className="hidden md:block absolute inset-0 overflow-hidden">
+        <Image
+          src={imageUrlMd}
+          alt={title}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={85}
+        />
+      </div>
+      
+      {/* Background Image for Mobile */}
+      <div className="md:hidden absolute inset-0 overflow-hidden">
+        <Image
+          src={imageUrlSm}
+          alt={title}
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={85}
+        />
+      </div>
 
-     {/* Content */}
-     <div className="relative z-10 w-full lg:w-[500px] text-center space-y-3 border-4 border-white py-8">
-     
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
 
-       {/* Title */}
-       <h3 className="text-5xl font-bold text-white px-3">
-        {title}
-       </h3>
+      {/* Content */}
+      <div className="absolute inset-0 flex justify-center items-center z-10">
+        <div className="relative z-20 w-full max-w-[800px] text-center space-y-3 border-4 border-white py-8 mx-4 px-4 lg:mx-0 lg:w-[500px] backdrop-blur-sm bg-white/10 rounded-lg">
+          {/* Title */}
+          <h3 className="text-3xl lg:text-5xl font-bold text-white drop-shadow-lg">{title}</h3>
 
-       {/* Description */}
-       <p className="text-gray-100 text-xl px-3">
-      {subTitle}
-       </p>
-
-     </div>
-   </div>
-
-                    {/* sm screen  */}
-    <div
-    style={{backgroundImage:`url(${imageUrlSm})`}}
-    className={`${title === 'About Me'?'h-[500px]':'h-[400px]'} md:hidden   bg-cover bg-center bg-fixed flex justify-center items-center relative py-8 px-10 lg:pb-14  `}>
-     {/* Overlay */}
-     <div className="absolute inset-0 bg-black bg-opacity-30"></div>
-
-     {/* Content */}
-     <div className="relative z-10 w-full lg:w-1/3 text-center space-y-3 border-4 border-white py-8 ">
-     
-
-       {/* Title */}
-       <h3 className="text-5xl font-bold text-white px-2">
-        {title}
-       </h3>
-
-       {/* Description */}
-       <p className="text-gray-100 text-xl px-2">
-      {subTitle}
-       </p>
-
-     </div>
-   </div>
-   </div>
+          {/* Description */}
+          <p className="text-gray-100 text-base lg:text-xl mt-2 drop-shadow-md">{subTitle}</p>
+        </div>
+      </div>
+    </div>
   );
 };
 
