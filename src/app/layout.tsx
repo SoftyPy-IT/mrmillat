@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import React from "react";
 
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -27,10 +26,10 @@ export const metadata: Metadata = {
     siteName: "M. Rashiduzzaman Millat",
     title: "Politician of Bangladesh Nationalist Party.",
     description:
-      "মজুমদার আরিফুর রহমান ফেনী ফুলগাজীর একজন সুপরিচিত রাজনৈতিক নেতা এবং বিশিষ্ট শিল্পপতী। ",
+      "এম রশিদুজ্জামান মিল্লাত বাংলাদেশ জাতীয়তাবাদী দলের রাজনীতিবিদ। তিনি জামালপুর-১ (দেওয়ানগঞ্জ-বকশীগঞ্জ) আসনে ২০০১ সালে প্রথমবার এমপি নির্বাচিত হন। বর্তমান বাংলাদেশ জাতীয়তাবাদী দল বিএনপির কোষাধ্যক্ষ। এবং আমরা বিএনপি পরিবার সেলের উপদেষ্টা হিসেবে দায়িত্ব পালন করছেন। ",
     images: [
       {
-        url: "/logo.png",
+        url: "../../public/Images/mr-8.jpg",
         width: 1200,
         height: 630,
         alt: "M. Rashiduzzaman Millat",
@@ -42,7 +41,6 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -50,7 +48,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -59,6 +56,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-
