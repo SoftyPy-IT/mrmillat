@@ -99,7 +99,7 @@ const EventSliderHomePage = () => {
               ))}
             </Swiper>
           </div>
-          <div className="flex flex-col items-end mb-5">
+          <div className="flex flex-col items-center mb-5">
             <Link href="/events">
               <button className="hover-border-button rounded ">See More</button>
             </Link>

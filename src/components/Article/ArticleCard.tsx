@@ -10,12 +10,13 @@ const ArticleCard = ({ article }: { article: TArticle }) => {
       key={article._id}
       className="bg-white backdrop-blur-md rounded-lg overflow-hidden shadow-md hover:shadow-xl transition md:w-96"
     >
-      <div className="relative h-48 w-full overflow-hidden">
+      <div className="relative w-full h-64">
         <Image
           src={article.imageUrl}
           alt={article.title}
           fill
-          className="object-cover hover:scale-105 transition"
+          className="object-cover hover:scale-105 transition-transform duration-500"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className="p-5">

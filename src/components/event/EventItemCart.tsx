@@ -10,27 +10,27 @@ const EventCardItem = ({ event }: { event: TEvent }) => {
   return (
     <div
       key={event?._id}
-      className="max-w-[520px] h-full  rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
+      className="max-w-[520px] h-auto rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
     >
       <Link href={`/events/${event?._id}`}>
-        <div className="md:p-5">
+        <div className="">
           <div className="overflow-hidden">
             <Image
               src={event?.imageUrl}
               alt="Event Image"
               width={300}
-              height={150}
-              className="w-full duration-500  hover:scale-110 h-[200px] rounded-lg object-cover shadow-md"
+              height={250}
+              className="w-full duration-500  hover:scale-110 h-[250px] rounded-lg object-cover shadow-md"
             />
           </div>
 
-          <div className="p-3 md:p-0 mt-4 h-full md:h-[150px]">
+          <div className="mb-5 p-3 md:p-5  h-full md:h-[150px]">
             <h2 className="text-lg font-bold text-blue-950">
               {event?.title.length > 100
                 ? `${event?.title?.slice(0, 100)}...`
                 : event?.title}
             </h2>
-            <p className="text-sm mt-2">
+            <p className="text-sm ">
               {event?.shortDescription?.slice(0, 100)}
               <button className="text-blue-500 rounded">...আরও-দেখুন</button>
             </p>
