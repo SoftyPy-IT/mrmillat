@@ -37,7 +37,7 @@ const Articles = () => {
 
       {/* article container  */}
       <section className="flex justify-center items-center mt-20 mb-10">
-        <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center  px-10 ">
+        <div className="grid gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-center  px-10 "> 
           {articles?.map((article: TArticle) => (
             <ArticleCard article={article} key={article._id} />
           ))}
