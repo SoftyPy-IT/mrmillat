@@ -24,12 +24,12 @@ export const metadata: Metadata = {
     locale: "en_IE",
     url: "https://mrmillat.com",
     siteName: "M. Rashiduzzaman Millat",
-    title: "Politician of Bangladesh Nationalist Party.",
+    title: "M. Rashiduzzaman Millat ",
     description:
-      "এম রশিদুজ্জামান মিল্লাত বাংলাদেশ জাতীয়তাবাদী দলের রাজনীতিবিদ। তিনি জামালপুর-১ (দেওয়ানগঞ্জ-বকশীগঞ্জ) আসনে ২০০১ সালে প্রথমবার এমপি নির্বাচিত হন। বর্তমান বাংলাদেশ জাতীয়তাবাদী দল বিএনপির কোষাধ্যক্ষ। এবং আমরা বিএনপি পরিবার সেলের উপদেষ্টা হিসেবে দায়িত্ব পালন করছেন। ",
+      "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
     images: [
       {
-        url: "../../public/Images/mr-8.jpg",
+        url: "https://mrmillat.com/Images/mr-8.jpg",
         width: 1200,
         height: 630,
         alt: "M. Rashiduzzaman Millat",
