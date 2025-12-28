@@ -2,67 +2,38 @@ import { TPlan } from "@/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { FaCalendar } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import "./plan.css";
 
 const PlanItemCard = ({ plan }: { plan: TPlan }) => {
   return (
-    <div
-      key={plan?._id}
-      className="md:w-96 h-full rounded-xl shadow-lg hover:bg-gray-50 bg-white border m-2 md:m-0"
-    >
-      <Link href={`/plans/${plan?._id}`}>
-        <div className="">
-          <div className="overflow-hidden">
-            <Image
-              src={plan?.imageUrl}
-              alt="Plan Image"
-              width={300}
-              height={250}
-              className="w-full duration-500  hover:scale-110 h-[250px] rounded-lg object-cover shadow-md"
-            />
-          </div>
-
-          <div className="mb-5 p-3 md:p-5  h-full md:h-[150px]">
-            <h2 className="text-lg font-bold text-blue-950">
-              {plan?.title.length > 80
-                ? `${plan?.title?.slice(0, 80)}...`
-                : plan?.title}
-            </h2>
-            <p className="text-sm ">
-              {plan?.shortDescription?.slice(0, 80)}
-              <button className="text-blue-500 rounded">...আরও-দেখুন</button>
-            </p>
-             <div className=" text-sm opacity-80 flex flex-row justify-between item-center text-black my-3">
-              <div className="flex  gap-1 items-center">
-                <span>
-                  <FaCalendar />
-                </span>
-                <p>
-                  <strong></strong>
-                  {new Date(plan?.date).toDateString()}
-                </p>
-              </div>
-              <div className="flex gap-1 items-center">
-                <span>
-                  <FaLocationDot />
-                </span>
-                <p>
-                  <strong></strong>
-                  {plan?.location}
-                </p>
-              </div>
-            </div> 
-
-            <div>
-              
-            </div>
+    <Link href={`/plans/${plan?._id}`} className="block">
+      <div className="group relative h-[350px] md:h-[480px] rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer">
+        {/* Full Image */}
+        <Image
+          src={plan?.imageUrl}
+          alt={plan?.title}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="group-hover:scale-105 transition-transform duration-700"
+          priority={false}
+        />
+        
+        {/* Title at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 ">
+          <div className="bg-gradient-to-t from-black/80 to-transparent p-4 rounded-lg">
+            <h3 className="text-2xl md:text-3xl font-bold text-white text-center group-hover:text-blue-300 transition-colors duration-300">
+              {plan?.title}
+            </h3>
           </div>
         </div>
-      </Link>
-      
-    </div>
+        
+        {/* Click indicator */}
+        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm">
+            Click to view
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
 

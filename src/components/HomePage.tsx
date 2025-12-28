@@ -40,7 +40,7 @@ const HomePage = () => {
           <IntroductionVideo />
         </div>
       </section>
-      <div className="flex justify-center items-center">
+      <div className="">
         <PlanSliderHomePage />
       </div>
 
