@@ -125,7 +125,7 @@ const Media = () => {
     const getData = async () => {
       try {
         const response = await axiosPublic.get(
-          `videos?limit=${limit}&page=${currentPage}`
+          `voice-on-media?limit=${limit}&page=${currentPage}`
         );
         const { totalCount, data } = response?.data?.data;
         setMedias(data);
