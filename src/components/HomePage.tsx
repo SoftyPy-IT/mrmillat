@@ -8,6 +8,7 @@ import VoiceOnMedia from "@/components/VoiceOnMedia";
 import { TFeatures } from "@/types/types";
 import React, { useEffect, useState } from "react";
 import Banner from "./banner/Banner";
+import PlanSliderHomePage from "./Plan/PlanSliderHomePage";
 
 const HomePage = () => {
   const [features, setFeatures] = useState<TFeatures | null>(null);
@@ -39,6 +40,9 @@ const HomePage = () => {
           <IntroductionVideo />
         </div>
       </section>
+      <div className="flex justify-center items-center">
+        <PlanSliderHomePage />
+      </div>
 
       {/* election Campaign */}
       <div>

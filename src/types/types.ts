@@ -56,6 +56,17 @@ export type TEvent = {
   createdAt: string;
 };
 
+export type TPlan = {
+  _id: string;
+  imageUrl: string;
+  title: string;
+  location: string;
+  shortDescription: string;
+  description: string;
+  date: string;
+  createdAt: string;
+};
+
 export type TArticle = {
   _id: string;
   imageUrl: string;
