@@ -125,7 +125,7 @@ export default function ElectionInfoSection() {
             {/* Image */}
             <div className="relative h-64 md:h-[300px] rounded-xl overflow-hidden md:order-2 order-1">
               <Image
-                src="/images/manifesto.jpg"
+                src="https://admin.mrmillat.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdo2cbxkkj%2Fimage%2Fupload%2Fv1767014128%2FElection%2520Campaign-1767014110700.jpg&w=384&q=75"
                 alt="নির্বাচনী ইশতেহার"
                 fill
                 className="object-cover"
