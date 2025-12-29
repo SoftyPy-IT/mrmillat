@@ -4,6 +4,7 @@ import QuickLinksSection from "../QuickLinksSection";
 import { TElectionCampaign } from "@/types/types";
 import ElectionCountdown from "./ElectionCountDownt";
 import PhotoFrame from "../PhotoFrameHomePage/PhotoFrame";
+import ElectionInfoSection from "../ElectionInfoSection/ElectionInfoSection";
 
 const ElectionCampaign = ({
   electionCampaign,
@@ -53,6 +54,10 @@ const ElectionCampaign = ({
           <QuickLinksSection />
         </div>
 
+        {/* photo frame gallery section  */}
+        <div className="">
+          <ElectionInfoSection />
+        </div>
         {/* photo frame gallery section  */}
         <div className="flex justify-center items-center  py-20">
           <PhotoFrame />
