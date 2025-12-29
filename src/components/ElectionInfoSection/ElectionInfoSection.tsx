@@ -98,7 +98,7 @@ export default function ElectionInfoSection() {
             </div>
           </div>
 
-          {/* Election Manifesto — Image Right */}
+        
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Content */}
             <div className="md:order-1 order-2">
