@@ -9,11 +9,12 @@ export default function PostalVotePage() {
     <section className="py-16 bg-gray-50">
       <div className="max-w-4xl mx-auto px-4">
         {/* Title Image */}
-        <div className="relative h-64 md:h-[700px] rounded-xl overflow-hidden mb-10">
+        <div className="flex justify-center  mb-10">
           <Image
-            src="/Images/postal.jpeg"
+            src="/Images/postal.png"
             alt="Postal Voting System"
-            fill
+            height={900}
+            width={600}
             className=""
           />
         </div>
@@ -66,21 +67,65 @@ export default function PostalVotePage() {
             ঠিকানার নমুনা
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="relative h-64 rounded-lg overflow-hidden border">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/postal-sample-1.jpg"
+                src="/Images/1.jpg" 
                 alt="Address Sample 1"
-                fill
+                width={900}
+                height={900}
                 className="object-cover"
               />
             </div>
 
-            <div className="relative h-64 rounded-lg overflow-hidden border">
+            <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/postal-sample-2.jpg"
+                src="/Images/2.jpg"
                 alt="Address Sample 2"
-                fill
+                width={900}
+                height={900}
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <div className="relative h-full rounded-lg overflow-hidden border">
+              <Image
+                src="/Images/3.jpg" 
+                alt="Address Sample 1"
+                width={900}
+                height={900}
+                className="object-cover"
+              />
+            </div>
+
+            <div className="relative h-full rounded-lg overflow-hidden border">
+              <Image
+                src="/Images/4.jpg"
+                alt="Address Sample 2"
+                width={900}
+                height={900}
+                className="object-cover"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="relative h-full rounded-lg overflow-hidden border">
+              <Image
+                src="/Images/Oman.jpg" 
+                alt="Address Sample 1"
+                width={900}
+                height={900}
+                className="object-cover"
+              />
+            </div>
+
+            <div className="relative h-full rounded-lg overflow-hidden border">
+              <Image
+                src="/Images/Kuwait.jpg"
+                alt="Address Sample 2"
+                width={900}
+                height={900}
                 className="object-cover"
               />
             </div>
