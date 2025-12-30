@@ -1,33 +1,150 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
+import React, { useEffect, useState } from "react";
+import { TManifesto } from "@/types/types";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+
 
 export default function ElectionInfoSection() {
+  const axiosPublic = useAxiosPublic();
+  const [manifestos, setManifestos] = useState<TManifesto[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const response = await axiosPublic.get("/manifestos");
+
+        // Adjust based on your API response structure
+        if (response.data.success) {
+          if (Array.isArray(response.data.data)) {
+            setManifestos(response.data.data);
+          } else if (
+            response.data.data?.data &&
+            Array.isArray(response.data.data.data)
+          ) {
+            setManifestos(response.data.data.data);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching manifestos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getData();
+  }, [axiosPublic]);
+
+  // Get the latest manifesto (most recent date) - FIXED
+  const latestManifesto =
+    manifestos?.length > 0
+      ? manifestos.sort(
+          (a, b) => {
+            // Handle undefined dates by using a fallback
+            const dateA = a.date ? new Date(a.date).getTime() : 0;
+            const dateB = b.date ? new Date(b.date).getTime() : 0;
+            return dateB - dateA; // Sort descending (newest first)
+          }
+        )[0]
+      : null;
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+        <div className="text-center mb-10">
+          <h2 className="text-4xl font-bold inline-block pb-3 border-b-4 border-blue-500">
             Election Information
           </h2>
-          <p className="mt-3 text-gray-600">
-            ভোটার ও প্রার্থীদের জন্য প্রয়োজনীয় তথ্য
-          </p>
         </div>
 
         <div className="space-y-14">
-          {/* Postal Vote — Image Left */}
+          {/* Dynamic Manifesto Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+            {/* Content */}
+            <div className="md:order-1 order-2">
+              {loading ? (
+                <div className="space-y-4">
+                  <div className="h-7 bg-gray-200 rounded w-3/4 animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded w-full animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded w-5/6 animate-pulse"></div>
+                  <div className="h-4 bg-gray-200 rounded w-4/5 animate-pulse"></div>
+                </div>
+              ) : latestManifesto ? (
+                <>
+                  <h3 className="text-4xl font-semibold text-gray-900">
+                    {latestManifesto.title}
+                  </h3>
+
+                  <div className="mt-4">
+                    <p className="text-gray-600 leading-relaxed max-w-lg">
+                      {latestManifesto.shortDescription}
+                    </p>
+
+                    {/* PDF Links if available */}
+                    {latestManifesto.pdfLinks &&
+                      latestManifesto.pdfLinks.length > 0 && (
+                        <div className="mt-4">
+                          {/* You can add PDF links here if needed */}
+                        </div>
+                      )}
+
+                    
+                  </div>
+
+                  <Link
+                    href={"/election-manifesto"}
+                    className="inline-flex mt-6"
+                  >
+                    <span className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700">
+                      বিস্তারিত দেখুন
+                      <FaArrowRight className="text-xs" />
+                    </span>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  
+                </>
+              )}
+            </div>
+
+            {/* Image */}
+            <div className="relative h-64 md:h-[300px] rounded-xl overflow-hidden md:order-2 order-1">
+              {loading ? (
+                <div className="w-full h-full bg-gray-200 animate-pulse rounded-xl"></div>
+              ) : latestManifesto && latestManifesto.imageUrl ? (
+                <Image
+                  src={latestManifesto.imageUrl}
+                  alt={latestManifesto.title || "নির্বাচনী ইশতেহার"}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+                  <span className="text-gray-400">No Image</span>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Postal Vote — Image Left (Keep existing) */}
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
             {/* Image */}
-            <div className="relative h-64 md:h-[500px] rounded-xl overflow-hidden">
+            <div className="relative overflow-hidden">
               <Image
-                src="/Images/postal.jpeg"
+                src="/Images/postal.png"
                 alt="Postal Vote System"
-                fill
-                className="h-full w-full"
+                width={300}
+                height={300}
+                className="h-full w-full rounded"
               />
             </div>
 
@@ -95,41 +212,6 @@ export default function ElectionInfoSection() {
                   <FaArrowRight className="text-xs" />
                 </span>
               </Link>
-            </div>
-          </div>
-
-        
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-10">
-            {/* Content */}
-            <div className="md:order-1 order-2">
-              <h3 className="text-xl font-semibold text-gray-900">
-                নির্বাচনী ইশতেহার
-              </h3>
-
-              <p className="mt-4 text-gray-600 leading-relaxed max-w-lg">
-                প্রার্থীর নির্বাচনী অঙ্গীকার, উন্নয়ন পরিকল্পনা এবং ভবিষ্যৎ
-                কর্মসূচির বিস্তারিত তথ্য এখানে তুলে ধরা হয়েছে।
-              </p>
-
-              <Link
-                href="/election-manifesto"
-                className="inline-flex mt-6"
-              >
-                <span className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700">
-                  বিস্তারিত দেখুন
-                  <FaArrowRight className="text-xs" />
-                </span>
-              </Link>
-            </div>
-
-            {/* Image */}
-            <div className="relative h-64 md:h-[300px] rounded-xl overflow-hidden md:order-2 order-1">
-              <Image
-                src="https://admin.mrmillat.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdo2cbxkkj%2Fimage%2Fupload%2Fv1767014128%2FElection%2520Campaign-1767014110700.jpg&w=384&q=75"
-                alt="নির্বাচনী ইশতেহার"
-                fill
-                className="object-cover"
-              />
             </div>
           </div>
         </div>

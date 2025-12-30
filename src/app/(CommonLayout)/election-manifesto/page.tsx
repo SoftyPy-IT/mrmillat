@@ -1,93 +1,195 @@
 "use client";
-
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaFilePdf } from "react-icons/fa";
+import { FaDownload, FaHome } from "react-icons/fa";
+import { TManifesto } from "@/types/types";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
 
-export default function ElectionManifestoPage() {
-  return (
-    <section className="bg-gray-50">
-      {/* HERO IMAGE */}
-      <div className="relative w-full h-64 md:h-96">
-        <Image
-          src="/images/election-manifesto.jpg"
-          alt="Election Manifesto"
-          fill
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center text-white px-4">
-            <h1 className="text-2xl md:text-4xl font-bold">
-              নির্বাচনী ইশতেহার
-            </h1>
-            <p className="mt-2 text-sm md:text-lg">
-              প্রার্থীর লক্ষ্য, প্রতিশ্রুতি ও ভবিষ্যৎ পরিকল্পনার বিস্তারিত
-              বিবরণ
-            </p>
+export default function SingleManifestoPage() {
+  const axiosPublic = useAxiosPublic();
+  const [manifestos, setManifestos] = useState<TManifesto[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedManifesto, setSelectedManifesto] = useState<TManifesto | null>(
+    null
+  );
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const response = await axiosPublic.get("/manifestos");
+
+        if (response.data.success) {
+          let manifestosData: TManifesto[] = [];
+
+          // Handle different response structures
+          if (Array.isArray(response.data.data)) {
+            manifestosData = response.data.data;
+          } else if (
+            response.data.data?.data &&
+            Array.isArray(response.data.data.data)
+          ) {
+            manifestosData = response.data.data.data;
+          }
+
+          setManifestos(manifestosData);
+
+          // Set the latest manifesto as selected (most recent date)
+          if (manifestosData.length > 0) {
+            const latest = manifestosData.sort(
+              (a, b) =>
+                new Date(b.date || "").getTime() -
+                new Date(a.date || "").getTime()
+            )[0];
+            setSelectedManifesto(latest);
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching manifestos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getData();
+  }, [axiosPublic]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="animate-pulse">
+            <div className="h-10 bg-gray-200 rounded w-1/4 mb-8"></div>
+            <div className="h-96 bg-gray-200 rounded-lg mb-6"></div>
+            <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-full mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded w-5/6 mb-2"></div>
+            <div className="h-4 bg-gray-200 rounded w-4/6"></div>
           </div>
         </div>
       </div>
+    );
+  }
 
-      {/* CONTENT */}
-      <div className="max-w-4xl mx-auto px-4 py-16 space-y-12">
-        {/* Manifesto Overview */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-10">
-          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-            প্রার্থীর নির্বাচনী পরিকল্পনা
+  if (!selectedManifesto && manifestos.length === 0) {
+    return (
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">
+            No Manifestos Available
           </h2>
-          <p className="text-gray-700 leading-relaxed mb-4">
-            এখানে প্রার্থীর নির্বাচনী অঙ্গীকার, সামাজিক ও অর্থনৈতিক উন্নয়ন
-            পরিকল্পনা, শিক্ষা ও স্বাস্থ্য খাতের উদ্যোগ এবং ভবিষ্যৎ কর্মসূচির
-            বিস্তারিত তুলে ধরা হয়েছে। প্রার্থী নির্বাচনী ইশতেহারের মাধ্যমে
-            ভোটারদের সঙ্গে তার লক্ষ্য, নীতি ও প্রতিশ্রুতির তথ্য শেয়ার করছেন।
+          <p className="text-gray-600 mb-6">
+            There are no manifestos to display at the moment.
           </p>
-
-          <p className="text-gray-700 leading-relaxed">
-            বিস্তারিত তথ্যের জন্য নিচের ডাউনলোড লিঙ্কগুলো দেখুন অথবা প্রার্থীর
-            ইশতেহার পিডিএফটি পড়ুন।
-          </p>
-        </div>
-
-        {/* PDF / Download Links */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
-            PDF ডাউনলোড
-          </h3>
-
-          <div className="space-y-3">
-            <Link
-              href="/pdfs/election-manifesto-candidate.pdf"
-              target="_blank"
-              className="flex items-center gap-3 text-sm md:text-base font-medium text-blue-600 hover:text-blue-700"
-            >
-              <FaFilePdf /> নির্বাচনী ইশতেহার (PDF)
-            </Link>
-
-            <Link
-              href="/pdfs/election-manifesto-summary.pdf"
-              target="_blank"
-              className="flex items-center gap-3 text-sm md:text-base font-medium text-blue-600 hover:text-blue-700"
-            >
-              <FaFilePdf /> নির্বাচনী ইশতেহার সংক্ষিপ্ত বিবরণ (PDF)
-            </Link>
-          </div>
-        </div>
-
-        {/* Key Points / Highlights */}
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 md:p-8">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-4">
-            মূল বিষয়সমূহ
-          </h3>
-
-          <ul className="list-disc list-inside space-y-2 text-gray-700">
-            <li>শিক্ষা ও দক্ষতা উন্নয়ন পরিকল্পনা</li>
-            <li>স্বাস্থ্য খাতের উন্নয়ন এবং হাসপাতাল সুবিধা সম্প্রসারণ</li>
-            <li>অর্থনৈতিক প্রবৃদ্ধি ও নতুন কর্মসংস্থান সৃষ্টি</li>
-            <li>সামাজিক কল্যাণমূলক প্রকল্প ও নাগরিক সেবা</li>
-            <li>পরিবেশ সুরক্ষা ও টেকসই উন্নয়ন পরিকল্পনা</li>
-          </ul>
+          <Link
+            href="/"
+            className="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+          >
+            <FaHome className="mr-2" />
+            Back to Home
+          </Link>
         </div>
       </div>
-    </section>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50 py-8">
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Main content grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          {/* Manifesto content */}
+          <div
+            className={`${
+              manifestos.length > 1 ? "lg:col-span-3" : "lg:col-span-4"
+            }`}
+          >
+            {selectedManifesto && (
+              <>
+                {/* Manifesto Header */}
+                <div className="bg-white rounded-xl shadow-md border overflow-hidden mb-8">
+                  <div className="relative h-64 md:h-[450px]">
+                    <Image
+                      src={selectedManifesto.imageUrl}
+                      alt={selectedManifesto.title}
+                      fill
+                      className=""
+                      sizes="100vw"
+                      priority
+                    />
+                  </div>
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                      <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+                        {selectedManifesto.title}
+                      </h1>
+                    </div>
+                    <p className="text-gray-600 text-lg">
+                      {selectedManifesto.shortDescription}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Manifesto Content */}
+                <div className="bg-white rounded-xl shadow-md border p-6 md:p-8 mb-8">
+                  <div
+                    className="prose prose-lg max-w-none"
+                    dangerouslySetInnerHTML={{
+                      __html: selectedManifesto.description,
+                    }}
+                  />
+                </div>
+
+                {/* PDF Downloads Section */}
+                {selectedManifesto.pdfLinks &&
+                  selectedManifesto.pdfLinks.length > 0 && (
+                    <div className="bg-white rounded-xl shadow-md border p-6 md:p-8 mb-8">
+                      <div className="flex items-center justify-between mb-4">
+                        <h3 className="text-xl font-semibold text-gray-900">
+                          Download Documents
+                        </h3>
+                        {/* <span className="text-sm text-gray-500">
+                        {selectedManifesto.pdfLinks.length} document(s)
+                      </span> */}
+                      </div>
+                      <div className="space-y-3">
+                        {selectedManifesto.pdfLinks.map((pdf, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 bg-red-100 rounded">
+                                <FaDownload className="text-red-600" />
+                              </div>
+                              <div>
+                                <div className="font-medium text-gray-900">
+                                  {pdf.name}
+                                </div>
+                                <div className="text-sm text-gray-500 truncate max-w-md">
+                                  {pdf.url}
+                                </div>
+                              </div>
+                            </div>
+                            <a
+                              href={pdf.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
+                            >
+                              Download
+                            </a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

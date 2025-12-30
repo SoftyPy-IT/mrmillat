@@ -183,3 +183,24 @@ export type TFeatures = {
   contact: TContact;
   createdAt: string;
 };
+
+
+// Add this to your existing types file (TManifesto should already be there based on your code)
+export type TManifesto = {
+  _id: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  shortDescription: string;  
+  imageUrl: string;
+  pdfLinks?: {
+    name: string;
+    url: string;
+    _id?: string;
+  }[];
+  keyPoints?: string[];
+  date?: string | Date;
+  createdAt?: string;
+  updatedAt?: string;
+  __v?: number;
+};
