@@ -204,3 +204,15 @@ export type TManifesto = {
   updatedAt?: string;
   __v?: number;
 };
+
+
+
+// Add this to your existing types file
+export type TPhotoCards = {
+  _id?: string;
+  imageUrl: string;
+  title: string;
+  date: string | Date;
+  createdAt?: string;
+  updatedAt?: string;
+};
