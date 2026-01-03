@@ -17,14 +17,14 @@ const OurConcernIssue = ({
     >
       {/* content  */}
       <div className="space-y-5 p-5 w-full lg:w-1/3 text-center lg:text-left">
-        <h4 className="text-orange-500 font-semibold">Our Concern Issues</h4>
+        <h4 className="text-orange-500 font-semibold">2001-2006</h4>
         <h2 className="text-4xl font-bold text-blue-900">
           {ourConcernIssue?.title}
         </h2>
         <p>{ourConcernIssue?.description.slice(0, 320)}</p>
-        <Link href={"/events"}>
+        <Link href={"/development-2001-2006"}>
           <button className="hover-border-button mt-6 rounded">
-            More Program
+            See More 
           </button>
         </Link>
       </div>

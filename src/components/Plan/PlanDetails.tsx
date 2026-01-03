@@ -75,7 +75,7 @@ const PlanDetailsPage = () => {
       </div>
 
       {/* CONTENT */}
-      <div className="container mx-auto px-4 mt-10">
+      <div className=" px-4 mt-10">
         <div className="max-w-4xl mx-auto">
           {/* TITLE */}
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
@@ -126,7 +126,7 @@ const PlanDetailsPage = () => {
 
       {/* RELATED PLANS */}
       <div className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4 max-w-6xl">
+        <div className="container mx-auto px-4 ">
           <RelatedPlans />
         </div>
       </div>

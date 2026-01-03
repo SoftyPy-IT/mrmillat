@@ -112,25 +112,25 @@ const PlanSliderHomePage = () => {
           <button
             onClick={handlePrev}
             disabled={isAnimating}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 p-3 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed group border border-gray-300"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-8 z-10 p-1 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed group border border-gray-300"
             aria-label="Previous plan"
           >
-            <FaChevronLeft className="text-blue-600 text-xl md:text-2xl group-hover:scale-110 transition-transform" />
+            <FaChevronLeft className="text-blue-600 text-md md:text-2xl group-hover:scale-110 transition-transform " />
           </button>
 
           <button
             onClick={handleNext}
             disabled={isAnimating}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 p-3 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed group border border-gray-300"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-8 z-10 p-1 md:p-4 rounded-full bg-white/90 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-blue-50 disabled:opacity-50 disabled:cursor-not-allowed group border border-gray-300"
             aria-label="Next plan"
           >
-            <FaChevronRight className="text-blue-600 text-xl md:text-2xl group-hover:scale-110 transition-transform" />
+            <FaChevronRight className="text-blue-600 text-md md:text-2xl group-hover:scale-110 transition-transform" />
           </button>
 
           {/* Smooth Slider Container */}
           <div 
             ref={sliderRef}
-            className="overflow-hidden px-8 md:px-12 lg:px-16"
+            className="overflow-hidden px-3 md:px-12 lg:px-16"
           >
             {/* Cards Grid - No opacity transition here */}
             <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 ${
