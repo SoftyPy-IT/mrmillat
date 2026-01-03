@@ -119,8 +119,8 @@ export default function SingleManifestoPage() {
                       priority
                     />
                   </div>
-                  <div className="p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                  <div className="p-6 md:p-8 text-center">
+                    <div className="mb-4">
                       <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
                         {selectedManifesto.title}
                       </h1>
