@@ -109,6 +109,7 @@ export type TConcernIssues = {
   issue5: string;
   issue6: string;
 };
+
 export type TOurConcernIssue = {
   _id: string;
   title: string;
@@ -117,6 +118,7 @@ export type TOurConcernIssue = {
   ourConcernIssues: TConcernIssues;
   createdAt: string;
 };
+
 export type TWhoWeAre = {
   _id: string;
   title: string;
@@ -140,12 +142,14 @@ export type TMission = {
   imageUrl: string;
   updatedAt: string;
 };
+
 export type TVision = {
   title: string;
   description: string;
   imageUrl: string;
   updatedAt: string;
 };
+
 export type TCompany = {
   companyName: string;
   title: string;
@@ -184,7 +188,6 @@ export type TFeatures = {
   createdAt: string;
 };
 
-
 // Add this to your existing types file (TManifesto should already be there based on your code)
 export type TManifesto = {
   _id: string;
@@ -204,8 +207,6 @@ export type TManifesto = {
   updatedAt?: string;
   __v?: number;
 };
-
-
 
 // Add this to your existing types file
 export type TPhotoCards = {
