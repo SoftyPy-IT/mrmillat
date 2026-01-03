@@ -22,7 +22,7 @@ const Development = ({
         <h2 className="text-4xl font-bold text-blue-900">
           {ourConcernIssue?.title}
         </h2>
-        <p>{ourConcernIssue?.description.slice(0, 320)}...</p>
+        <p>{ourConcernIssue?.shortDescription.slice(0, 320)}...</p>
         {/* Updated to use direct link */}
         <Link href="/development-2001-2006">
           <button className="hover-border-button mt-6 rounded">

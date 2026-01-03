@@ -101,7 +101,7 @@ const Development20012006Page = () => {
           {/* DESCRIPTION */}
           <div className="mb-10">
             <div className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium border-l-4 border-blue-500 pl-6 py-2">
-              {issue.description}
+              {issue.shortDescription}
             </div>
           </div>
 
@@ -131,7 +131,10 @@ const Development20012006Page = () => {
             </div>
           )}
 
-          
+           <div className="mb-10">
+            <div className="text-xl md:text-2xl text-gray-700 leading-relaxed font-medium pl-6 py-2" dangerouslySetInnerHTML={{ __html: issue.description || "" }}/>
+             
+          </div>
         </div>
       </div>
     </div>
