@@ -8,15 +8,17 @@ import { Pagination, Stack } from "@mui/material";
 const EventHighLights = () => {
   const axiosPublic = useAxiosPublic();
   const [events, setEvents] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); 
   const [totalCount, setTotalCount] = useState(0);
-  const limit = 9; // Changed from 8 to 9 for better 3-column layout
+  const limit = 9; 
 
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await axiosPublic.get(
-          `events?type=previous&limit=${limit}&page=${currentPage}&sort=-createdAt`
+          // `events?type=previous&limit=${limit}&page=${currentPage}&sort=-createdAt`
+
+          `events?limit=${limit}&page=${currentPage}&sort=-createdAt`
         );
         const { totalCount, data } = response?.data?.data;
         setEvents(data);
