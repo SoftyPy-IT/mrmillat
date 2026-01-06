@@ -125,7 +125,7 @@ const Media = () => {
     const getData = async () => {
       try {
         const response = await axiosPublic.get(
-          `voice-on-media?limit=${limit}&page=${currentPage}&sort=-date`
+          `voice-on-media?limit=${limit}&page=${currentPage}&sort=-publishDate`
         );
         const { totalCount, data } = response?.data?.data;
         setMedias(data);
