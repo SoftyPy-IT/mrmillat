@@ -1,14 +1,10 @@
 
-
-
-
-
 /*Navlink Button Styling */
 .hover-button {
   position: relative;
   padding: 5px 20px;
   font-size: 16px;
-  color: gray;
+  color: black;
   border: none;
   cursor: pointer;
   overflow: hidden; 

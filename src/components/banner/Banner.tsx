@@ -21,12 +21,12 @@ const Banner = async ({ bannerData }: { bannerData: TBanner }) => {
         </video>
 
         <div className=" flex justify-center items-center ">
-          <div className="max-w-5xl 2xl:max-w-7xl  px-10 top-[50%] md:top-[30%] lg:top-[65%]   text-center text-white absolute z-10 lg:ml-20">
+          <div className="max-w-5xl 2xl:max-w-7xl  md:px-6 top-[50%] md:top-[30%] lg:top-[65%]   text-center text-white absolute z-10 lg:ml-20">
             <h1
               data-aos="fade-left"
               data-aos-delay="200"
               data-aos-duration="1000"
-              className="md:mb-5 mb-2 text-3xl lg:text-7xl   font-semibold"
+              className="md:mb-5 mb-2 text-[28px] lg:text-7xl font-semibold"
             >
               {bannerData?.name}
             </h1>

@@ -18,7 +18,7 @@ const EventHighLights = () => {
         const response = await axiosPublic.get(
           // `events?type=previous&limit=${limit}&page=${currentPage}&sort=-createdAt`
 
-          `events?limit=${limit}&page=${currentPage}&sort=-createdAt`
+          `events?limit=${limit}&page=${currentPage}&sort=-date`
         );
         const { totalCount, data } = response?.data?.data;
         setEvents(data);

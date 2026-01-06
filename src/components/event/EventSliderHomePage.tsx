@@ -18,7 +18,7 @@ const EventSliderHomePage = () => {
     const getData = async () => {
       try {
         const response = await axiosPublic.get(
-          `events?type=previous&limit=${limit}`
+          `events?&limit=${limit}&sort=-date`
         );
         const { totalCount, data } = response?.data?.data;
         console.log(totalCount, data);

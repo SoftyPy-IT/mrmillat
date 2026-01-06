@@ -17,7 +17,7 @@ const Articles = () => {
     const getData = async () => {
       try {
         const response = await axiosPublic.get(
-          `articles?page=${currentPage}&limit=${limit}`
+          `articles?page=${currentPage}&limit=${limit}&sort=-publishedDate`
         );
         const { data, totalCount } = response.data.data;
         setArticles(data);

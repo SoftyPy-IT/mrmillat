@@ -79,7 +79,7 @@ const Navbar = () => {
             className={`w-[100px] h-[50px] md:w-[150px] md:h-[60px] relative  z-30  pr-2  transition-all duration-500
         ${scrolling ? "top-0" : "top-5"}
         `}
-          ></Image>
+          />
         </div>
 
         {/* nav items  */}
