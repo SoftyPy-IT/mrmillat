@@ -97,6 +97,7 @@
 //   );
 // };
 
+// export default Media;
 "use client";
 import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
@@ -106,21 +107,20 @@ import useAxiosPublic from "@/hooks/useAxiosPublic";
 import ReactPlayer from "react-player";
 import { TVoiceOnMedia } from "@/types/types";
 
-/* ---------------- Helpers ---------------- */
-const isFacebookVideo = (url: string) =>
-  url.includes("facebook.com") || url.includes("fb.watch");
-
-/* ---------------- Component ---------------- */
 const Media = () => {
   const axiosPublic = useAxiosPublic();
-  const [medias, setMedias] = useState<TVoiceOnMedia[]>([]);
+  const [medias, setMedias] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [isClient, setIsClient] = useState(false);
-  const [videoReady, setVideoReady] = useState<Record<string, boolean>>({});
+  const [videoReady, setVideoReady] = useState<{ [key: string]: boolean }>({});
   const limit = 6;
 
-  /* -------- Fetch Data -------- */
+  // Check if URL is a Facebook video
+  const isFacebookVideo = (url: string) => {
+    return url.includes('facebook.com') || url.includes('fb.watch');
+  };
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -131,11 +131,14 @@ const Media = () => {
         setMedias(data);
         setTotalCount(totalCount);
 
-        const readyMap: Record<string, boolean> = {};
-        data.forEach((media: TVoiceOnMedia) => (readyMap[media._id] = false));
-        setVideoReady(readyMap);
+        // Initialize video ready states
+        const readyStates: { [key: string]: boolean } = {};
+        data.forEach((media: TVoiceOnMedia) => {
+          readyStates[media._id] = false;
+        });
+        setVideoReady(readyStates);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
     getData();
@@ -145,86 +148,98 @@ const Media = () => {
     setIsClient(true);
   }, []);
 
-  const handleReady = (id: string) =>
+  const handleVideoReady = (id: string) => {
     setVideoReady((prev) => ({ ...prev, [id]: true }));
+  };
+
+  const handleIframeLoad = (id: string) => {
+    setVideoReady((prev) => ({ ...prev, [id]: true }));
+  };
 
   return (
     <div className="bg-white">
+      {/* banner section  */}
       <HeroMediaBanner />
 
       <div className="my-10 container mx-auto px-4">
+        {/* Title with underline - centered */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold inline-block pb-3 border-b-4 border-blue-500 text-blue-950">
             Videos
           </h2>
         </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-          {isClient &&
-            medias.map((media: TVoiceOnMedia) => {
-              const isFacebook = isFacebookVideo(media.videoUrl);
-
-              return (
-                <div
-                  key={media._id}
-                  className="w-full bg-white rounded-xl overflow-hidden border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 flex flex-col"
-                  // style={{ minHeight: "380px", maxHeight: "380px" }}
-                >
-                  {/* Fixed height video container */}
-                  <div className="relative w-full h-56 bg-gray-100">
-                    {!videoReady[media._id] && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-                        <div className="animate-pulse text-gray-500">
-                          Loading video...
+        {/* media card container */}
+        <div
+          data-aos="fade-up"
+          data-aos-duration="2500"
+          className="flex justify-center"
+        >
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center mb-8 gap-8">
+            {isClient &&
+              medias?.map((media: TVoiceOnMedia) => {
+                const isFacebook = isFacebookVideo(media?.videoUrl);
+                
+                return (
+                  <div
+                    key={media?._id}
+                    className="w-full max-w-[383px] h-full bg-gray-50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                  >
+                    {/* Video container with loading state */}
+                    <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                      {!videoReady[media._id] && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
+                          <div className="animate-pulse text-gray-500">
+                            Loading video...
+                          </div>
                         </div>
-                      </div>
-                    )}
-
-                    {isFacebook ? (
-                      // Facebook video using iframe
-                      <iframe
-                        src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
-                          media.videoUrl
-                        )}&show_text=false&width=500&height=285`}
-                        className="absolute inset-0 w-full h-full border-0"
-                        scrolling="no"
-                        allowFullScreen={true}
-                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                        title="Facebook Video"
-                        onLoad={() => handleReady(media._id)}
-                        style={{
-                          opacity: videoReady[media._id] ? 1 : 0,
-                          transition: "opacity 0.3s ease-in",
-                        }}
-                      />
-                    ) : (
-                      // YouTube or other videos using ReactPlayer
-                      <div className="absolute inset-0">
-                        <ReactPlayer
-                          url={media.videoUrl}
-                          width="100%"
-                          height="100%"
-                          controls
-                          onReady={() => handleReady(media._id)}
+                      )}
+                      
+                      {isFacebook ? (
+                        // Facebook iframe embed (works for both regular videos and reels)
+                        <iframe
+                          src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(media.videoUrl)}&show_text=false&width=500`}
+                          className="absolute top-0 left-0 w-full h-full border-0"
+                          scrolling="no"
+                          allowFullScreen={true}
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          title="Facebook Video"
+                          onLoad={() => handleIframeLoad(media._id)}
                           style={{
                             opacity: videoReady[media._id] ? 1 : 0,
                             transition: "opacity 0.3s ease-in",
                           }}
                         />
-                      </div>
-                    )}
-                  </div>
+                      ) : (
+                        // YouTube or other videos using ReactPlayer
+                        <ReactPlayer
+                          url={media.videoUrl}
+                          width="100%"
+                          height="100%"
+                          controls
+                          onReady={() => handleVideoReady(media._id)}
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            opacity: videoReady[media._id] ? 1 : 0,
+                            transition: "opacity 0.3s ease-in",
+                          }}
+                        />
+                      )}
+                    </div>
 
-                  {/* Title container */}
-                  <div className="p-4 flex items-center bg-white">
-                    <h2 className="text-lg font-bold text-gray-800 ">
-                      {media.title}
-                    </h2>
+                    {/* Title container */}
+                    <div className="p-5 flex-grow flex items-center min-h-[80px] bg-white">
+                      <h2 className="text-lg font-bold text-gray-800 line-clamp-2">
+                        {media?.title}
+                      </h2>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-        </section>
+                );
+              })}
+          </section>
+        </div>
 
         {/* pagination buttons */}
         {totalCount < limit && currentPage === 1 ? (
@@ -239,17 +254,17 @@ const Media = () => {
                 color="primary"
                 sx={{
                   '& .MuiPaginationItem-root': {
-                    color: '#1e40af',
-                    border: '1px solid #d1d5db',
+                    color: '#1e40af', 
+                    border: '1px solid #d1d5db', 
                     '&:hover': {
-                      backgroundColor: '#dbeafe',
+                      backgroundColor: '#dbeafe', 
                     },
                   },
                   '& .MuiPaginationItem-root.Mui-selected': {
-                    backgroundColor: '#1e40af',
+                    backgroundColor: '#1e40af', 
                     color: 'white',
                     '&:hover': {
-                      backgroundColor: '#1e3a8a',
+                      backgroundColor: '#1e3a8a', 
                     },
                   },
                 }}
