@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     images: ["https://www.mrmillat.com/Images/mr-8.jpg"],
   },
   // Add optional metadata for better compatibility
-  metadataBase: new URL("https://www.mrmillat.com"), // This helps Next.js generate absolute URLs
+  metadataBase: new URL("https://www.mrmillat.com"), 
 };
 
 export default function RootLayout({

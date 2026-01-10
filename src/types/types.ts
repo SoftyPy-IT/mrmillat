@@ -189,7 +189,6 @@ export type TFeatures = {
   createdAt: string;
 };
 
-// Add this to your existing types file (TManifesto should already be there based on your code)
 export type TManifesto = {
   _id: string;
   title: string;
@@ -209,7 +208,6 @@ export type TManifesto = {
   __v?: number;
 };
 
-// Add this to your existing types file
 export type TPhotoCards = {
   _id?: string;
   imageUrl: string;

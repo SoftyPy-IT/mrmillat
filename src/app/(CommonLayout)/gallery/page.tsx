@@ -1,19 +1,19 @@
-
-
-'use client';
-import { Pagination, Stack } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import ImageModal from './ImageModal';
-import { MdOutlineFullscreen } from 'react-icons/md';
-import HeroGalleryBanner from './HeroGalleryBanner';
-import useAxiosPublic from '@/hooks/useAxiosPublic';
-import { TGallery } from '@/types/types';
+"use client";
+import { Pagination, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import ImageModal from "./ImageModal";
+import { MdOutlineFullscreen } from "react-icons/md";
+import HeroGalleryBanner from "./HeroGalleryBanner";
+import useAxiosPublic from "@/hooks/useAxiosPublic";
+import { TGallery } from "@/types/types";
 
 const Gallery = () => {
   const axiosPublic = useAxiosPublic();
   const [images, setImages] = useState<TGallery[]>([]);
   const [imageId, setImageId] = useState<string | undefined>();
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null
+  );
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -23,7 +23,9 @@ const Gallery = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await axiosPublic.get(`gallery?limit=${limit}&page=${currentPage}&sort=-date`);
+        const response = await axiosPublic.get(
+          `gallery?limit=${limit}&page=${currentPage}&sort=-date`
+        );
         const { totalCount, data } = response?.data?.data;
         setImages(data);
         setTotalCount(totalCount);
@@ -53,7 +55,11 @@ const Gallery = () => {
       <HeroGalleryBanner />
 
       {/* Gallery container */}
-      <section data-aos="fade-up" data-aos-duration="2500" className="flex justify-center px-5">
+      <section
+        data-aos="fade-up"
+        data-aos-duration="2500"
+        className="flex justify-center px-5"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 mb-8 max-w-6xl">
           {images.map((image: TGallery, index: number) => (
             <div
@@ -70,26 +76,32 @@ const Gallery = () => {
                 onTouchEnd={() => setIsHover(false)}
                 style={{
                   backgroundImage: `url(${image?.imageUrl})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
                 }}
                 className={`w-[300px] h-[200px] md:w-[400px] md:h-[260px] lg:w-[600px] lg:h-[400px] relative transition-transform duration-500 hover:scale-105`}
               >
                 <div
                   className={`absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-500 ${
-                    isHover && imageId === image?._id ? 'opacity-100' : 'opacity-0'
+                    isHover && imageId === image?._id
+                      ? "opacity-100"
+                      : "opacity-0"
                   }`}
                 ></div>
-                <h1
-                  className={`absolute left-5 text-lg font-semibold text-white transition-all duration-500 ${
-                    isHover && imageId === image?._id ? 'bottom-10 opacity-100' : 'bottom-[-40px] opacity-0'
+                <div
+                  className={`absolute px-9 text-lg font-semibold text-white transition-all duration-500 ${
+                    isHover && imageId === image?._id
+                      ? "bottom-10 opacity-100"
+                      : "bottom-[-40px] opacity-0"
                   }`}
                 >
                   {image?.title}
-                </h1>
+                </div>
                 <p
-                  className={`absolute left-5 text-sm font-semibold text-white transition-all duration-500 ${
-                    isHover && imageId === image?._id ? 'bottom-5 opacity-100' : 'bottom-[-40px] opacity-0'
+                  className={`absolute px-9 text-sm font-semibold text-white transition-all duration-500 ${
+                    isHover && imageId === image?._id
+                      ? "bottom-5 opacity-100"
+                      : "bottom-[-40px] opacity-0"
                   }`}
                 >
                   {new Date(image?.date).toDateString()}
