@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "/Images/mr-2.jpg",
+    "image": "/images/mr-2.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -10,7 +10,7 @@
   },
   {
     "id": 2,
-    "image": "/Images/mr-10.jpg",
+    "image": "/images/mr-10.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -19,7 +19,7 @@
   },
   {
     "id": 3,
-    "image": "/Images/mr-14.jpg",
+    "image": "/images/mr-14.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -28,7 +28,7 @@
   },
   {
     "id": 4,
-    "image": "/Images/mr-15.jpg",
+    "image": "/images/mr-15.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -37,7 +37,7 @@
   },
   {
     "id": 5,
-    "image": "/Images/mr-5.jpg",
+    "image": "/images/mr-5.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -46,7 +46,7 @@
   },
   {
     "id": 6,
-    "image": "/Images/mr-6.jpg",
+    "image": "/images/mr-6.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -55,7 +55,7 @@
   },
   {
     "id": 7,
-    "image": "/Images/mr-12.jpg",
+    "image": "/images/mr-12.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -64,7 +64,7 @@
   },
   {
     "id": 8,
-    "image": "/Images/mr-11.jpg",
+    "image": "/images/mr-11.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -73,7 +73,7 @@
   },
   {
     "id": 9,
-    "image": "/Images/mr-13.jpg",
+    "image": "/images/mr-13.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -82,7 +82,7 @@
   },
   {
     "id": 10,
-    "image": "/Images/mr-2.jpg",
+    "image": "/images/mr-2.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -91,7 +91,7 @@
   },
   {
     "id": 11,
-    "image": "/Images/mr-10.jpg",
+    "image": "/images/mr-10.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",
@@ -100,7 +100,7 @@
   },
   {
     "id": 12,
-    "image": "/Images/mr-14.jpg",
+    "image": "/images/mr-14.jpg",
     "title": "M. Rashiduzzaman Millat",
     "width": "300px",
     "height": "150px",

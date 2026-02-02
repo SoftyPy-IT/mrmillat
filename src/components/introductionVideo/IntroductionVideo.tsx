@@ -31,7 +31,7 @@ className='bg-blue-700  w-[300px] h-[250px]  md:w-[600px] md:h-[400px] '>
       
      >
 
-       <source src={'/Images/mrmillat-3.mp4'} type="video/mp4" />
+       <source src={'/images/mrmillat-3.mp4'} type="video/mp4" />
    
      </video>
  </div>

@@ -17,7 +17,7 @@ const Banner = async ({ bannerData }: { bannerData: TBanner }) => {
           muted
           playsInline
         >
-          <source src={"/Images/mrmillat-2.mp4"} type="video/mp4" />
+          <source src={"/images/mrmillat-2.mp4"} type="video/mp4" />
         </video>
 
         <div className=" flex justify-center items-center ">

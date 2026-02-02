@@ -21,7 +21,7 @@ const About = () => {
       </section>
 
       {/* mission and vission section  */}
-      <section className="flex flex-col items-center justify-center  md:gap-0 bg-[url(/Images/bg-1.gif)] bg-cover bg-center py-20">
+      <section className="flex flex-col items-center justify-center  md:gap-0 bg-[url(/images/bg-1.gif)] bg-cover bg-center py-20">
         {/* mission  */}
 
         <Mission />

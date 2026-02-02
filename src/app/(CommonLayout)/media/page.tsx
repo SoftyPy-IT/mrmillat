@@ -1,104 +1,5 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import Pagination from "@mui/material/Pagination";
-// import Stack from "@mui/material/Stack";
-// import HeroMediaBanner from "./HeroMediaBanner";
-// import useAxiosPublic from "@/hooks/useAxiosPublic";
-// import ReactPlayer from "react-player/youtube";
-// import { TVoiceOnMedia } from "@/types/types";
-
-// const Media = () => {
-//   const axiosPublic = useAxiosPublic();
-//   const [medias, setMedias] = useState([]);
-//   const [totalCount, setTotalCount] = useState(0);
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const [isClient, setIsClient] = useState(false);
-//   const limit = 6;
-
-//   useEffect(() => {
-//     const getData = async () => {
-//       try {
-//         const response = await axiosPublic.get(
-//           `voice-on-media?limit=${limit}&page=${currentPage}`
-//         );
-//         const { totalCount, data } = response?.data?.data;
-//         console.log(totalCount, data);
-//         setMedias(data);
-//         setTotalCount(totalCount);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     getData();
-//   }, [currentPage, axiosPublic]);
-//   console.log(medias);
-
-//   useEffect(() => {
-//     setIsClient(true);
-//   }, []);
-
-//   return (
-//     <div className="bg-white">
-//       {/* banner section  */}
-//       <HeroMediaBanner />
-
-//       <div className="my-10">
-//         <h2 className="text-4xl text-blue-950 text-center font-bold">
-//           Interviews
-//         </h2>
-
-//         {/* media card container  */}
-//         <div
-//           data-aos="fade-up"
-//           data-aos-duration="2500"
-//           className="flex justify-center item-center"
-//         >
-//           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-around mb-8 mt-10 gap-8 ">
-//             {/* card 1 */}
-
-//             {isClient &&
-//               medias?.map((media: TVoiceOnMedia) => (
-//                 <div
-//                   key={media?._id}
-//                   className="w-[303px] h-[360px] border-2 shadow-xl "
-//                 >
-//                   <ReactPlayer
-//                     controls
-//                     width={300}
-//                     height={200}
-//                     url={media?.videoUrl}
-//                   />
-
-//                   <h2 className="text-lg font-bold my-3 text-black px-5">
-//                     {media?.title}
-//                   </h2>
-//                 </div>
-//               ))}
-//           </section>
-//         </div>
-
-//         {/* pagination buttons */}
-//         {totalCount < limit && currentPage === 1 ? (
-//           ""
-//         ) : (
-//           <div className="flex item-center justify-center mb-20 mt-8">
-//             <Stack spacing={2}>
-//               <Pagination
-//                 count={Math.ceil(totalCount / limit)}
-//                 page={currentPage}
-//                 onChange={(event, value) => setCurrentPage(value)}
-//                 color="primary"
-//               />
-//             </Stack>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Media;
 "use client";
+
 import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
@@ -107,19 +8,37 @@ import useAxiosPublic from "@/hooks/useAxiosPublic";
 import ReactPlayer from "react-player";
 import { TVoiceOnMedia } from "@/types/types";
 
+/* ---------------- Helpers ---------------- */
+
+const isFacebookVideo = (url: string) =>
+  url.includes("facebook.com") || url.includes("fb.watch");
+
+const getFacebookEmbedUrl = (url: string) =>
+  `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+    url
+  )}&show_text=false`;
+
+/* ---------------- Component ---------------- */
+
 const Media = () => {
   const axiosPublic = useAxiosPublic();
-  const [medias, setMedias] = useState([]);
+
+  const [medias, setMedias] = useState<TVoiceOnMedia[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [isClient, setIsClient] = useState(false);
-  const [videoReady, setVideoReady] = useState<{ [key: string]: boolean }>({});
+
+  /**
+   * status:
+   * loading | ready | failed
+   */
+  const [videoStatus, setVideoStatus] = useState<
+    Record<string, "loading" | "ready" | "failed">
+  >({});
+
   const limit = 6;
 
-  // Check if URL is a Facebook video
-  const isFacebookVideo = (url: string) => {
-    return url.includes('facebook.com') || url.includes('fb.watch');
-  };
+  /* ---------------- Fetch Data ---------------- */
 
   useEffect(() => {
     const getData = async () => {
@@ -127,20 +46,23 @@ const Media = () => {
         const response = await axiosPublic.get(
           `voice-on-media?limit=${limit}&page=${currentPage}&sort=-publishDate`
         );
+
         const { totalCount, data } = response?.data?.data;
+
         setMedias(data);
         setTotalCount(totalCount);
 
-        // Initialize video ready states
-        const readyStates: { [key: string]: boolean } = {};
-        data.forEach((media: TVoiceOnMedia) => {
-          readyStates[media._id] = false;
+        const statusMap: Record<string, "loading"> = {};
+        data.forEach((m: TVoiceOnMedia) => {
+          statusMap[m._id] = "loading";
         });
-        setVideoReady(readyStates);
+
+        setVideoStatus(statusMap);
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
+
     getData();
   }, [currentPage, axiosPublic]);
 
@@ -148,91 +70,116 @@ const Media = () => {
     setIsClient(true);
   }, []);
 
-  const handleVideoReady = (id: string) => {
-    setVideoReady((prev) => ({ ...prev, [id]: true }));
+  /* ---------------- Handlers ---------------- */
+
+  const markReady = (id: string) => {
+    setVideoStatus((prev) => ({ ...prev, [id]: "ready" }));
   };
 
-  const handleIframeLoad = (id: string) => {
-    setVideoReady((prev) => ({ ...prev, [id]: true }));
+  /**
+   * Facebook iframe never errors.
+   * If not ready in 5s → assume blocked.
+   */
+  const startFailTimer = (id: string) => {
+    setTimeout(() => {
+      setVideoStatus((prev) =>
+        prev[id] === "loading" ? { ...prev, [id]: "failed" } : prev
+      );
+    }, 5000);
   };
+
+  /* ---------------- Render ---------------- */
 
   return (
     <div className="bg-white">
-      {/* banner section  */}
       <HeroMediaBanner />
 
       <div className="my-10 container mx-auto px-4">
-        {/* Title with underline - centered */}
+        {/* Title */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold inline-block pb-3 border-b-4 border-blue-500 text-blue-950">
             Videos
           </h2>
         </div>
 
-        {/* media card container */}
-        <div
-          data-aos="fade-up"
-          data-aos-duration="2500"
-          className="flex justify-center"
-        >
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center mb-8 gap-8">
+        {/* Media Grid */}
+        <div className="flex justify-center">
+          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
             {isClient &&
-              medias?.map((media: TVoiceOnMedia) => {
-                const isFacebook = isFacebookVideo(media?.videoUrl);
-                
+              medias.map((media) => {
+                const isFacebook = isFacebookVideo(media.videoUrl);
+                const status = videoStatus[media._id];
+
                 return (
                   <div
-                    key={media?._id}
-                    className="w-full max-w-[383px] h-full bg-gray-50 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-200 shadow-lg hover:shadow-xl hover:border-blue-400 transition-all duration-300 hover:-translate-y-1 flex flex-col"
+                    key={media._id}
+                    className="w-full max-w-[383px] bg-gray-50 rounded-xl overflow-hidden border shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col"
                   >
-                    {/* Video container with loading state */}
-                    <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-                      {!videoReady[media._id] && (
-                        <div className="absolute inset-0 flex items-center justify-center bg-gray-200">
-                          <div className="animate-pulse text-gray-500">
-                            Loading video...
-                          </div>
+                    {/* Video */}
+                    <div className="relative w-full pt-[56.25%] bg-black">
+                      {status === "loading" && (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+                          Loading video...
                         </div>
                       )}
-                      
-                      {isFacebook ? (
-                        // Facebook iframe embed (works for both regular videos and reels)
+
+                      {/* Facebook */}
+                      {isFacebook && status !== "failed" && (
                         <iframe
-                          src={`https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(media.videoUrl)}&show_text=false&width=500`}
-                          className="absolute top-0 left-0 w-full h-full border-0"
-                          scrolling="no"
-                          allowFullScreen={true}
+                          src={getFacebookEmbedUrl(media.videoUrl)}
+                          className="absolute inset-0 w-full h-full border-0"
                           allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          allowFullScreen
                           title="Facebook Video"
-                          onLoad={() => handleIframeLoad(media._id)}
+                          onLoad={() => markReady(media._id)}
+                          ref={() => startFailTimer(media._id)}
                           style={{
-                            opacity: videoReady[media._id] ? 1 : 0,
-                            transition: "opacity 0.3s ease-in",
+                            opacity: status === "ready" ? 1 : 0,
+                            transition: "opacity 0.3s ease",
                           }}
                         />
-                      ) : (
-                        // YouTube or other videos using ReactPlayer
+                      )}
+
+                      {/* Other platforms */}
+                      {!isFacebook && (
                         <ReactPlayer
                           url={media.videoUrl}
                           width="100%"
                           height="100%"
                           controls
-                          onReady={() => handleVideoReady(media._id)}
+                          onReady={() => markReady(media._id)}
                           style={{
                             position: "absolute",
-                            top: 0,
-                            left: 0,
-                            opacity: videoReady[media._id] ? 1 : 0,
-                            transition: "opacity 0.3s ease-in",
+                            inset: 0,
+                            opacity: status === "ready" ? 1 : 0,
+                            transition: "opacity 0.3s ease",
                           }}
                         />
                       )}
+
+                      {/* Facebook fallback */}
+                      {status === "failed" && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black px-4 text-center">
+                          <p className="text-sm mb-3">
+                            This video can’t be embedded due to Facebook
+                            restrictions.
+                          </p>
+                          <a
+                            href={media.videoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+                          >
+                            Watch on Facebook
+                          </a>
+                        </div>
+                      )}
                     </div>
 
-                    {/* Title container */}
-                    <div className="p-5 flex-grow flex items-center min-h-[80px] bg-white">
-                      <h2 className="text-lg font-bold text-gray-800 line-clamp-2">
-                        {media?.title}
+                    {/* Title */}
+                    <div className="p-5 min-h-[80px] flex items-center bg-white">
+                      <h2 className="text-lg font-bold line-clamp-2">
+                        {media.title}
                       </h2>
                     </div>
                   </div>
@@ -241,33 +188,15 @@ const Media = () => {
           </section>
         </div>
 
-        {/* pagination buttons */}
-        {totalCount < limit && currentPage === 1 ? (
-          ""
-        ) : (
-          <div className="flex items-center justify-center mb-20 mt-12">
+        {/* Pagination */}
+        {totalCount > limit && (
+          <div className="flex justify-center mt-12 mb-20">
             <Stack spacing={2}>
               <Pagination
                 count={Math.ceil(totalCount / limit)}
                 page={currentPage}
-                onChange={(event, value) => setCurrentPage(value)}
+                onChange={(_, value) => setCurrentPage(value)}
                 color="primary"
-                sx={{
-                  '& .MuiPaginationItem-root': {
-                    color: '#1e40af', 
-                    border: '1px solid #d1d5db', 
-                    '&:hover': {
-                      backgroundColor: '#dbeafe', 
-                    },
-                  },
-                  '& .MuiPaginationItem-root.Mui-selected': {
-                    backgroundColor: '#1e40af', 
-                    color: 'white',
-                    '&:hover': {
-                      backgroundColor: '#1e3a8a', 
-                    },
-                  },
-                }}
               />
             </Stack>
           </div>

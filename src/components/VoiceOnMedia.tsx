@@ -1,84 +1,3 @@
-// "use client";
-// import React, { useEffect, useState } from "react";
-// import useAxiosPublic from "@/hooks/useAxiosPublic";
-// import ReactPlayer from "react-player/youtube";
-// import { TVoiceOnMedia } from "@/types/types";
-// import Link from "next/link";
-
-// const VoiceOnMedia = () => {
-//   const axiosPublic = useAxiosPublic();
-//   const [medias, setMedias] = useState([]);
-//   const [isClient, setIsClient] = useState(false);
-//   const limit = 3;
-//   useEffect(() => {
-//     const getData = async () => {
-//       try {
-//         const response = await axiosPublic.get(`voice-on-media?limit=${limit}`);
-//         const { totalCount, data } = response?.data?.data;
-//         console.log(totalCount, data);
-//         setMedias(data);
-//       } catch (error) {
-//         console.log(error);
-//       }
-//     };
-//     getData();
-//   }, [axiosPublic]);
-//   console.log(medias);
-
-//   useEffect(() => {
-//     setIsClient(true);
-//   }, []);
-
-//   return (
-//     <div className="bg-white">
-//       <div className="my-20">
-//         <h2 className="text-4xl text-blue-950 text-center font-bold">
-//           Voice On Media
-//         </h2>
-
-//         {/* media card container  */}
-//         <div
-//           data-aos="fade-up"
-//           data-aos-duration="2500"
-//           className="flex justify-center item-center"
-//         >
-//           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-around mb-8 mt-10 gap-8 ">
-//             {isClient &&
-//               medias?.slice(0, 3).map((media: TVoiceOnMedia) => (
-//                 <div
-//                   key={media?._id}
-//                   className="w-[303px] h-[320px] border-2 shadow-xl "
-//                 >
-//                   <ReactPlayer
-//                     controls
-//                     width={300}
-//                     height={200}
-//                     url={media?.videoUrl}
-//                   />
-
-//                   <h2 className="text-md font-bold my-3 text-blue-950 px-5">
-//                     {media?.title}
-//                   </h2>
-//                 </div>
-//               ))}
-//           </section>
-//         </div>
-
-//         <div className="w-full flex justify-center">
-//           <Link
-//             data-aos="fade-up"
-//             data-aos-delay="1000"
-//             data-aos-duration="1000"
-//             href="/media"
-//           >
-//             <button className="hover-border-button rounded">View More</button>
-//           </Link>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -101,9 +20,20 @@ const getFacebookEmbedUrl = (url: string) =>
 
 const VoiceOnMedia = () => {
   const axiosPublic = useAxiosPublic();
+
   const [medias, setMedias] = useState<TVoiceOnMedia[]>([]);
   const [isClient, setIsClient] = useState(false);
-  const [videoReady, setVideoReady] = useState<Record<string, boolean>>({});
+
+  /**
+   * status:
+   *  - loading
+   *  - ready
+   *  - failed (Facebook blocked)
+   */
+  const [videoStatus, setVideoStatus] = useState<
+    Record<string, "loading" | "ready" | "failed">
+  >({});
+
   const limit = 3;
 
   /* -------- Fetch Data -------- */
@@ -111,13 +41,17 @@ const VoiceOnMedia = () => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const res = await axiosPublic.get(`voice-on-media?limit=${limit}`);
+        const res = await axiosPublic.get(`voice-on-media?limit=${limit}&sort=-publishDate`);
         const data = res?.data?.data?.data || [];
+
         setMedias(data);
 
-        const readyMap: Record<string, boolean> = {};
-        data.forEach((m: TVoiceOnMedia) => (readyMap[m._id] = false));
-        setVideoReady(readyMap);
+        const statusMap: Record<string, "loading"> = {};
+        data.forEach((m: TVoiceOnMedia) => {
+          statusMap[m._id] = "loading";
+        });
+
+        setVideoStatus(statusMap);
       } catch (err) {
         console.error(err);
       }
@@ -130,8 +64,26 @@ const VoiceOnMedia = () => {
     setIsClient(true);
   }, []);
 
-  const handleReady = (id: string) =>
-    setVideoReady((prev) => ({ ...prev, [id]: true }));
+  /* -------- Handlers -------- */
+
+  const handleReady = (id: string) => {
+    setVideoStatus((prev) => ({ ...prev, [id]: "ready" }));
+  };
+
+  /**
+   * Facebook iframe does NOT fire errors.
+   * If not ready within 5s → assume blocked.
+   */
+  const startFailTimer = (id: string) => {
+    setTimeout(() => {
+      setVideoStatus((prev) => {
+        if (prev[id] === "loading") {
+          return { ...prev, [id]: "failed" };
+        }
+        return prev;
+      });
+    }, 5000);
+  };
 
   /* -------- Render -------- */
 
@@ -148,23 +100,26 @@ const VoiceOnMedia = () => {
         {/* Cards */}
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
           {isClient &&
-            medias.slice(0, 3).map((media) => {
+            medias.slice(0, limit).map((media) => {
               const isFacebook = isFacebookVideo(media.videoUrl);
+              const status = videoStatus[media._id];
 
               return (
                 <div
                   key={media._id}
                   className="bg-white rounded-xl overflow-hidden border shadow-lg transition hover:-translate-y-1 hover:shadow-xl"
                 >
-                  {/* Video */}
+                  {/* Video Wrapper */}
                   <div className="relative w-full pt-[56.25%] bg-black">
-                    {!videoReady[media._id] && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400">
+                    {/* Loading */}
+                    {status === "loading" && (
+                      <div className="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-400 text-sm">
                         Loading video...
                       </div>
                     )}
 
-                    {isFacebook ? (
+                    {/* Facebook Video */}
+                    {isFacebook && status !== "failed" && (
                       <iframe
                         src={getFacebookEmbedUrl(media.videoUrl)}
                         className="absolute inset-0 w-full h-full border-0"
@@ -174,11 +129,15 @@ const VoiceOnMedia = () => {
                         title="Facebook Video"
                         onLoad={() => handleReady(media._id)}
                         style={{
-                          opacity: videoReady[media._id] ? 1 : 0,
+                          opacity: status === "ready" ? 1 : 0,
                           transition: "opacity 0.3s ease",
                         }}
+                        ref={() => startFailTimer(media._id)}
                       />
-                    ) : (
+                    )}
+
+                    {/* Non-Facebook Videos */}
+                    {!isFacebook && (
                       <div className="absolute inset-0">
                         <ReactPlayer
                           url={media.videoUrl}
@@ -187,10 +146,28 @@ const VoiceOnMedia = () => {
                           controls
                           onReady={() => handleReady(media._id)}
                           style={{
-                            opacity: videoReady[media._id] ? 1 : 0,
+                            opacity: status === "ready" ? 1 : 0,
                             transition: "opacity 0.3s ease",
                           }}
                         />
+                      </div>
+                    )}
+
+                    {/* Facebook Fallback */}
+                    {status === "failed" && (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-black text-white text-center px-4">
+                        <p className="text-sm mb-3">
+                          This video cannot be embedded due to Facebook
+                          restrictions.
+                        </p>
+                        <a
+                          href={media.videoUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 transition"
+                        >
+                          Watch on Facebook
+                        </a>
                       </div>
                     )}
                   </div>

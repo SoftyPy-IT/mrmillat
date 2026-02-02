@@ -18,7 +18,7 @@ export default function PostalVote() {
             {/* Image */}
             <div className="relative overflow-hidden">
               <Image
-                src="/Images/postal.png"
+                src="/images/postal.png"
                 alt="Postal Vote System"
                 width={300}
                 height={300}
