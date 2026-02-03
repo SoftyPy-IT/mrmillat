@@ -61,7 +61,7 @@ const PhotoCardsSlider = () => {
     return {
       id: photoCard._id || "",
       title: photoCard.title || "Photo Card",
-      image: photoCard.imageUrl || "/images/default-photo.jpg",
+      image: photoCard.imageUrl || "/img/default-photo.jpg",
     };
   };
 

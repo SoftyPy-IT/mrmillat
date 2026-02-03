@@ -24,7 +24,7 @@ export const metadata: Metadata = {
       "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
     images: [
       {
-        url: "https://www.mrmillat.com/images/mr-8.jpg", // Full URL with www
+        url: "https://www.mrmillat.com/img/mr-8.jpg", // Full URL with www
         width: 1200,
         height: 630,
         alt: "M. Rashiduzzaman Millat",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "M. Rashiduzzaman Millat",
     description: "Politician of Bangladesh Nationalist Party and a former member of parliament for Jamalpur-1.",
-    images: ["https://www.mrmillat.com/images/mr-8.jpg"],
+    images: ["https://www.mrmillat.com/img/mr-8.jpg"],
   },
   // Add optional metadata for better compatibility
   metadataBase: new URL("https://www.mrmillat.com"), 

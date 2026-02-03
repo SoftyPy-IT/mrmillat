@@ -37,38 +37,38 @@ const PhotoFrame = () => {
             >
 
             <img
-              src="/images/mr-21.jpg"
+              src="/img/mr-21.jpg"
               alt="a house on a mountain"
 
             />
 
             <img
-              src="/images/mr-8.jpg"
+              src="/img/mr-8.jpg"
               alt="some pink flowers"
             />
 
             <img
-              src="/images/mr-15.jpg"
+              src="/img/mr-15.jpg"
               alt="big rocks with some trees"
             />
 
             <img
-              src="/images/WhatsApp Image 2025-01-01 at 20.55.21.jpeg"
+              src="/img/WhatsApp Image 2025-01-01 at 20.55.21.jpeg"
               alt="a waterfall, a lot of tree and a great view from the sky"
             />
 
             <img
-              src="/images/mr-23.jpg"
+              src="/img/mr-23.jpg"
               alt="a cool landscape"
             />
 
             <img
-              src="/images/electionCampaign2.jpg"
+              src="/img/electionCampaign2.jpg"
               alt="inside a town between two big buildings"
             />
 
             <img
-              src="/images/mr-3.jpg"
+              src="/img/mr-3.jpg"
               alt="a great view of the sea above the mountain"
             />
           </div>

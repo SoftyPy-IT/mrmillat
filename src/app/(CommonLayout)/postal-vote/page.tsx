@@ -11,7 +11,7 @@ export default function PostalVotePage() {
         {/* Title Image */}
         <div className="flex justify-center  mb-10">
           <Image
-            src="/images/postal.png"
+            src="/img/postal.png"
             alt="Postal Voting System"
             height={900}
             width={600}
@@ -70,7 +70,7 @@ export default function PostalVotePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/1.jpg" 
+                src="/img/1.jpg" 
                 alt="Address Sample 1"
                 width={900}
                 height={900}
@@ -80,7 +80,7 @@ export default function PostalVotePage() {
 
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/2.jpg"
+                src="/img/2.jpg"
                 alt="Address Sample 2"
                 width={900}
                 height={900}
@@ -91,7 +91,7 @@ export default function PostalVotePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/3.jpg" 
+                src="/img/3.jpg" 
                 alt="Address Sample 1"
                 width={900}
                 height={900}
@@ -101,7 +101,7 @@ export default function PostalVotePage() {
 
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/4.jpg"
+                src="/img/4.jpg"
                 alt="Address Sample 2"
                 width={900}
                 height={900}
@@ -112,7 +112,7 @@ export default function PostalVotePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/Oman.jpg" 
+                src="/img/Oman.jpg" 
                 alt="Address Sample 1"
                 width={900}
                 height={900}
@@ -122,7 +122,7 @@ export default function PostalVotePage() {
 
             <div className="relative h-full rounded-lg overflow-hidden border">
               <Image
-                src="/images/Kuwait.jpg"
+                src="/img/Kuwait.jpg"
                 alt="Address Sample 2"
                 width={900}
                 height={900}
