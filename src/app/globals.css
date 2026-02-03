@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 /* Common button for all components styling */
 .hover-border-button {
   padding: 10px 40px;
@@ -25,20 +22,16 @@
   left: 0;
   height: 100%;
   width: 100%;
-  border: 2px solid white; 
+  border: 2px solid white;
   transform: scaleX(0);
-  transition: transform 0.4s ease; 
+  transition: transform 0.4s ease;
   transform-origin: right;
 }
 
 .hover-border-button:hover::before {
-  transform: scaleX(1); 
+  transform: scaleX(1);
   transform-origin: left;
 }
-
-
-
-
 
 /* image gallery styles  */
 
@@ -140,5 +133,10 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* scrollbar hide */
+  .custom-scrollbar {
+    scrollbar-width: none; /* Firefox */
   }
 }
