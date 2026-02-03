@@ -24,6 +24,7 @@ const routes: Route[] = [
   { navItem: "Articles", route: "/articles" },
   { navItem: "Voice  on  Media", route: "/media" },
   { navItem: "Contact", route: "/contact" },
+  { navItem: "Photo Frame", route: "/frame" },
 ];
 
 const Navbar = () => {
