@@ -8,6 +8,16 @@ import useAxiosPublic from "@/hooks/useAxiosPublic";
 import ReactPlayer from "react-player";
 import { TVoiceOnMedia } from "@/types/types";
 
+/* ---------------- Helpers ---------------- */
+
+const isFacebookVideo = (url: string) =>
+  url.includes("facebook.com") || url.includes("fb.watch");
+
+const getFacebookEmbedUrl = (url: string) =>
+  `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(
+    url
+  )}&show_text=false`;
+
 /* ---------------- Component ---------------- */
 
 const Media = () => {
@@ -18,7 +28,15 @@ const Media = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isClient, setIsClient] = useState(false);
 
-  const limit = 6;
+  /**
+   * status:
+   * loading | ready | failed
+   */
+  const [videoStatus, setVideoStatus] = useState<
+    Record<string, "loading" | "ready" | "failed">
+  >({});
+
+  const limit = 9;
 
   /* ---------------- Fetch Data ---------------- */
 
@@ -30,8 +48,16 @@ const Media = () => {
         );
 
         const { totalCount, data } = response?.data?.data;
+
         setMedias(data);
         setTotalCount(totalCount);
+
+        const statusMap: Record<string, "loading"> = {};
+        data.forEach((m: TVoiceOnMedia) => {
+          statusMap[m._id] = "loading";
+        });
+
+        setVideoStatus(statusMap);
       } catch (error) {
         console.error(error);
       }
@@ -44,10 +70,25 @@ const Media = () => {
     setIsClient(true);
   }, []);
 
-  /* ---------------- Simple Solution ---------------- */
+  /* ---------------- Handlers ---------------- */
 
-  const isFacebookVideo = (url: string) =>
-    url.includes("facebook.com") || url.includes("fb.watch");
+  const markReady = (id: string) => {
+    setVideoStatus((prev) => ({ ...prev, [id]: "ready" }));
+  };
+
+  /**
+   * Facebook iframe never errors.
+   * If not ready in 5s → assume blocked.
+   */
+  const startFailTimer = (id: string) => {
+    setTimeout(() => {
+      setVideoStatus((prev) =>
+        prev[id] === "loading" ? { ...prev, [id]: "failed" } : prev
+      );
+    }, 5000);
+  };
+
+  /* ---------------- Render ---------------- */
 
   return (
     <div className="bg-white">
@@ -67,63 +108,72 @@ const Media = () => {
             {isClient &&
               medias.map((media) => {
                 const isFacebook = isFacebookVideo(media.videoUrl);
+                const status = videoStatus[media._id];
 
-                // For Facebook videos that can't embed, show a clickable thumbnail
-                if (isFacebook) {
-                  return (
-                    <div
-                      key={media._id}
-                      className="w-full max-w-[383px] bg-gray-50 rounded-xl overflow-hidden border shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col"
-                    >
-                      {/* Clickable Thumbnail for Facebook */}
-                      <a
-                        href={media.videoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block relative w-full pt-[56.25%] bg-gray-900 hover:bg-gray-800 transition-colors"
-                      >
-                        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4">
-                            <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                              <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
-                              <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z" />
-                            </svg>
-                          </div>
-                          <p className="text-lg font-semibold">Watch on Facebook</p>
-                          <p className="text-sm text-gray-300 mt-2">Click to open video</p>
-                        </div>
-                      </a>
-
-                      {/* Title */}
-                      <div className="p-5 min-h-[80px] flex items-center bg-white">
-                        <h2 className="text-lg font-bold line-clamp-2">
-                          {media.title}
-                        </h2>
-                      </div>
-                    </div>
-                  );
-                }
-
-                // For non-Facebook videos, use ReactPlayer normally
                 return (
                   <div
                     key={media._id}
                     className="w-full max-w-[383px] bg-gray-50 rounded-xl overflow-hidden border shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col"
                   >
-                    {/* Video Player */}
+                    {/* Video */}
                     <div className="relative w-full pt-[56.25%] bg-black">
-                      <ReactPlayer
-                        url={media.videoUrl}
-                        width="100%"
-                        height="100%"
-                        controls
-                        style={{
-                          position: "absolute",
-                          top: 0,
-                          left: 0,
-                        }}
-                        light={true}
-                      />
+                      {status === "loading" && (
+                        <div className="absolute inset-0 flex items-center justify-center text-gray-400 text-sm">
+                          Loading video...
+                        </div>
+                      )}
+
+                      {/* Facebook */}
+                      {isFacebook && status !== "failed" && (
+                        <iframe
+                          src={getFacebookEmbedUrl(media.videoUrl)}
+                          className="absolute inset-0 w-full h-full border-0"
+                          allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                          allowFullScreen
+                          title="Facebook Video"
+                          onLoad={() => markReady(media._id)}
+                          ref={() => startFailTimer(media._id)}
+                          style={{
+                            opacity: status === "ready" ? 1 : 0,
+                            transition: "opacity 0.3s ease",
+                          }}
+                        />
+                      )}
+
+                      {/* Other platforms */}
+                      {!isFacebook && (
+                        <ReactPlayer
+                          url={media.videoUrl}
+                          width="100%"
+                          height="100%"
+                          controls
+                          onReady={() => markReady(media._id)}
+                          style={{
+                            position: "absolute",
+                            inset: 0,
+                            opacity: status === "ready" ? 1 : 0,
+                            transition: "opacity 0.3s ease",
+                          }}
+                        />
+                      )}
+
+                      {/* Facebook fallback */}
+                      {status === "failed" && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-white bg-black px-4 text-center">
+                          <p className="text-sm mb-3">
+                            This video can’t be embedded due to Facebook
+                            restrictions.
+                          </p>
+                          <a
+                            href={media.videoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-700"
+                          >
+                            Watch on Facebook
+                          </a>
+                        </div>
+                      )}
                     </div>
 
                     {/* Title */}
@@ -157,3 +207,5 @@ const Media = () => {
 };
 
 export default Media;
+ 
+
