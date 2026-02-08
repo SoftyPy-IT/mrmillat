@@ -103,7 +103,7 @@ export default function Manifesto() {
                   </div>
 
                   <Link
-                    href={"/election-manifesto"}
+                    href={"https://www.bnpbd.org/manifesto"}
                     className="inline-flex mt-6"
                   >
                     <span className="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700">
